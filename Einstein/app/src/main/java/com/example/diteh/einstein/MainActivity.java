@@ -13,7 +13,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+    // FAG KNAPPER - KUNNE IKKE LAVE EN SCROLLBAR
+    public void fag1OnClick(View v){
+        Button button= (Button) v;
+        startActivity(new Intent(getApplicationContext(),Fag1Activity.class));
+    }
 
+    public void fag2OnClick(View v){
+        Button button= (Button) v;
+        startActivity(new Intent(getApplicationContext(), Fag2Activity.class));
+    }
+
+    //RESTERENDE KNAPPER
     public void calenderOnClick(View v){
         Button button= (Button) v;
         startActivity(new Intent(getApplicationContext(),CalenderActivity.class));
@@ -24,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(),ChatroomActivity.class));
     }
 
-    public void assignmentOnClick(View v){
+    public void trophyOnClick(View v){
         Button button= (Button) v;
-        startActivity(new Intent(getApplicationContext(),AssignmentActivity.class));
+        startActivity(new Intent(getApplicationContext(), TrophyActivity.class));
     }
 }
