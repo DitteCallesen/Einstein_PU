@@ -7,36 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <Button
-        android:text="Assignment"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/Chatroom"
-        android:layout_alignLeft="@+id/Chatroom"
-        android:layout_alignStart="@+id/Chatroom"
-        android:layout_marginTop="40dp"
-        android:id="@+id/Assignment"
-        android:elevation="19dp"
-        android:background="@color/colorPrimary"
-        android:onClick="assignmentOnClick"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="none"
-        android:text="Coming assignments: "
-        android:ems="10"
-        android:layout_below="@+id/Assignment"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="71dp"
-        android:id="@+id/editText"
-        android:enabled="true"
-        android:clickable="false"
-        android:editable="false" />
-
     <ImageView
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher"
@@ -44,20 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_alignRight="@+id/Chatroom"
         android:layout_alignEnd="@+id/Chatroom" />
-
-    <Button
-        android:text="Calender"
-        android:layout_marginTop="44dp"
-        android:id="@+id/Calender"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        android:onClick="calenderOnClick"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
 
     <Button
         android:text="Chat Room"
@@ -86,6 +42,54 @@
         android:inputType="none"
         android:editable="false"
         android:enabled="true" />
+
+    <Button
+        android:text="FAG 2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:id="@+id/fag2"
+        android:layout_below="@+id/fag1"
+        android:layout_alignRight="@+id/fag1"
+        android:layout_alignEnd="@+id/fag1"
+        android:onClick="fag2OnClick"/>
+
+    <Button
+        android:text="FAG 1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:id="@+id/fag1"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:onClick="fag1OnClick"/>
+
+    <Button
+        android:text="Calender"
+        android:id="@+id/Calender"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:onClick="calenderOnClick"
+        android:layout_marginRight="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/Chatroom"
+        android:layout_toStartOf="@+id/Chatroom" />
+
+    <Button
+        android:text="Trophy room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:id="@+id/trophy"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/Chatroom"
+        android:layout_alignRight="@+id/Chatroom"
+        android:layout_alignEnd="@+id/Chatroom"
+        android:layout_alignLeft="@+id/Chatroom"
+        android:layout_alignStart="@+id/Chatroom"
+        android:onClick="trophyOnClick"/>
 
 
 </RelativeLayout>

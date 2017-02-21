@@ -17,7 +17,10 @@
         </activity>
         <activity android:name=".CalenderActivity" />
         <activity android:name=".ChatroomActivity" />
-        <activity android:name=".AssignmentActivity"></activity>
+        <activity android:name=".AssignmentActivity" />
+        <activity android:name=".Fag1Activity" />
+        <activity android:name=".TrophyActivity" />
+        <activity android:name=".Fag2Activity"></activity>
     </application>
 
 </manifest>
