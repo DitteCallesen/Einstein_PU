@@ -1,4 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:text="@string/theme1"
+            android:background="#f4e9e3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="40sp"
+            android:onClick="button1_clicked"/>
+
+        <Button
+            android:text="@string/theme2"
+            android:background="#f4d2d0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="40sp" />
+
+        <Button
+            android:text="@string/theme3"
+            android:background="#7987a1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="40sp" />
+
+        <Button
+            android:text="@string/theme4"
+            android:background="#9eaec5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="40sp" />
+
+        <Button
+            android:text="@string/theme5"
+            android:background="#c9d3df"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="40sp" />
+
+        <Button
+            android:text="@string/theme6"
+            android:background="#e4e9ec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="40sp" />
+
+        <Button
+            android:text="@string/theme7"
+            android:background="#f4e9e3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="40sp" />
+
+        <Button
+            android:text="@string/theme8"
+            android:background="#f4d2d0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textSize="40sp" />
+
+    </LinearLayout>
+
+
+</ScrollView>
+
+
+
+    <!--
+
+
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_fag1"
@@ -37,3 +123,4 @@
         android:layout_alignParentStart="true"
         android:onClick="Back1OnClick"/>
 </RelativeLayout>
+-->

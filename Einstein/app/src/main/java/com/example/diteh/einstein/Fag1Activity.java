@@ -8,15 +8,18 @@ import android.widget.Button;
 
 public class Fag1Activity extends AppCompatActivity {
 
+    public final static String SUBJECT_ID = "com.example.myfirstapp.MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fag1);
     }
 
-    public void assignmentOnClick(View v){
-        Button button= (Button) v;
-        startActivity(new Intent(getApplicationContext(),AssignmentActivity.class));
+    public void button1_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(SUBJECT_ID, 0);
+        startActivity(intent);
     }
 
     public void Back1OnClick(View v){

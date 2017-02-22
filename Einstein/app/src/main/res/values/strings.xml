@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Einstein</string>
     <string name="edit_message">Wellcome to Einstein.</string>
+    <string name="theme1">Algebra</string>
+    <string name="theme2">Prosent</string>
+    <string name="theme3">Geometri</string>
+    <string name="theme4">Statistikk</string>
+    <string name="theme5">Sannsynlighet</string>
+    <string name="theme6">Brøk</string>
+    <string name="theme7">Tallsystemer</string>
+    <string name="theme8">Gangetabellen</string>
 </resources>

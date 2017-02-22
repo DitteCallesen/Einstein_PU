@@ -1,4 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_display_message"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="30dp"
+    android:orientation="vertical">
+
+    <!-- Navn på fag-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fag"
+        android:gravity="center_horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="25dp"
+        android:textColor="#DDDDDD"
+        android:textSize="20dp"/>
+
+    <!-- Navn på tema-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/subject"
+        android:gravity="center_horizontal"
+        android:paddingTop="60dp"
+        android:paddingBottom="25dp"
+        android:textSize="40dp"/>
+
+    <!--Oppgavetekst-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/question"
+        android:gravity="center_horizontal"
+        android:padding="60dp"
+        android:textSize="30dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="25dp"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/button1"
+            android:onClick="button1Clicked"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            android:background="#79a9db"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:onClick="button2Clicked"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            android:background="#79a9db"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button3"
+            android:onClick="button3Clicked"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            android:background="#79a9db"/>
+
+        <Button
+            android:id="@+id/button4"
+            android:onClick="button4Clicked"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            android:background="#79a9db"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+
+<!--
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_assignment"
@@ -22,3 +130,4 @@
         android:id="@+id/buttonback"
         android:onClick="backOnClick"/>
 </RelativeLayout>
+-->
