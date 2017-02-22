@@ -32,7 +32,9 @@ public class AssignmentActivity extends AppCompatActivity {
     public final static String SUBJECT_ID = "com.example.myfirstapp.SUBJECT_ID";
     public final static String TASK_ID = "com.example.myfirstapp.COUNTER";
 
-    int globalCounter = 0;
+    int class_id;
+    int subject_id;
+    int globalCounter;
     String correctAnswer;
     String answer1;
     String answer2;
@@ -169,8 +171,8 @@ public class AssignmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_assignment);
 
         Bundle extras = getIntent().getExtras();
-        int class_id = extras.getInt(CLASS_ID);
-        int subject_id = extras.getInt(SUBJECT_ID);
+        class_id = extras.getInt(CLASS_ID);
+        subject_id = extras.getInt(SUBJECT_ID);
         int task_id = extras.getInt(TASK_ID);
 
         TextView class_view = (TextView) findViewById(R.id.fag);
