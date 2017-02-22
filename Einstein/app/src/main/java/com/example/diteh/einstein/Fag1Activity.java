@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class Fag1Activity extends AppCompatActivity {
 
+    public final static String CLASS_ID = "com.example.myfirstapp.MESSAGE";
     public final static String SUBJECT_ID = "com.example.myfirstapp.MESSAGE";
 
     @Override
@@ -18,6 +19,7 @@ public class Fag1Activity extends AppCompatActivity {
 
     public void button1_clicked(View view) {
         Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 0);
         intent.putExtra(SUBJECT_ID, 0);
         startActivity(intent);
     }

@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/edit_message"
         android:layout_width="match_parent"
-        android:text='"Username" welcom to Einstein'
+        android:text='"Username" welcome to Einstein'
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
