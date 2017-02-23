@@ -35,6 +35,8 @@ public class AssignmentActivity extends AppCompatActivity {
     int class_id;
     int subject_id;
     int globalCounter;
+    public int counterC=0;
+    public int counterW=0;
 
     String correctAnswer = "";
     String answer1 = "";
