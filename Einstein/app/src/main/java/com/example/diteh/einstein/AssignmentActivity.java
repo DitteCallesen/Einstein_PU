@@ -40,7 +40,8 @@ public class AssignmentActivity extends AppCompatActivity {
     String answer2;
     String answer3;
     String answer4;
-
+    public int counterC=0;
+    public int counterW=0;
     //Denne metoden avgjør om det finnes en oppgave til i databasen
     public boolean nextTaskExists(int class_id, int subject_id, int task_id) {
         BufferedReader reader = null;
@@ -202,12 +203,12 @@ public class AssignmentActivity extends AppCompatActivity {
         }
         else {
             // Her må det komme en beskjed om at det er tomt for oppgaver
-            subject_view.setText("false");
-            question_view.setText("false");
-            button1.setText("false");
-            button2.setText("false");
-            button3.setText("false");
-            button4.setText("false");
+            subject_view.setText("Du er ferdig");
+            question_view.setText("Kor/Feil =" + counterC +"/"+ counterW);
+            button1.setVisibility(View.INVISIBLE);
+            button2.setVisibility(View.INVISIBLE);
+            button3.setVisibility(View.INVISIBLE);
+            button4.setVisibility(View.INVISIBLE);
         }
 
 
@@ -216,6 +217,7 @@ public class AssignmentActivity extends AppCompatActivity {
     }
 
     public void correctAnswerClicked() {
+        counterC++;
         Intent intent = new Intent(this, AssignmentActivity.class);
         Bundle extras = new Bundle();
         int task_id = globalCounter + 1;
@@ -226,7 +228,18 @@ public class AssignmentActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public int countC(){
+        counterC++;
+        return counterC;
+    }
+
+
+    public int countW(){
+        return counterW++;
+    }
+
     public void wrongAnswerClicked() {
+        countW();
         Context context = AssignmentActivity.this;
         String message = "Wrong";
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
@@ -237,33 +250,41 @@ public class AssignmentActivity extends AppCompatActivity {
             correctAnswerClicked();
         }
         else {
+
             wrongAnswerClicked();
+
         }
     }
 
     public void button2Clicked(View view) {
         if (answer2.equals(correctAnswer)) {
+
             correctAnswerClicked();
         }
         else {
+
             wrongAnswerClicked();
         }
     }
 
     public void button3Clicked(View view) {
         if (answer3.equals(correctAnswer)) {
+
             correctAnswerClicked();
         }
         else {
+
             wrongAnswerClicked();
         }
     }
 
     public void button4Clicked(View view) {
         if (answer4.equals(correctAnswer)) {
+
             correctAnswerClicked();
         }
         else {
+
             wrongAnswerClicked();
         }
     }

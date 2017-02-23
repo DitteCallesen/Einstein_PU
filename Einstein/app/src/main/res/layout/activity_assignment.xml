@@ -22,20 +22,20 @@
     <!-- Navn på tema-->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="101dp"
         android:id="@+id/subject"
         android:gravity="center_horizontal"
-        android:paddingTop="60dp"
+        android:paddingTop="20dp"
         android:paddingBottom="25dp"
-        android:textSize="40dp"/>
+        android:textSize="30dp"/>
 
     <!--Oppgavetekst-->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="139dp"
         android:id="@+id/question"
         android:gravity="center_horizontal"
-        android:padding="60dp"
+        android:padding="30dp"
         android:textSize="30dp" />
 
 
