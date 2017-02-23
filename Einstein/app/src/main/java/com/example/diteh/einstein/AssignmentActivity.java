@@ -35,11 +35,11 @@ public class AssignmentActivity extends AppCompatActivity {
     int class_id;
     int subject_id;
     int globalCounter;
-    String correctAnswer;
-    String answer1;
-    String answer2;
-    String answer3;
-    String answer4;
+    String correctAnswer = "";
+    String answer1 = "";
+    String answer2 = "";
+    String answer3 = "";
+    String answer4 = "";
 
     //Denne metoden avgjør om det finnes en oppgave til i databasen
     public boolean nextTaskExists(int class_id, int subject_id, int task_id) {
