@@ -9,6 +9,8 @@
     android:orientation="vertical">
 
     <!-- Navn på fag-->
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +22,7 @@
         android:textSize="20dp"/>
 
     <!-- Navn på tema-->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="101dp"
@@ -30,6 +33,7 @@
         android:textSize="30dp"/>
 
     <!--Oppgavetekst-->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="139dp"

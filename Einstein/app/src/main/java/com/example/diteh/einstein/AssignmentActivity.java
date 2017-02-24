@@ -35,8 +35,8 @@ public class AssignmentActivity extends AppCompatActivity {
     int class_id;
     int subject_id;
     int globalCounter;
-    public int counterC=0;
-    public int counterW=0;
+    public static int counterC=0;
+    public static int counterW=0;
 
     String correctAnswer = "";
     String answer1 = "";
@@ -202,6 +202,7 @@ public class AssignmentActivity extends AppCompatActivity {
             answer3 = answers.get(3);
             answer4 = answers.get(4);
             correctAnswer = answers.get(0);
+
         }
         else {
             // Her må det komme en beskjed om at det er tomt for oppgaver
@@ -289,6 +290,11 @@ public class AssignmentActivity extends AppCompatActivity {
 
             wrongAnswerClicked();
         }
+    }
+
+    public void BackToMain(View v){
+        Button button= (Button) v;
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
 
 
