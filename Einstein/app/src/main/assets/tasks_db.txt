@@ -17,3 +17,4 @@
 1_2_1_1_8  11  6  3  9  7  Calculate the variance._72_60_50_56
 1_3_0_1_3   5   9   7   1  Calculate the standard deviation.6.42_41.25_33.22_5.74
 1_3_1_1_8  11  6  3  9  7  Calculate the standard deviation.8.48_7.76_72_6
+1_4_0_1_The probability that it will rain tomorrow is 0.42. What is the probability that it will not rain tomorrow?_0.58_0.52_0.67_0.42
