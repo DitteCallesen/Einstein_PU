@@ -1,3 +1,7 @@
 0_0_Algebra
 0_1_Geometri
 0_2_Prosentregning
+1_0_Sample mean
+1_1_Sample median
+1_2_Variance
+1_3_Standard deviation

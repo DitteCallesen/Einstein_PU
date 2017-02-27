@@ -10,37 +10,44 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:id="@+id/theme0"
             android:text="@string/theme2_1"
             android:background="#f4e9e3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp"
-            android:onClick="button1_clicked"/>
+            android:textSize="36sp"
+            android:onClick="button0_clicked"/>
 
         <Button
+            android:id="@+id/theme1"
             android:text="@string/theme2_2"
             android:background="#f4d2d0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp"
+            android:onClick="button1_clicked"/>
 
         <Button
+            android:id="@+id/theme2"
             android:text="@string/theme2_3"
             android:background="#7987a1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp"
+            android:onClick="button2_clicked"/>
 
         <Button
+            android:id="@+id/theme3"
             android:text="@string/theme2_4"
             android:background="#9eaec5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp"
+            android:onClick="button3Clicked"/>
 
         <Button
             android:text="@string/theme2_5"
@@ -48,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp" />
 
         <Button
             android:text="@string/theme2_6"
@@ -56,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp" />
 
         <Button
             android:text="@string/theme2_7"
@@ -64,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp" />
 
         <Button
             android:text="@string/theme2_8"
@@ -72,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp" />
 
     </LinearLayout>
 

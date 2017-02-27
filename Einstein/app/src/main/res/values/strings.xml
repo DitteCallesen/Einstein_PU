@@ -9,14 +9,14 @@
     <string name="theme6">Brøk</string>
     <string name="theme7">Tallsystemer</string>
     <string name="theme8">Gangetabellen</string>
-    <string name="theme2_1">Tema1</string>
-    <string name="theme2_2">Tema2</string>
-    <string name="theme2_3">Tema3</string>
-    <string name="theme2_4">Tema4</string>
-    <string name="theme2_5">Tema5</string>
-    <string name="theme2_6">Tema6</string>
-    <string name="theme2_7">Tema7</string>
-    <string name="theme2_8">Tema8</string>
+    <string name="theme2_1">Sample mean</string>
+    <string name="theme2_2">Sample median</string>
+    <string name="theme2_3">Variance</string>
+    <string name="theme2_4">Standard Deviation</string>
+    <string name="theme2_5">Additive Rules</string>
+    <string name="theme2_6">Product Rule</string>
+    <string name="theme2_7">Bayes Rule</string>
+    <string name="theme2_8">Mean of a random variable</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->

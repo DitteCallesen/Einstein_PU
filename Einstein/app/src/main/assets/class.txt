@@ -1,2 +1,2 @@
 0_Matematikk
-1_Norsk
+1_Statistics

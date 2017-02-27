@@ -8,8 +8,8 @@ import android.widget.Button;
 
 public class Fag1Activity extends AppCompatActivity {
 
-    public final static String CLASS_ID = "com.example.myfirstapp.MESSAGE";
-    public final static String SUBJECT_ID = "com.example.myfirstapp.MESSAGE";
+    public final static String CLASS_ID = "class_id";
+    public final static String SUBJECT_ID = "subject_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
