@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_trophy"
     android:layout_width="match_parent"
@@ -9,22 +10,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.diteh.einstein.TrophyActivity">
-
-    <TextView
-        android:text="Trophy room"
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="18dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="31dp"
-        android:id="@+id/textView2"
-        android:enabled="true"
-        android:editable="false"
-        style="@style/Widget.AppCompat.TextView.SpinnerItem" />
 
     <Button
         android:text="Back"
@@ -36,4 +21,41 @@
         android:layout_marginBottom="15dp"
         android:id="@+id/BackT"
         android:onClick="backTOnClick"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        app:srcCompat="@mipmap/ic_trophy"
+        android:layout_marginTop="25dp"
+        android:id="@+id/imageView3"
+        android:layout_height="100dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignRight="@+id/BackT"
+        android:layout_alignEnd="@+id/BackT" />
+
+    <TextView
+        android:text="Trophy room"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:id="@+id/textView2"
+        android:enabled="true"
+        android:editable="false"
+        style="@style/Widget.AppCompat.TextView.SpinnerItem"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Algebra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp" />
+
 </RelativeLayout>

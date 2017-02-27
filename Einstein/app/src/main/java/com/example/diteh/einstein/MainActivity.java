@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    // FAG KNAPPER - KUNNE IKKE LAVE EN SCROLLBAR
+    // "FAG" buttons
     public void fag1OnClick(View v){
         Button button= (Button) v;
         startActivity(new Intent(getApplicationContext(),Fag1Activity.class));
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), Fag2Activity.class));
     }
 
-    //RESTERENDE KNAPPER
+    //Buttons - opens new windowes
     public void calenderOnClick(View v){
         Button button= (Button) v;
         startActivity(new Intent(getApplicationContext(),CalenderActivity.class));
