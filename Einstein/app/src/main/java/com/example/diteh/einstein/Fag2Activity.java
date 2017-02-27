@@ -51,6 +51,38 @@ public class Fag2Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void button4_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 1);
+        intent.putExtra(SUBJECT_ID, 4);
+        intent.putExtra(TASK_ID, 0);
+        startActivity(intent);
+    }
+
+    public void button5_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 1);
+        intent.putExtra(SUBJECT_ID, 5);
+        intent.putExtra(TASK_ID, 0);
+        startActivity(intent);
+    }
+
+    public void button6_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 1);
+        intent.putExtra(SUBJECT_ID, 6);
+        intent.putExtra(TASK_ID, 0);
+        startActivity(intent);
+    }
+
+    public void button7_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 1);
+        intent.putExtra(SUBJECT_ID, 7);
+        intent.putExtra(TASK_ID, 0);
+        startActivity(intent);
+    }
+
     public void Back1OnClick(View v){
         Button button= (Button) v;
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
