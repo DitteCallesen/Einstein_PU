@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< Updated upstream
     package="com.example.truong.myapplication">
+=======
+    package="com.example.android.myapplication">
+>>>>>>> Stashed changes
 
     <application
         android:allowBackup="true"

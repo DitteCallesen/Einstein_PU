@@ -8,9 +8,10 @@ import android.widget.Button;
 
 public class Fag2Activity extends AppCompatActivity {
 
-    public final static String CLASS_ID = "com.example.myfirstapp.MESSAGE5";
-    public final static String SUBJECT_ID = "com.example.myfirstapp.MESSAGE6";
-    public final static String TASK_ID = "com.example.myfirstapp.MESSAGE7";
+    public final static String CLASS_ID = "class_id";
+    public final static String SUBJECT_ID = "subject_id";
+    public final static String TASK_ID = "task_id";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +19,66 @@ public class Fag2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_fag2);
     }
 
-    public void button1_clicked(View view) {
+    public void button0_clicked(View view) {
         Intent intent = new Intent(this, AssignmentActivity.class);
         intent.putExtra(CLASS_ID, 1);
         intent.putExtra(SUBJECT_ID, 0);
+        intent.putExtra(TASK_ID, 0);
+        startActivity(intent);
+    }
+
+    public void button1_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 1);
+        intent.putExtra(SUBJECT_ID, 1);
+        intent.putExtra(TASK_ID, 0);
+        startActivity(intent);
+    }
+
+    public void button2_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 1);
+        intent.putExtra(SUBJECT_ID, 2);
+        intent.putExtra(TASK_ID, 0);
+        startActivity(intent);
+    }
+
+    public void button3_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 1);
+        intent.putExtra(SUBJECT_ID, 3);
+        intent.putExtra(TASK_ID, 0);
+        startActivity(intent);
+    }
+
+    public void button4_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 1);
+        intent.putExtra(SUBJECT_ID, 4);
+        intent.putExtra(TASK_ID, 0);
+        startActivity(intent);
+    }
+
+    public void button5_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 1);
+        intent.putExtra(SUBJECT_ID, 5);
+        intent.putExtra(TASK_ID, 0);
+        startActivity(intent);
+    }
+
+    public void button6_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 1);
+        intent.putExtra(SUBJECT_ID, 6);
+        intent.putExtra(TASK_ID, 0);
+        startActivity(intent);
+    }
+
+    public void button7_clicked(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        intent.putExtra(CLASS_ID, 1);
+        intent.putExtra(SUBJECT_ID, 7);
         intent.putExtra(TASK_ID, 0);
         startActivity(intent);
     }

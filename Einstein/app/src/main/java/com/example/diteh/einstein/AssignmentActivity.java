@@ -28,9 +28,9 @@ import static java.util.Random.*;
 
 public class AssignmentActivity extends AppCompatActivity {
 
-    public final static String CLASS_ID = "com.example.myfirstapp.CLASS_ID";
-    public final static String SUBJECT_ID = "com.example.myfirstapp.SUBJECT_ID";
-    public final static String TASK_ID = "com.example.myfirstapp.COUNTER";
+    public final static String CLASS_ID = "class_id";
+    public final static String SUBJECT_ID = "subject_id";
+    public final static String TASK_ID = "task_id";
 
     int class_id;
     int subject_id;
@@ -208,7 +208,6 @@ public class AssignmentActivity extends AppCompatActivity {
 
         }
         else {
-            // Her må det komme en beskjed om at det er tomt for oppgaver
             subject_view.setText("Du er ferdig");
             question_view.setText("Kor/Feil =" + counterC +"/"+ counterW);
             button1.setVisibility(View.INVISIBLE);
@@ -229,8 +228,8 @@ public class AssignmentActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AssignmentActivity.class);
         Bundle extras = new Bundle();
         int task_id = globalCounter + 1;
-        extras.putInt(CLASS_ID, 0);
-        extras.putInt(SUBJECT_ID, 0);
+        extras.putInt(CLASS_ID, class_id);
+        extras.putInt(SUBJECT_ID, subject_id);
         extras.putInt(TASK_ID, task_id);
         intent.putExtras(extras);
         startActivity(intent);

@@ -10,69 +10,80 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:text="@string/theme2_1"
+            android:id="@+id/theme0"
+            android:text="@string/theme2_0"
             android:background="#f4e9e3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp"
-            android:onClick="button1_clicked"/>
+            android:textSize="36sp"
+            android:onClick="button0_clicked"/>
 
         <Button
-            android:text="@string/theme2_2"
+            android:id="@+id/theme1"
+            android:text="@string/theme2_1"
             android:background="#f4d2d0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp"
+            android:onClick="button1_clicked"/>
 
         <Button
-            android:text="@string/theme2_3"
+            android:id="@+id/theme2"
+            android:text="@string/theme2_2"
             android:background="#7987a1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp"
+            android:onClick="button2_clicked"/>
 
         <Button
-            android:text="@string/theme2_4"
+            android:id="@+id/theme3"
+            android:text="@string/theme2_3"
             android:background="#9eaec5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp"
+            android:onClick="button3_clicked"/>
 
         <Button
-            android:text="@string/theme2_5"
+            android:text="@string/theme2_4"
             android:background="#c9d3df"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp"
+            android:onClick="button4_clicked"/>
 
         <Button
-            android:text="@string/theme2_6"
+            android:text="@string/theme2_5"
             android:background="#e4e9ec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp"
+            android:onClick="button5_clicked"/>
 
         <Button
-            android:text="@string/theme2_7"
+            android:text="@string/theme2_6"
             android:background="#f4e9e3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp"
+            android:onClick="button6_clicked" />
 
         <Button
-            android:text="@string/theme2_8"
+            android:text="@string/theme2_7"
             android:background="#f4d2d0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            android:textSize="40sp" />
+            android:textSize="36sp"
+            android:onClick="button7_clicked" />
 
     </LinearLayout>
 
