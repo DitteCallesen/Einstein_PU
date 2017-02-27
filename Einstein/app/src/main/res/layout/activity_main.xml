@@ -55,7 +55,7 @@
         android:onClick="fag2OnClick"/>
 
     <Button
-        android:text="FAG 1"
+        android:text="Matematikk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
