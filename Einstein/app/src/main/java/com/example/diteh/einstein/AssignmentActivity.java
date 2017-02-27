@@ -315,6 +315,13 @@ public class AssignmentActivity extends AppCompatActivity {
         }
         return randomList;
     }
+
+    /*
+    public void activateTrophy() {
+        TrophyActivity trophyActivity = new TrophyActivity();
+        trophyActivity.activateTrophy();
+    }
+    */
 }
 
 

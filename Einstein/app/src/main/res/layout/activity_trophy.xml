@@ -23,14 +23,13 @@
         android:onClick="backTOnClick"/>
 
     <ImageView
+
         android:layout_width="100dp"
         app:srcCompat="@mipmap/ic_trophy"
         android:layout_marginTop="25dp"
-        android:id="@+id/imageView3"
-        android:layout_height="100dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignRight="@+id/BackT"
-        android:layout_alignEnd="@+id/BackT" />
+        android:id="@+id/trophy1"
+        android:visibility="invisible"
+        android:layout_height="100dp" />
 
     <TextView
         android:text="Trophy room"
@@ -52,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
-        android:layout_below="@+id/imageView3"
+        android:layout="@+id/imageView3"
         android:layout_alignLeft="@+id/textView2"
         android:layout_alignStart="@+id/textView2"
         android:layout_marginLeft="19dp"
