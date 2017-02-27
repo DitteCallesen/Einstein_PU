@@ -35,6 +35,8 @@ public class AssignmentActivity extends AppCompatActivity {
     int class_id;
     int subject_id;
     int globalCounter;
+    public static int counterC=0;
+    public static int counterW=0;
 
     String correctAnswer = "";
     String answer1 = "";
@@ -183,6 +185,8 @@ public class AssignmentActivity extends AppCompatActivity {
         TextView button2 = (TextView) findViewById(R.id.button2);
         TextView button3 = (TextView) findViewById(R.id.button3);
         TextView button4 = (TextView) findViewById(R.id.button4);
+        TextView button5 = (TextView) findViewById(R.id.button5);
+        if(task_id==0){counterC=0;counterW=0;}
 
         //Her kan vi hente ut neste spørsmål fra database med task_id
         if (nextTaskExists(class_id, subject_id, task_id)) {
@@ -195,11 +199,13 @@ public class AssignmentActivity extends AppCompatActivity {
             button2.setText(answers.get(2));
             button3.setText(answers.get(3));
             button4.setText(answers.get(4));
+            button5.setVisibility(View.INVISIBLE);
             answer1 = answers.get(1);
             answer2 = answers.get(2);
             answer3 = answers.get(3);
             answer4 = answers.get(4);
             correctAnswer = answers.get(0);
+
         }
         else {
             // Her må det komme en beskjed om at det er tomt for oppgaver
@@ -209,6 +215,8 @@ public class AssignmentActivity extends AppCompatActivity {
             button2.setVisibility(View.INVISIBLE);
             button3.setVisibility(View.INVISIBLE);
             button4.setVisibility(View.INVISIBLE);
+            button5.setVisibility(View.VISIBLE);
+
         }
 
 
@@ -287,6 +295,11 @@ public class AssignmentActivity extends AppCompatActivity {
 
             wrongAnswerClicked();
         }
+    }
+
+    public void BackToMain(View v){
+        Button button= (Button) v;
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
 
 

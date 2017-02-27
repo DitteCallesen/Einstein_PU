@@ -9,17 +9,31 @@
     android:orientation="vertical">
 
     <!-- Navn på fag-->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fag"
-        android:gravity="center_horizontal"
-        android:paddingTop="5dp"
-        android:paddingBottom="25dp"
-        android:textColor="#DDDDDD"
-        android:textSize="20dp"/>
 
-    <!-- Navn på tema-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fag"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="25dp"
+            android:textColor="#DDDDDD"
+            android:textSize="20dp"/>
+
+        <!-- Navn på tema-->
+
+        <Button
+            android:text="Back"
+            android:layout_width="51dp"
+            android:layout_height="31dp"
+            android:gravity="right"
+            android:id="@+id/button5"
+            android:onClick="BackToMain"
+            android:textSize="10dp"/>
+    </FrameLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="101dp"
@@ -30,6 +44,7 @@
         android:textSize="30dp"/>
 
     <!--Oppgavetekst-->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="139dp"
