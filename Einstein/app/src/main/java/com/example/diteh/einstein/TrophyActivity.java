@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -45,16 +46,57 @@ public class TrophyActivity extends AppCompatActivity {
     }
 
     public void trophyClicked(View view) {
+        LinearLayout big_trophy = (LinearLayout) findViewById(R.id.big_trophy);
+        big_trophy.setVisibility(View.VISIBLE);
+        TextView trophy_text = (TextView) findViewById(R.id.trophy_text);
+
         switch(view.getId()) {
             case R.id.trophy1:
-                //
+                trophy_text.setText("Gjort din første oppgave.");
             break;
             case R.id.trophy2:
-                //
+                trophy_text.setText("Fått riktig på 5 oppgaver på rad.");
             break;
+            case R.id.trophy3:
+                trophy_text.setText("Løst 10 oppgaver på én dag.");
+                break;
+            case R.id.trophy4:
+                trophy_text.setText("Fått riktig på 10 oppgaver på rad.");
+                break;
+            case R.id.trophy5:
+                trophy_text.setText("Løst 10 oppgaver.");
+                break;
+            case R.id.trophy6:
+                trophy_text.setText("Løst 10 oppgaver på én time.");
+                break;
+            case R.id.trophy7:
+                trophy_text.setText("Løst 10 oppgaver på en dag.");
+                break;
+            case R.id.trophy8:
+                trophy_text.setText("Løst 30 oppgaver på én dag.");
+                break;
+            case R.id.trophy9:
+                trophy_text.setText("Løst 50 oppgaver.");
+                break;
+            case R.id.trophy10:
+                trophy_text.setText("Fått riktig på 30 oppgaver på rad.");
+                break;
+            case R.id.trophy11:
+                trophy_text.setText("Løst 100 oppgaver.");
+                break;
+            case R.id.trophy12:
+                trophy_text.setText("Løst 500 oppgaver.");
+                break;
+
             default:
                 //
         }
+
+    }
+
+    public void bigTrophyClicked(View view) {
+        LinearLayout big_trophy = (LinearLayout) findViewById(R.id.big_trophy);
+        big_trophy.setVisibility(View.INVISIBLE);
     }
 
     public void addNewTrophy(Integer trophyNumber) {
