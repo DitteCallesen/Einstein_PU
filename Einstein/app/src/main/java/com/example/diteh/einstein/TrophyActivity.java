@@ -25,6 +25,19 @@ public class TrophyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trophy);
 
+        activeTrophies.add(1);
+        activeTrophies.add(2);
+        activeTrophies.add(3);
+        activeTrophies.add(4);
+        activeTrophies.add(5);
+        activeTrophies.add(6);
+        activeTrophies.add(7);
+        activeTrophies.add(8);
+        activeTrophies.add(9);
+        activeTrophies.add(10);
+        activeTrophies.add(11);
+        activeTrophies.add(12);
+
         showTrophies();
 
     }
@@ -82,6 +95,8 @@ public class TrophyActivity extends AppCompatActivity {
             ImageButton imageButton = (ImageButton) findViewById(R.id.trophy12);
             imageButton.setVisibility(View.VISIBLE);
         }
+    }
+}
 
 
 
@@ -94,6 +109,7 @@ public class TrophyActivity extends AppCompatActivity {
     public void method() {
         //
     }
-    */
+
 
 }
+*/
