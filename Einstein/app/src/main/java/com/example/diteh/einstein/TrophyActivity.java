@@ -29,12 +29,4 @@ public class TrophyActivity extends AppCompatActivity {
         //
     }
 
-    /*
-    public void activateTrophy() {
-        Log.i("mytag", "hello");
-        ImageView image = (ImageView) findViewById(R.id.trophy1);
-        //image.setVisibility(View.VISIBLE);
-    }
-    */
-
 }
