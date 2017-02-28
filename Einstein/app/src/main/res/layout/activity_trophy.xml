@@ -1,4 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.diteh.einstein.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/trophy1"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/trophy2"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/trophy3"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/trophy4"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/trophy5"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/trophy6"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/trophy7"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/trophy8"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/trophy9"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/trophy10"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/trophy11"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/trophy12"
+            android:background="@mipmap/ic_trophy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+<!--
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -56,5 +200,7 @@
         android:layout_alignStart="@+id/textView2"
         android:layout_marginLeft="19dp"
         android:layout_marginStart="19dp" />
+
+-->
 
 </RelativeLayout>

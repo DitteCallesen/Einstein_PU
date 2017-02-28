@@ -20,6 +20,9 @@ public class TrophyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trophy);
     }
 
+
+
+    /*
     public void backTOnClick(View v){
         Button button= (Button) v;
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
@@ -28,5 +31,6 @@ public class TrophyActivity extends AppCompatActivity {
     public void method() {
         //
     }
+    */
 
 }
