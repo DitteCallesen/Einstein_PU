@@ -25,6 +25,9 @@ public class TrophyActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
     }
 
+    public void method() {
+        //
+    }
 
     /*
     public void activateTrophy() {
