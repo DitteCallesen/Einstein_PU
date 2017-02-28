@@ -18,7 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
         <ImageButton
             android:id="@+id/trophy2"
@@ -26,7 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
         <ImageButton
             android:id="@+id/trophy3"
@@ -34,7 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
 
     </LinearLayout>
@@ -52,7 +55,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
         <ImageButton
             android:id="@+id/trophy5"
@@ -60,7 +64,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
         <ImageButton
             android:id="@+id/trophy6"
@@ -68,7 +73,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
     </LinearLayout>
 
@@ -85,7 +91,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
         <ImageButton
             android:id="@+id/trophy8"
@@ -93,7 +100,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
         <ImageButton
             android:id="@+id/trophy9"
@@ -101,7 +109,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
     </LinearLayout>
 
@@ -118,7 +127,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
         <ImageButton
             android:id="@+id/trophy11"
@@ -126,15 +136,17 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
-        <ImageButton
+        <Image
             android:id="@+id/trophy12"
             android:background="@mipmap/ic_trophy"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:visibility="invisible"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:onClick="trophyClicked"/>
 
     </LinearLayout>
 

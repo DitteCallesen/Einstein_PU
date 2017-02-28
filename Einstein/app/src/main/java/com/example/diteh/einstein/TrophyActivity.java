@@ -25,6 +25,8 @@ public class TrophyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trophy);
 
+
+        //Bare foreløpig, sånn at vi kan se troféene.
         activeTrophies.add(1);
         activeTrophies.add(2);
         activeTrophies.add(3);
@@ -40,6 +42,19 @@ public class TrophyActivity extends AppCompatActivity {
 
         showTrophies();
 
+    }
+
+    public void trophyClicked(View view) {
+        switch(view.getId()) {
+            case R.id.trophy1:
+                //
+            break;
+            case R.id.trophy2:
+                //
+            break;
+            default:
+                //
+        }
     }
 
     public void addNewTrophy(Integer trophyNumber) {
