@@ -240,22 +240,17 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putInt(TASK_ID, task_id);
         extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow + 1);
         Toast.makeText(AssignmentActivity.this, correctAnswersInARow + "", Toast.LENGTH_LONG).show(); //Kun for debugging
-        if (correctAnswersInARow == 5 && notInDatabase("2")) {
+        if (correctAnswersInARow == 5 && !myDb.containsTrophy(2)) {
             addTrophy(2);
         }
-        if (correctAnswersInARow == 10 && notInDatabase("2")) {
+        if (correctAnswersInARow == 10 && !myDb.containsTrophy(4)) {
             addTrophy(4);
         }
-        if (correctAnswersInARow == 30 && notInDatabase("2")) {
+        if (correctAnswersInARow == 30 && !myDb.containsTrophy(10)) {
             addTrophy(10);
         }
         intent.putExtras(extras);
         startActivity(intent);
-    }
-
-    public boolean notInDatabase(String trophyNumber) {
-        //Må sjekke om et gitt trofé finnes i databasen
-        return true;
     }
 
     public int countC(){
@@ -273,7 +268,6 @@ public class AssignmentActivity extends AppCompatActivity {
         Context context = AssignmentActivity.this;
         String message = "Wrong";
         correctAnswersInARow = 1;
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
     public void button1Clicked(View view) {
@@ -342,13 +336,7 @@ public class AssignmentActivity extends AppCompatActivity {
     }
 
     public void addTrophy(int trophyNumber) {
-        boolean isInserted = myDb.insertData(trophyNumber);
-        if (isInserted) {
-            Toast.makeText(AssignmentActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
-        }
-        else {
-            Toast.makeText(AssignmentActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
-        }
+        myDb.insertData(trophyNumber);
     }
 
 }
