@@ -302,6 +302,7 @@ public class AssignmentActivity extends AppCompatActivity {
     }
 
 
+
     //Tar inn fire svaralternativer og plasserer dem i
     //tilfeldig rekkefølge i en liste som blir returnert
     //Riktig svaralternativ på plass 0
