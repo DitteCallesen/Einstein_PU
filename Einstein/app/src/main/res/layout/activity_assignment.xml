@@ -1,126 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/activity_display_message"
-    android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_margin="30dp"
-    android:orientation="vertical">
+    android:layout_width="match_parent">
 
-    <!-- Navn på fag-->
-
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:orientation="vertical">
+
+        <!-- Navn på fag-->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fag"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="25dp"
+                android:textColor="#DDDDDD"
+                android:textSize="20dp"/>
+
+            <!-- Navn på tema-->
+
+            <Button
+                android:text="Back"
+                android:layout_width="51dp"
+                android:layout_height="31dp"
+                android:gravity="right"
+                android:id="@+id/button5"
+                android:onClick="BackToMain"
+                android:textSize="10dp"/>
+        </FrameLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="101dp"
+            android:id="@+id/subject"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="25dp"
+            android:textSize="30dp"/>
+
+        <!--Oppgavetekst-->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/fag"
-            android:gravity="center"
-            android:paddingTop="5dp"
-            android:paddingBottom="25dp"
-            android:textColor="#DDDDDD"
-            android:textSize="20dp"/>
-
-        <!-- Navn på tema-->
-
-        <Button
-            android:text="Back"
-            android:layout_width="51dp"
-            android:layout_height="31dp"
-            android:gravity="right"
-            android:id="@+id/button5"
-            android:onClick="BackToMain"
-            android:textSize="10dp"/>
-    </FrameLayout>
+            android:id="@+id/question"
+            android:gravity="center_horizontal"
+            android:padding="30dp"
+            android:textSize="30dp" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="101dp"
-        android:id="@+id/subject"
-        android:gravity="center_horizontal"
-        android:paddingTop="20dp"
-        android:paddingBottom="25dp"
-        android:textSize="30dp"/>
-
-    <!--Oppgavetekst-->
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/question"
-        android:gravity="center_horizontal"
-        android:padding="30dp"
-        android:textSize="30dp" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="25dp"
-        android:orientation="horizontal">
-
-
-        <Button
-            android:id="@+id/button1"
-            android:onClick="button1Clicked"
-            android:layout_weight="1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textSize="30dp"
-            android:textColor="#ffffff"
-            android:background="#79a9db"/>
+            android:paddingTop="25dp"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button2"
-            android:onClick="button2Clicked"
-            android:layout_weight="1"
+
+            <Button
+                android:id="@+id/button1"
+                android:onClick="button1Clicked"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="30dp"
+                android:textColor="#ffffff"
+                android:background="#79a9db"/>
+
+            <Button
+                android:id="@+id/button2"
+                android:onClick="button2Clicked"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="30dp"
+                android:textColor="#ffffff"
+                android:background="#79a9db"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textSize="30dp"
-            android:textColor="#ffffff"
-            android:background="#79a9db"/>
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button3"
+                android:onClick="button3Clicked"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="30dp"
+                android:textColor="#ffffff"
+                android:background="#79a9db"/>
+
+            <Button
+                android:id="@+id/button4"
+                android:onClick="button4Clicked"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="30dp"
+                android:textColor="#ffffff"
+                android:background="#79a9db"/>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:id="@+id/correct_answer"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="#7BA849"
+        android:orientation="vertical"
+        android:visibility="invisible">
 
-        <Button
-            android:id="@+id/button3"
-            android:onClick="button3Clicked"
-            android:layout_weight="1"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textSize="30dp"
-            android:textColor="#ffffff"
-            android:background="#79a9db"/>
+            android:text="Correct!"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center"
+            android:layout_margin="30dp"/>
 
         <Button
-            android:id="@+id/button4"
-            android:onClick="button4Clicked"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:hint="Next task"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
             android:textSize="30dp"
-            android:textColor="#ffffff"
-            android:background="#79a9db"/>
+            android:layout_gravity="bottom|center"
+            android:onClick="goToNextTask"/>
+
 
     </LinearLayout>
 
-
-
-</LinearLayout>
+</FrameLayout>
 
 
 <!--

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -232,13 +233,9 @@ public class AssignmentActivity extends AppCompatActivity {
 
     public void correctAnswerClicked() {
         counterC++;
-        Intent intent = new Intent(this, AssignmentActivity.class);
-        Bundle extras = new Bundle();
-        int task_id = globalCounter + 1;
-        extras.putInt(CLASS_ID, class_id);
-        extras.putInt(SUBJECT_ID, subject_id);
-        extras.putInt(TASK_ID, task_id);
-        extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow + 1);
+        LinearLayout correct_answer_view = (LinearLayout) findViewById(R.id.correct_answer);
+        correct_answer_view.setVisibility(View.VISIBLE);
+
         if (correctAnswersInARow == 5 && !myDb.containsTrophy(2)) {
             addTrophy(2);
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
@@ -249,6 +246,16 @@ public class AssignmentActivity extends AppCompatActivity {
         if (correctAnswersInARow == 30 && !myDb.containsTrophy(10)) {
             addTrophy(10);
         }
+    }
+
+    public void goToNextTask(View view) {
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        Bundle extras = new Bundle();
+        int task_id = globalCounter + 1;
+        extras.putInt(CLASS_ID, class_id);
+        extras.putInt(SUBJECT_ID, subject_id);
+        extras.putInt(TASK_ID, task_id);
+        extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow + 1);
         intent.putExtras(extras);
         startActivity(intent);
     }
