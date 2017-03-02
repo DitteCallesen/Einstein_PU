@@ -30,6 +30,8 @@ public class TrophyActivity extends AppCompatActivity {
 
         myDb = new DatabaseHelper(this);
 
+
+        //myDb.removeTrophies(myDb.getWritableDatabase());
         getActiveTrophiesFromDatabase();
         showTrophies();
 
