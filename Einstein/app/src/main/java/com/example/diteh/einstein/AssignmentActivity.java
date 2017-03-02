@@ -239,9 +239,9 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putInt(SUBJECT_ID, subject_id);
         extras.putInt(TASK_ID, task_id);
         extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow + 1);
-        Toast.makeText(AssignmentActivity.this, correctAnswersInARow + "", Toast.LENGTH_LONG).show(); //Kun for debugging
         if (correctAnswersInARow == 5 && !myDb.containsTrophy(2)) {
             addTrophy(2);
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
         if (correctAnswersInARow == 10 && !myDb.containsTrophy(4)) {
             addTrophy(4);

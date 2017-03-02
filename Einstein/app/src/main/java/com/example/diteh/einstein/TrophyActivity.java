@@ -29,7 +29,9 @@ public class TrophyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trophy);
 
         myDb = new DatabaseHelper(this);
-        
+
+
+        //myDb.removeTrophies(myDb.getWritableDatabase());
         getActiveTrophiesFromDatabase();
         showTrophies();
 
