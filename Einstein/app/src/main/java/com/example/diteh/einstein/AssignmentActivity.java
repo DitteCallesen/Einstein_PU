@@ -31,12 +31,15 @@ public class AssignmentActivity extends AppCompatActivity {
     public final static String CLASS_ID = "class_id";
     public final static String SUBJECT_ID = "subject_id";
     public final static String TASK_ID = "task_id";
+    public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
 
     int class_id;
     int subject_id;
     int globalCounter;
+    int correctAnswersInARow;
     public static int counterC=0;
     public static int counterW=0;
+    DatabaseHelper myDb;
 
     String correctAnswer = "";
     String answer1 = "";
@@ -172,11 +175,13 @@ public class AssignmentActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment);
+        myDb = new DatabaseHelper(this);
 
         Bundle extras = getIntent().getExtras();
         class_id = extras.getInt(CLASS_ID);
         subject_id = extras.getInt(SUBJECT_ID);
         int task_id = extras.getInt(TASK_ID);
+        correctAnswersInARow = extras.getInt(CORRECT_ANSWERS_IN_A_ROW);
 
         TextView class_view = (TextView) findViewById(R.id.fag);
         TextView subject_view = (TextView) findViewById(R.id.subject);
@@ -231,8 +236,17 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putInt(CLASS_ID, class_id);
         extras.putInt(SUBJECT_ID, subject_id);
         extras.putInt(TASK_ID, task_id);
+        extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow);
+        if (correctAnswersInARow == 5 && notInDatabase("2")) {
+            addTrophy("2");
+        }
         intent.putExtras(extras);
         startActivity(intent);
+    }
+
+    public boolean notInDatabase(String trophyNumber) {
+        //Må sjekke om et gitt trofé finnes i databasen
+        return true;
     }
 
     public int countC(){
@@ -315,6 +329,16 @@ public class AssignmentActivity extends AppCompatActivity {
             randomList.add(list.remove(rand.nextInt(i)));
         }
         return randomList;
+    }
+
+    public boolean addTrophy(String trophyNumber) {
+        boolean isInserted = myDb.insertData(trophyNumber);
+        if (isInserted) {
+            Toast.makeText(AssignmentActivity.this, "Data Inserted", Toast.LENGTH_LONG).show();
+        }
+        else {
+            Toast.makeText(AssignmentActivity.this, "Data not Inserted", Toast.LENGTH_LONG).show();
+        }
     }
 
 }
