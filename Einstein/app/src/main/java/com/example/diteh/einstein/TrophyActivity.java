@@ -2,6 +2,7 @@ package com.example.diteh.einstein;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,27 +21,16 @@ import java.util.List;
 public class TrophyActivity extends AppCompatActivity {
 
     List<Integer> activeTrophies = new ArrayList<>();
+    DatabaseHelper myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trophy);
 
-
-        //Bare foreløpig, sånn at vi kan se troféene.
-        activeTrophies.add(1);
-        activeTrophies.add(2);
-        activeTrophies.add(3);
-        activeTrophies.add(4);
-        activeTrophies.add(5);
-        activeTrophies.add(6);
-        activeTrophies.add(7);
-        activeTrophies.add(8);
-        activeTrophies.add(9);
-        activeTrophies.add(10);
-        activeTrophies.add(11);
-        activeTrophies.add(12);
-
+        myDb = new DatabaseHelper(this);
+        
+        getActiveTrophiesFromDatabase();
         showTrophies();
 
     }
@@ -99,8 +89,11 @@ public class TrophyActivity extends AppCompatActivity {
         big_trophy.setVisibility(View.INVISIBLE);
     }
 
-    public void addNewTrophy(Integer trophyNumber) {
-        //
+    public void getActiveTrophiesFromDatabase() {
+        Cursor cursor = myDb.getAllData();
+        while (cursor.moveToNext()) {
+            activeTrophies.add(cursor.getInt(0));
+        }
     }
 
     public void showTrophies() {

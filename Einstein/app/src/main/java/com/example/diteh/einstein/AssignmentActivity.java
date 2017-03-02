@@ -31,18 +31,80 @@ public class AssignmentActivity extends AppCompatActivity {
     public final static String CLASS_ID = "class_id";
     public final static String SUBJECT_ID = "subject_id";
     public final static String TASK_ID = "task_id";
+    public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
 
     int class_id;
     int subject_id;
     int globalCounter;
+    int correctAnswersInARow;
     public static int counterC=0;
     public static int counterW=0;
+    DatabaseHelper myDb;
 
     String correctAnswer = "";
     String answer1 = "";
     String answer2 = "";
     String answer3 = "";
     String answer4 = "";
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_assignment);
+        myDb = new DatabaseHelper(this);
+
+        Bundle extras = getIntent().getExtras();
+        class_id = extras.getInt(CLASS_ID);
+        subject_id = extras.getInt(SUBJECT_ID);
+        int task_id = extras.getInt(TASK_ID);
+        correctAnswersInARow = extras.getInt(CORRECT_ANSWERS_IN_A_ROW);
+
+        TextView class_view = (TextView) findViewById(R.id.fag);
+        TextView subject_view = (TextView) findViewById(R.id.subject);
+        TextView question_view = (TextView) findViewById(R.id.question);
+        TextView button1 = (TextView) findViewById(R.id.button1);
+        TextView button2 = (TextView) findViewById(R.id.button2);
+        TextView button3 = (TextView) findViewById(R.id.button3);
+        TextView button4 = (TextView) findViewById(R.id.button4);
+        TextView button5 = (TextView) findViewById(R.id.button5);
+        if(task_id==0){counterC=0;counterW=0;}
+
+        //Her kan vi hente ut neste spørsmål fra database med task_id
+        if (nextTaskExists(class_id, subject_id, task_id)) {
+            List<String> task = nextTask(class_id, subject_id, task_id);
+            class_view.setText(getClassName(task.get(0)));
+            subject_view.setText(getSubjectName(task.get(0), task.get(1)));
+            question_view.setText(task.get(4));
+            List<String> answers = randomizer(task.get(5), task.get(6), task.get(7), task.get(8));
+            button1.setText(answers.get(1));
+            button2.setText(answers.get(2));
+            button3.setText(answers.get(3));
+            button4.setText(answers.get(4));
+            button5.setVisibility(View.INVISIBLE);
+            answer1 = answers.get(1);
+            answer2 = answers.get(2);
+            answer3 = answers.get(3);
+            answer4 = answers.get(4);
+            correctAnswer = answers.get(0);
+
+        }
+        else {
+            subject_view.setText("Du er ferdig");
+            question_view.setText("Kor/Feil =" + counterC +"/"+ counterW);
+            button1.setVisibility(View.INVISIBLE);
+            button2.setVisibility(View.INVISIBLE);
+            button3.setVisibility(View.INVISIBLE);
+            button4.setVisibility(View.INVISIBLE);
+            button5.setVisibility(View.VISIBLE);
+
+        }
+
+
+        globalCounter = task_id;
+
+    }
 
     //Denne metoden avgjør om det finnes en oppgave til i databasen
     public boolean nextTaskExists(int class_id, int subject_id, int task_id) {
@@ -167,61 +229,6 @@ public class AssignmentActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assignment);
-
-        Bundle extras = getIntent().getExtras();
-        class_id = extras.getInt(CLASS_ID);
-        subject_id = extras.getInt(SUBJECT_ID);
-        int task_id = extras.getInt(TASK_ID);
-
-        TextView class_view = (TextView) findViewById(R.id.fag);
-        TextView subject_view = (TextView) findViewById(R.id.subject);
-        TextView question_view = (TextView) findViewById(R.id.question);
-        TextView button1 = (TextView) findViewById(R.id.button1);
-        TextView button2 = (TextView) findViewById(R.id.button2);
-        TextView button3 = (TextView) findViewById(R.id.button3);
-        TextView button4 = (TextView) findViewById(R.id.button4);
-        TextView button5 = (TextView) findViewById(R.id.button5);
-        if(task_id==0){counterC=0;counterW=0;}
-
-        //Her kan vi hente ut neste spørsmål fra database med task_id
-        if (nextTaskExists(class_id, subject_id, task_id)) {
-            List<String> task = nextTask(class_id, subject_id, task_id);
-            class_view.setText(getClassName(task.get(0)));
-            subject_view.setText(getSubjectName(task.get(0), task.get(1)));
-            question_view.setText(task.get(4));
-            List<String> answers = randomizer(task.get(5), task.get(6), task.get(7), task.get(8));
-            button1.setText(answers.get(1));
-            button2.setText(answers.get(2));
-            button3.setText(answers.get(3));
-            button4.setText(answers.get(4));
-            button5.setVisibility(View.INVISIBLE);
-            answer1 = answers.get(1);
-            answer2 = answers.get(2);
-            answer3 = answers.get(3);
-            answer4 = answers.get(4);
-            correctAnswer = answers.get(0);
-
-        }
-        else {
-            subject_view.setText("Du er ferdig");
-            question_view.setText("Kor/Feil =" + counterC +"/"+ counterW);
-            button1.setVisibility(View.INVISIBLE);
-            button2.setVisibility(View.INVISIBLE);
-            button3.setVisibility(View.INVISIBLE);
-            button4.setVisibility(View.INVISIBLE);
-            button5.setVisibility(View.VISIBLE);
-
-        }
-
-
-        globalCounter = task_id;
-
-    }
 
     public void correctAnswerClicked() {
         counterC++;
@@ -231,6 +238,17 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putInt(CLASS_ID, class_id);
         extras.putInt(SUBJECT_ID, subject_id);
         extras.putInt(TASK_ID, task_id);
+        extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow + 1);
+        Toast.makeText(AssignmentActivity.this, correctAnswersInARow + "", Toast.LENGTH_LONG).show(); //Kun for debugging
+        if (correctAnswersInARow == 5 && !myDb.containsTrophy(2)) {
+            addTrophy(2);
+        }
+        if (correctAnswersInARow == 10 && !myDb.containsTrophy(4)) {
+            addTrophy(4);
+        }
+        if (correctAnswersInARow == 30 && !myDb.containsTrophy(10)) {
+            addTrophy(10);
+        }
         intent.putExtras(extras);
         startActivity(intent);
     }
@@ -249,7 +267,7 @@ public class AssignmentActivity extends AppCompatActivity {
         countW();
         Context context = AssignmentActivity.this;
         String message = "Wrong";
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        correctAnswersInARow = 1;
     }
 
     public void button1Clicked(View view) {
@@ -302,6 +320,7 @@ public class AssignmentActivity extends AppCompatActivity {
     }
 
 
+
     //Tar inn fire svaralternativer og plasserer dem i
     //tilfeldig rekkefølge i en liste som blir returnert
     //Riktig svaralternativ på plass 0
@@ -314,6 +333,10 @@ public class AssignmentActivity extends AppCompatActivity {
             randomList.add(list.remove(rand.nextInt(i)));
         }
         return randomList;
+    }
+
+    public void addTrophy(int trophyNumber) {
+        myDb.insertData(trophyNumber);
     }
 
 }
