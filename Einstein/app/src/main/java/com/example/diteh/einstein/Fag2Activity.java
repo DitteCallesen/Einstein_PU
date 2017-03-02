@@ -11,6 +11,7 @@ public class Fag2Activity extends AppCompatActivity {
     public final static String CLASS_ID = "class_id";
     public final static String SUBJECT_ID = "subject_id";
     public final static String TASK_ID = "task_id";
+    public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
 
 
     @Override
@@ -24,6 +25,7 @@ public class Fag2Activity extends AppCompatActivity {
         intent.putExtra(CLASS_ID, 1);
         intent.putExtra(SUBJECT_ID, 0);
         intent.putExtra(TASK_ID, 0);
+        intent.putExtra(CORRECT_ANSWERS_IN_A_ROW, 1);
         startActivity(intent);
     }
 
