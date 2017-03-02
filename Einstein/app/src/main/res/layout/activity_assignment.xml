@@ -150,7 +150,8 @@
             android:layout_marginRight="40dp"
             android:layout_marginLeft="40dp"
             android:textSize="30dp"
-            android:layout_gravity="bottom|center"/>
+            android:layout_gravity="bottom|center"
+            android:onClick="goToNextTask"/>
 
 
     </LinearLayout>
