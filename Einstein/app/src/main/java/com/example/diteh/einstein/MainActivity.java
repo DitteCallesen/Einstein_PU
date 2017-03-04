@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,6 +14,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final TextView welcomemsg = (TextView) findViewById(R.id.studName);
+
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        String msg= name + " welcome to Einstein";
+        welcomemsg.setText(msg);
+
     }
     // "FAG" buttons
     public void fag1OnClick(View v){
@@ -39,4 +49,8 @@ public class MainActivity extends AppCompatActivity {
         Button button= (Button) v;
         startActivity(new Intent(getApplicationContext(), TrophyActivity.class));
     }
+
+
+
+
 }
