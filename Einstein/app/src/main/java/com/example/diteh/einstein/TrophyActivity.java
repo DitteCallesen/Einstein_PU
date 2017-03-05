@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,20 +23,26 @@ public class TrophyActivity extends AppCompatActivity {
 
 //    List<Integer> activeTrophies = new ArrayList<>();
 //    DatabaseHelper myDb;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_trophy);
-//
+public final static String CLASS_ID = "class_id";
+    public final static String TASK = "task";
+    public final static String SUBJECT_ID = "subject_id";
+
+    //
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_trophy);
+
+
+
 //        myDb = new DatabaseHelper(this);
 //
 //
 //        //myDb.removeTrophies(myDb.getWritableDatabase());
 //        getActiveTrophiesFromDatabase();
 //        showTrophies();
-//
-//    }
+
+    }
 //
 //    public void trophyClicked(View view) {
 //        LinearLayout big_trophy = (LinearLayout) findViewById(R.id.big_trophy);
@@ -147,7 +154,14 @@ public class TrophyActivity extends AppCompatActivity {
 //            ImageButton imageButton = (ImageButton) findViewById(R.id.trophy12);
 //            imageButton.setVisibility(View.VISIBLE);
 //        }
-//    }
+//            }
+
+
+
+
+//
+
+
 }
 
 

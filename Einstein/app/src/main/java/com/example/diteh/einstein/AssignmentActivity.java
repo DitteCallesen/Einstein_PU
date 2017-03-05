@@ -2,30 +2,21 @@ package com.example.diteh.einstein;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import static java.util.Random.*;
+
 
 public class AssignmentActivity extends AppCompatActivity {
 
@@ -34,8 +25,9 @@ public class AssignmentActivity extends AppCompatActivity {
     public final static String TASK_ID = "task_id";
     public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
 
-    int class_id;
-    int subject_id;
+    String class_id, subject_id, jstring;
+    JSONArray jsonArray;
+    JSONObject jsonObject;
     int globalCounter;
     int correctAnswersInARow;
     public static int counterC=0;
@@ -56,11 +48,21 @@ public class AssignmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_assignment);
         //myDb = new DatabaseHelper(this);
 
+        //Får jsonobjekt forrige aktivitet
+        try {
+            jsonObject = new JSONObject(getIntent().getStringExtra("jsonO"));
+            jsonArray = jsonObject.getJSONArray("server_response");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         Bundle extras = getIntent().getExtras();
-        class_id = extras.getInt(CLASS_ID);
-        subject_id = extras.getInt(SUBJECT_ID);
+        class_id = extras.getString(CLASS_ID);
+        subject_id = extras.getString(SUBJECT_ID);
         int task_id = extras.getInt(TASK_ID);
         correctAnswersInARow = extras.getInt(CORRECT_ANSWERS_IN_A_ROW);
+
 
         TextView class_view = (TextView) findViewById(R.id.fag);
         TextView subject_view = (TextView) findViewById(R.id.subject);
@@ -73,12 +75,12 @@ public class AssignmentActivity extends AppCompatActivity {
         if(task_id==0){counterC=0;counterW=0;}
 
         //Her kan vi hente ut neste spørsmål fra database med task_id
-        if (nextTaskExists(class_id, subject_id, task_id)) {
-            List<String> task = nextTask(class_id, subject_id, task_id);
-            class_view.setText(getClassName(task.get(0)));
-            subject_view.setText(getSubjectName(task.get(0), task.get(1)));
-            question_view.setText(task.get(4));
-            List<String> answers = randomizer(task.get(5), task.get(6), task.get(7), task.get(8));
+        if (nextTaskExists(jsonArray, task_id)) {
+            List<String> task = nextTask(jsonArray, task_id);
+            class_view.setText(class_id);
+            subject_view.setText(subject_id);
+            question_view.setText(task.get(0));
+            List<String> answers = randomizer(task.get(1), task.get(2), task.get(3), task.get(4));
             button1.setText(answers.get(1));
             button2.setText(answers.get(2));
             button3.setText(answers.get(3));
@@ -108,125 +110,33 @@ public class AssignmentActivity extends AppCompatActivity {
     }
 
     //Denne metoden avgjør om det finnes en oppgave til i databasen
-    public boolean nextTaskExists(int class_id, int subject_id, int task_id) {
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open("tasks_db.txt")));
+    public boolean nextTaskExists(JSONArray jsonArray, int task_id) {
 
-            // do reading, usually loop until end of file reading
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                String[] task_array = mLine.split("_");
-                List<String> task_list = Arrays.asList(task_array);
-                if (Integer.parseInt(task_list.get(0)) == class_id
-                        && Integer.parseInt(task_list.get(1)) == subject_id
-                        && Integer.parseInt(task_list.get(2)) == task_id) {
-                    return true;
-                }
-            }
-        } catch (IOException e) {
-            //log the exception
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    return false;
-                }
-            }
+        if(task_id<jsonArray.length()){
+            return true;
         }
-        return false;
+        else{
+            return false;
+        }
+
     }
 
     //Finner riktig oppgave i databasen
     //Returnerer med en liste med all info om oppgaven
-    public List<String> nextTask(int class_id, int subject_id, int task_id) {
-        List<String> foo = new ArrayList<String>(Arrays.asList("f", "f", "f", "f", "f", "f", "f"));
-        BufferedReader reader = null;
+    public List<String> nextTask(JSONArray jsonArray, int task_id) {
+        List<String> foo = new ArrayList<String>(Arrays.asList( "f", "f", "f", "f", "f"));
+        String oppgaver="";
         try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open("tasks_db.txt")));
-
-            // do reading, usually loop until end of file reading
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                String[] task_array = mLine.split("_");
-                List<String> task_list = Arrays.asList(task_array);
-                if (Integer.parseInt(task_list.get(0)) == class_id
-                        && Integer.parseInt(task_list.get(1)) == subject_id
-                        && Integer.parseInt(task_list.get(2)) == task_id) {
-                    return task_list;
-                }
-            }
-        } catch (IOException e) {
-            //log the exception
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    return foo;
-                }
-            }
+            JSONObject jo = jsonArray.getJSONObject(task_id);
+            oppgaver = jo.getString("task");
+            String[] task_array = oppgaver.split("_");
+            List<String> task_list = Arrays.asList(task_array);
+            return task_list;
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
         return foo;
-    }
 
-    public String getClassName(String id) {
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open("class.txt")));
-
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                String[] class_array = mLine.split("_");
-                List<String> class_list = Arrays.asList(class_array);
-                if ( class_list.get(0).equals(id)) {
-                    return  class_list.get(1);
-                }
-            }
-        } catch (IOException e) {
-            //log the exception
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    return "false";
-                }
-            }
-        }
-        return "false";
-    }
-
-    public String getSubjectName(String class_id, String subject_id) {
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open("subject.txt")));
-
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                String[] subject_array = mLine.split("_");
-                List<String> subject_list = Arrays.asList(subject_array);
-                if (subject_list.get(0).equals(class_id) && subject_list.get(1).equals(subject_id)) {
-                    return subject_list.get(2);
-                }
-            }
-        } catch (IOException e) {
-            //log the exception
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    return "false";
-                }
-            }
-        }
-        return "false";
     }
 
 
@@ -249,13 +159,15 @@ public class AssignmentActivity extends AppCompatActivity {
     }
 
     public void goToNextTask(View view) {
+
         Intent intent = new Intent(this, AssignmentActivity.class);
         Bundle extras = new Bundle();
         int task_id = globalCounter + 1;
-        extras.putInt(CLASS_ID, class_id);
-        extras.putInt(SUBJECT_ID, subject_id);
+        extras.putString(CLASS_ID, class_id);
+        extras.putString(SUBJECT_ID, subject_id);
         extras.putInt(TASK_ID, task_id);
         extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow + 1);
+        extras.putString("jsonO", jsonObject.toString());
         intent.putExtras(extras);
         startActivity(intent);
     }
@@ -346,6 +258,10 @@ public class AssignmentActivity extends AppCompatActivity {
 //    public void addTrophy(int trophyNumber) {
 //        myDb.insertData(trophyNumber);
 //    }
+
+
+
+
 
 }
 

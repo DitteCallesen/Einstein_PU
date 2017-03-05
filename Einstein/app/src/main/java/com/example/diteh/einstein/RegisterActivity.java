@@ -61,11 +61,10 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if(password.equals(password2)) {
+
 
                             try {
 
@@ -100,20 +99,21 @@ public class RegisterActivity extends AppCompatActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                        }
-                        else{
-                            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                            builder.setMessage("Bekreftet passord er feil")
-                                    .setNegativeButton("Retry", null)
-                                    .create()
-                                    .show();
-                        }
+
                     }
                 };
-
+            if(checkValid(password,password2,email)) {
                 RegisterRequest registerRequest = new RegisterRequest(name, username, email, password, stilling, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
+            }
+            else{
+                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                builder.setMessage("Registering feilet")
+                        .setNegativeButton("Retry", null)
+                        .create()
+                        .show();
+            }
             }
         });
 
@@ -148,6 +148,23 @@ public class RegisterActivity extends AppCompatActivity {
         public Map<String, String> getParams() {
             return params;
         }
+    }
+
+    public boolean checkValid(String pass1, String pass2, String email){
+        boolean valid = true;
+
+        if(!pass1.equals(pass2)){
+            valid = false;
+            Toast.makeText(RegisterActivity.this,"Bekreftet passord stemmer ikke",Toast.LENGTH_LONG).show();
+        }
+
+        if(!email.contains("@")){
+            valid = false;
+            Toast.makeText(RegisterActivity.this,"Ikke gyldig email",Toast.LENGTH_LONG).show();
+        }
+
+        return valid;
+
     }
 
 }
