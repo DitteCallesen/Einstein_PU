@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,7 +34,7 @@ public class AssignmentActivity extends AppCompatActivity {
     int correctAnswersInARow;
     public static int counterC=0;
     public static int counterW=0;
-    //DatabaseHelper myDb;
+    DatabaseHelper myDb;
 
     String correctAnswer = "";
     String answer1 = "";
@@ -46,7 +48,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment);
-        //myDb = new DatabaseHelper(this);
+        myDb = new DatabaseHelper(this);
 
         //Får jsonobjekt forrige aktivitet
         try {
@@ -146,16 +148,16 @@ public class AssignmentActivity extends AppCompatActivity {
         LinearLayout correct_answer_view = (LinearLayout) findViewById(R.id.correct_answer);
         correct_answer_view.setVisibility(View.VISIBLE);
 
-//        if (correctAnswersInARow == 5 && !myDb.containsTrophy(2)) {
-//            addTrophy(2);
-//            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
-//        }
-//        if (correctAnswersInARow == 10 && !myDb.containsTrophy(4)) {
-//            addTrophy(4);
-//        }
-//        if (correctAnswersInARow == 30 && !myDb.containsTrophy(10)) {
-//            addTrophy(10);
-//        }
+        if (correctAnswersInARow == 5 && !myDb.containsTrophy(2)) {
+            addTrophy(2);
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+        }
+        if (correctAnswersInARow == 10 && !myDb.containsTrophy(4)) {
+            addTrophy(4);
+        }
+        if (correctAnswersInARow == 30 && !myDb.containsTrophy(10)) {
+            addTrophy(10);
+        }
     }
 
     public void goToNextTask(View view) {
@@ -255,9 +257,9 @@ public class AssignmentActivity extends AppCompatActivity {
         return randomList;
     }
 
-//    public void addTrophy(int trophyNumber) {
-//        myDb.insertData(trophyNumber);
-//    }
+    public void addTrophy(int trophyNumber) {
+        myDb.insertData(trophyNumber);
+    }
 
 
 

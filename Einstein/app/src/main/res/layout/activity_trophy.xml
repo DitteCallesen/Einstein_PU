@@ -6,192 +6,192 @@
     android:layout_height="fill_parent">
 
 
-    <!--<LinearLayout-->
+    <LinearLayout
 
 
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical">-->
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_weight="1">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy1"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"-->
-                <!--android:layout_marginTop="30dp"/>-->
+            <ImageButton
+                android:id="@+id/trophy1"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"
+                android:layout_marginTop="30dp"/>
 
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy2"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"-->
-                <!--android:layout_marginTop="30dp"/>-->
+            <ImageButton
+                android:id="@+id/trophy2"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"
+                android:layout_marginTop="30dp"/>
 
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy3"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"-->
-                <!--android:layout_marginTop="30dp"/>-->
-
-
-        <!--</LinearLayout>-->
+            <ImageButton
+                android:id="@+id/trophy3"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"
+                android:layout_marginTop="30dp"/>
 
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_weight="1">-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy4"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"/>-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy5"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"/>-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy6"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"/>-->
-
-        <!--</LinearLayout>-->
+        </LinearLayout>
 
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_weight="1">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy7"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"/>-->
+            <ImageButton
+                android:id="@+id/trophy4"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"/>
 
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy8"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"/>-->
+            <ImageButton
+                android:id="@+id/trophy5"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"/>
 
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy9"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"/>-->
+            <ImageButton
+                android:id="@+id/trophy6"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"/>
 
-        <!--</LinearLayout>-->
-
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_weight="1">-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy10"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"/>-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy11"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"/>-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/trophy12"-->
-                <!--android:background="@mipmap/trophy"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_weight="1"-->
-                <!--android:onClick="trophyClicked"/>-->
-
-        <!--</LinearLayout>-->
+        </LinearLayout>
 
 
-    <!--</LinearLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
-    <!--<LinearLayout-->
-        <!--android:id="@+id/big_trophy"-->
-        <!--android:layout_width="300dp"-->
-        <!--android:layout_height="300dp"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:orientation="vertical"-->
-        <!--android:background="#CCCCCC"-->
-        <!--android:visibility="invisible"-->
-        <!--android:onClick="bigTrophyClicked">-->
+            <ImageButton
+                android:id="@+id/trophy7"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"/>
 
-        <!--<TextView-->
-            <!--android:id="@+id/trophy_text"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:textColor="#FFFFFF"-->
-            <!--android:textSize="30dp"-->
-            <!--android:textAlignment="center"/>-->
+            <ImageButton
+                android:id="@+id/trophy8"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"/>
+
+            <ImageButton
+                android:id="@+id/trophy9"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"/>
+
+        </LinearLayout>
 
 
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:src="@mipmap/trophy"-->
-            <!--android:layout_gravity="center|bottom"-->
-            <!--android:layout_weight="10"/>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/trophy10"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"/>
+
+            <ImageButton
+                android:id="@+id/trophy11"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"/>
+
+            <ImageButton
+                android:id="@+id/trophy12"
+                android:background="@mipmap/trophy"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:onClick="trophyClicked"/>
+
+        </LinearLayout>
 
 
-    <!--</LinearLayout>-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/big_trophy"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="#CCCCCC"
+        android:visibility="invisible"
+        android:onClick="bigTrophyClicked">
+
+        <TextView
+            android:id="@+id/trophy_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp"
+            android:textAlignment="center"/>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@mipmap/trophy"
+            android:layout_gravity="center|bottom"
+            android:layout_weight="10"/>
+
+
+    </LinearLayout>
 
 
 </FrameLayout>
