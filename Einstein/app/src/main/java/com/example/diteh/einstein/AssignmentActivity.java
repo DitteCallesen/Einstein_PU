@@ -98,8 +98,10 @@ public class AssignmentActivity extends AppCompatActivity {
             correctAnswer = answers.get(0);
 
         } else {
-            subject_view.setText("Congratulations!");
-            question_view.setText(correctOnFirstTry + "/" + numberOfTasks + " correct on first try");
+            subject_view.setText(getMessage(correctOnFirstTry, numberOfTasks));
+            if (numberOfTasks != 0) {
+                question_view.setText(correctOnFirstTry + "/" + numberOfTasks + " correct on first try.");
+            }
             button1.setVisibility(View.INVISIBLE);
             button2.setVisibility(View.INVISIBLE);
             button3.setVisibility(View.INVISIBLE);
@@ -110,6 +112,19 @@ public class AssignmentActivity extends AppCompatActivity {
 
         globalCounter = taskId;
 
+    }
+
+    private String getMessage(int correctOnFirstTry, int numberOfTasks) {
+        if (numberOfTasks == 0) {
+            return "No exersices available";
+        }
+        float percentScore = correctOnFirstTry/numberOfTasks;
+        if (percentScore < 0.5) {
+            return "Better luck next time.";
+        }
+        else {
+            return "Congratulations!";
+        }
     }
     
     //This method return true if there is a next task in the database
