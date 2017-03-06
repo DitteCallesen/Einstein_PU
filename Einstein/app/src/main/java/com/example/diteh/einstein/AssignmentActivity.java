@@ -22,18 +22,17 @@ import java.util.Random;
 
 public class AssignmentActivity extends AppCompatActivity {
 
-    public final static String CLASS_ID = "class_id";
-    public final static String SUBJECT_ID = "subject_id";
-    public final static String TASK_ID = "task_id";
+    public final static String CLASS_ID = "classId";
+    public final static String SUBJECT_ID = "subjectId";
+    public final static String TASK_ID = "taskId";
     public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
-
-    String class_id, subject_id, jstring;
+    public static int counterC = 0;
+    public static int counterW = 0;
+    String classId, subjectId, jstring;
     JSONArray jsonArray;
     JSONObject jsonObject;
     int globalCounter;
     int correctAnswersInARow;
-    public static int counterC = 0;
-    public static int counterW = 0;
     DatabaseHelper myDb;
     Vibrator vibrator;
 
@@ -62,9 +61,9 @@ public class AssignmentActivity extends AppCompatActivity {
 
 
         Bundle extras = getIntent().getExtras();
-        class_id = extras.getString(CLASS_ID);
-        subject_id = extras.getString(SUBJECT_ID);
-        int task_id = extras.getInt(TASK_ID);
+        classId = extras.getString(CLASS_ID);
+        subjectId = extras.getString(SUBJECT_ID);
+        int taskId = extras.getInt(TASK_ID);
         correctAnswersInARow = extras.getInt(CORRECT_ANSWERS_IN_A_ROW);
 
 
@@ -75,16 +74,16 @@ public class AssignmentActivity extends AppCompatActivity {
         TextView button2 = (TextView) findViewById(R.id.button2);
         TextView button3 = (TextView) findViewById(R.id.button3);
         TextView button4 = (TextView) findViewById(R.id.button4);
-        if (task_id == 0) {
+        if (taskId == 0) {
             counterC = 0;
             counterW = 0;
         }
 
-        //Her kan vi hente ut neste spørsmål fra database med task_id
-        if (nextTaskExists(jsonArray, task_id)) {
-            List<String> task = nextTask(jsonArray, task_id);
-            class_view.setText(class_id);
-            subject_view.setText(subject_id);
+        //Her kan vi hente ut neste spørsmål fra database med taskId
+        if (nextTaskExists(jsonArray, taskId)) {
+            List<String> task = nextTask(jsonArray, taskId);
+            class_view.setText(classId);
+            subject_view.setText(subjectId);
             question_view.setText(task.get(0));
             List<String> answers = randomizer(task.get(1), task.get(2), task.get(3), task.get(4));
             button1.setHint(answers.get(1));
@@ -108,32 +107,33 @@ public class AssignmentActivity extends AppCompatActivity {
         }
 
 
-        globalCounter = task_id;
+        globalCounter = taskId;
 
     }
+    
+    //This method return true if there is a next task in the database
+    //Otherwise it return false
+    public boolean nextTaskExists(JSONArray jsonArray, int taskId) {
 
-    //Denne metoden avgjør om det finnes en oppgave til i databasen
-    public boolean nextTaskExists(JSONArray jsonArray, int task_id) {
-
-        if (task_id < jsonArray.length()) {
+        if (taskId < jsonArray.length()) {
             return true;
         } else {
             return false;
         }
 
     }
-
-    //Finner riktig oppgave i databasen
-    //Returnerer med en liste med all info om oppgaven
-    public List<String> nextTask(JSONArray jsonArray, int task_id) {
-        List<String> foo = new ArrayList<String>(Arrays.asList("f", "f", "f", "f", "f"));
-        String oppgaver = "";
+    
+    //Finds the given exercise from the database
+    //Returns a list with all the info from the exercise
+    public List<String> nextTask(JSONArray jsonArray, int taskId) {
+        List<String> foo = new ArrayList<String>(Arrays.asList("f"));
+        String exersices = "";
         try {
-            JSONObject jo = jsonArray.getJSONObject(task_id);
-            oppgaver = jo.getString("task");
-            String[] task_array = oppgaver.split("_");
-            List<String> task_list = Arrays.asList(task_array);
-            return task_list;
+            JSONObject jo = jsonArray.getJSONObject(taskId);
+            exersices = jo.getString("task");
+            String[] taskArray = exersices.split("_");
+            List<String> taskList = Arrays.asList(taskArray);
+            return taskList;
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -144,8 +144,8 @@ public class AssignmentActivity extends AppCompatActivity {
 
     public void correctAnswerClicked() {
         counterC++;
-        LinearLayout correct_answer_view = (LinearLayout) findViewById(R.id.correct_answer);
-        correct_answer_view.setVisibility(View.VISIBLE);
+        LinearLayout correctAnswerView = (LinearLayout) findViewById(R.id.correctAnswer);
+        correctAnswerView.setVisibility(View.VISIBLE);
 
         if (correctAnswersInARow == 5 && !myDb.containsTrophy(2)) {
             addTrophy(2);
@@ -165,10 +165,10 @@ public class AssignmentActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, AssignmentActivity.class);
         Bundle extras = new Bundle();
-        int task_id = globalCounter + 1;
-        extras.putString(CLASS_ID, class_id);
-        extras.putString(SUBJECT_ID, subject_id);
-        extras.putInt(TASK_ID, task_id);
+        int taskId = globalCounter + 1;
+        extras.putString(CLASS_ID, classId);
+        extras.putString(SUBJECT_ID, subjectId);
+        extras.putInt(TASK_ID, taskId);
         extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow + 1);
         extras.putString("jsonO", jsonObject.toString());
         intent.putExtras(extras);
@@ -179,7 +179,6 @@ public class AssignmentActivity extends AppCompatActivity {
         counterC++;
         return counterC;
     }
-
 
     public int countW() {
         return counterW++;
@@ -237,11 +236,9 @@ public class AssignmentActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-    //Tar inn fire svaralternativer og plasserer dem i
-    //tilfeldig rekkefølge i en liste som blir returnert
-    //Riktig svaralternativ på plass 0
-    //Alle svaralternativ på plass 1-4
+    /*This method takes four alternative answers as arguments. The first one is the correct answer
+     to the exercise. The method returns a list with five string elements. The first element is the
+     correct answer. The four next is all the alternatives in random order.*/
     public List<String> randomizer(String s1, String s2, String s3, String s4) {
         List<String> list = new ArrayList<>(Arrays.asList(s1, s2, s3, s4));
         List<String> randomList = new ArrayList<>(Arrays.asList(s1));
