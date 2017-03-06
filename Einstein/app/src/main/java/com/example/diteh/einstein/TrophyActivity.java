@@ -34,14 +34,12 @@ public class TrophyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trophy);
 
 
-
         myDb = new DatabaseHelper(this);
 
         for (int i = 1; i < 13; i++) {
             activeTrophies.add(i);
 
         }
-
 
 
         //Kommenter vekk denne linja for å slette alle troféer
@@ -56,13 +54,13 @@ public class TrophyActivity extends AppCompatActivity {
         big_trophy.setVisibility(View.VISIBLE);
         TextView trophy_text = (TextView) findViewById(R.id.trophy_text);
 
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.trophy1:
                 trophy_text.setText("Gjort din første oppgave.");
-            break;
+                break;
             case R.id.trophy2:
                 trophy_text.setText("Fått riktig på 5 oppgaver på rad.");
-            break;
+                break;
             case R.id.trophy3:
                 trophy_text.setText("Løst 10 oppgaver på én dag.");
                 break;
@@ -162,12 +160,7 @@ public class TrophyActivity extends AppCompatActivity {
             ImageButton imageButton = (ImageButton) findViewById(R.id.trophy12);
             imageButton.setVisibility(View.VISIBLE);
         }
-            }
-
-
-
-
-
+    }
 
 
 }

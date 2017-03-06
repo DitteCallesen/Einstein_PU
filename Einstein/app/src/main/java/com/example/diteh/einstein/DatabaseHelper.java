@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (" + COL_1 +  " INT)");
+        db.execSQL("create table " + TABLE_NAME + " (" + COL_1 + " INT)");
     }
 
     @Override
@@ -45,8 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }

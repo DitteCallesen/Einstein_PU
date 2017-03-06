@@ -2,10 +2,10 @@ package com.example.diteh.einstein;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,11 +13,11 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
 
 
 public class AssignmentActivity extends AppCompatActivity {
@@ -32,9 +32,10 @@ public class AssignmentActivity extends AppCompatActivity {
     JSONObject jsonObject;
     int globalCounter;
     int correctAnswersInARow;
-    public static int counterC=0;
-    public static int counterW=0;
+    public static int counterC = 0;
+    public static int counterW = 0;
     DatabaseHelper myDb;
+    Vibrator vibrator;
 
     String correctAnswer = "";
     String answer1 = "";
@@ -49,6 +50,7 @@ public class AssignmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment);
         myDb = new DatabaseHelper(this);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         //Får jsonobjekt forrige aktivitet
         try {
@@ -73,7 +75,10 @@ public class AssignmentActivity extends AppCompatActivity {
         TextView button2 = (TextView) findViewById(R.id.button2);
         TextView button3 = (TextView) findViewById(R.id.button3);
         TextView button4 = (TextView) findViewById(R.id.button4);
-        if(task_id==0){counterC=0;counterW=0;}
+        if (task_id == 0) {
+            counterC = 0;
+            counterW = 0;
+        }
 
         //Her kan vi hente ut neste spørsmål fra database med task_id
         if (nextTaskExists(jsonArray, task_id)) {
@@ -92,10 +97,9 @@ public class AssignmentActivity extends AppCompatActivity {
             answer4 = answers.get(4);
             correctAnswer = answers.get(0);
 
-        }
-        else {
+        } else {
             subject_view.setText("Du er ferdig");
-            question_view.setText("Kor/Feil =" + counterC +"/"+ counterW);
+            question_view.setText("Kor/Feil =" + counterC + "/" + counterW);
             button1.setVisibility(View.INVISIBLE);
             button2.setVisibility(View.INVISIBLE);
             button3.setVisibility(View.INVISIBLE);
@@ -111,10 +115,9 @@ public class AssignmentActivity extends AppCompatActivity {
     //Denne metoden avgjør om det finnes en oppgave til i databasen
     public boolean nextTaskExists(JSONArray jsonArray, int task_id) {
 
-        if(task_id<jsonArray.length()){
+        if (task_id < jsonArray.length()) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
 
@@ -123,8 +126,8 @@ public class AssignmentActivity extends AppCompatActivity {
     //Finner riktig oppgave i databasen
     //Returnerer med en liste med all info om oppgaven
     public List<String> nextTask(JSONArray jsonArray, int task_id) {
-        List<String> foo = new ArrayList<String>(Arrays.asList( "f", "f", "f", "f", "f"));
-        String oppgaver="";
+        List<String> foo = new ArrayList<String>(Arrays.asList("f", "f", "f", "f", "f"));
+        String oppgaver = "";
         try {
             JSONObject jo = jsonArray.getJSONObject(task_id);
             oppgaver = jo.getString("task");
@@ -137,7 +140,6 @@ public class AssignmentActivity extends AppCompatActivity {
         return foo;
 
     }
-
 
 
     public void correctAnswerClicked() {
@@ -173,28 +175,27 @@ public class AssignmentActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public int countC(){
+    public int countC() {
         counterC++;
         return counterC;
     }
 
 
-    public int countW(){
+    public int countW() {
         return counterW++;
     }
 
     public void wrongAnswerClicked() {
         countW();
-        Context context = AssignmentActivity.this;
-        String message = "Wrong";
+        vibrator.vibrate(300);
+
         correctAnswersInARow = 1;
     }
 
     public void button1Clicked(View view) {
         if (answer1.equals(correctAnswer)) {
             correctAnswerClicked();
-        }
-        else {
+        } else {
 
             wrongAnswerClicked();
 
@@ -205,8 +206,7 @@ public class AssignmentActivity extends AppCompatActivity {
         if (answer2.equals(correctAnswer)) {
 
             correctAnswerClicked();
-        }
-        else {
+        } else {
 
             wrongAnswerClicked();
         }
@@ -216,8 +216,7 @@ public class AssignmentActivity extends AppCompatActivity {
         if (answer3.equals(correctAnswer)) {
 
             correctAnswerClicked();
-        }
-        else {
+        } else {
 
             wrongAnswerClicked();
         }
@@ -227,18 +226,16 @@ public class AssignmentActivity extends AppCompatActivity {
         if (answer4.equals(correctAnswer)) {
 
             correctAnswerClicked();
-        }
-        else {
+        } else {
 
             wrongAnswerClicked();
         }
     }
 
-    public void backToMain(View v){
+    public void backToMain(View v) {
         Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
         startActivity(intent);
     }
-
 
 
     //Tar inn fire svaralternativer og plasserer dem i
@@ -260,13 +257,7 @@ public class AssignmentActivity extends AppCompatActivity {
     }
 
 
-
-
-
 }
-
-
-
 
 
 /*

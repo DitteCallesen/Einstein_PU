@@ -30,11 +30,11 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-        final EditText etName = (EditText)findViewById(R.id.etName);
-        final EditText etUsername = (EditText)findViewById(R.id.etUsername);
-        final EditText etPassword = (EditText)findViewById(R.id.etPass1);
-        final EditText etPassword2 = (EditText)findViewById(R.id.etPass2);
-        final EditText etEmail = (EditText)findViewById(R.id.etEmail);
+        final EditText etName = (EditText) findViewById(R.id.etName);
+        final EditText etUsername = (EditText) findViewById(R.id.etUsername);
+        final EditText etPassword = (EditText) findViewById(R.id.etPass1);
+        final EditText etPassword2 = (EditText) findViewById(R.id.etPass2);
+        final EditText etEmail = (EditText) findViewById(R.id.etEmail);
 
 
         final Spinner spin = (Spinner) findViewById(R.id.spinner);
@@ -43,22 +43,17 @@ public class RegisterActivity extends AppCompatActivity {
         spin.setAdapter(adapter);
 
 
-
-
-
         final Button bRegister = (Button) findViewById(R.id.bRegister);
 
-        bRegister.setOnClickListener(new View.OnClickListener(){
+        bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 final String name = etName.getText().toString();
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
                 final String password2 = etPassword2.getText().toString();
-                final String email =etEmail.getText().toString();
-                final String stilling= spin.getSelectedItem().toString();
-
-
+                final String email = etEmail.getText().toString();
+                final String stilling = spin.getSelectedItem().toString();
 
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -66,64 +61,62 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(String response) {
 
 
-                            try {
+                        try {
 
-                                JSONObject jsonResponse = new JSONObject(response);
+                            JSONObject jsonResponse = new JSONObject(response);
 
-                                boolean succes = jsonResponse.getBoolean("success");
+                            boolean succes = jsonResponse.getBoolean("success");
 
-                                if (succes) {
-                                    Toast.makeText(RegisterActivity.this, "Registering suksess!",
-                                            Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                    RegisterActivity.this.startActivity(intent);
+                            if (succes) {
+                                Toast.makeText(RegisterActivity.this, "Registering suksess!",
+                                        Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                RegisterActivity.this.startActivity(intent);
 
-                                } else {
-                                    boolean nameAvail = jsonResponse.getBoolean("nameAvil");
-                                    boolean emailAvil = jsonResponse.getBoolean("emailAvil");
+                            } else {
+                                boolean nameAvail = jsonResponse.getBoolean("nameAvil");
+                                boolean emailAvil = jsonResponse.getBoolean("emailAvil");
 
-                                    if (!nameAvail) {
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                        builder.setMessage("Bruker navn er tatt")
-                                                .setNegativeButton("Retry", null)
-                                                .create()
-                                                .show();
-                                    } else if (!emailAvil) {
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                        builder.setMessage("Email er brukt")
-                                                .setNegativeButton("Retry", null)
-                                                .create()
-                                                .show();
-                                    }
+                                if (!nameAvail) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                                    builder.setMessage("Bruker navn er tatt")
+                                            .setNegativeButton("Retry", null)
+                                            .create()
+                                            .show();
+                                } else if (!emailAvil) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                                    builder.setMessage("Email er brukt")
+                                            .setNegativeButton("Retry", null)
+                                            .create()
+                                            .show();
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 };
-            if(checkValid(password,password2,email)) {
-                RegisterRequest registerRequest = new RegisterRequest(name, username, email, password, stilling, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                queue.add(registerRequest);
-            }
-            else{
-                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                builder.setMessage("Registering feilet")
-                        .setNegativeButton("Retry", null)
-                        .create()
-                        .show();
-            }
+                if (checkValid(password, password2, email)) {
+                    RegisterRequest registerRequest = new RegisterRequest(name, username, email, password, stilling, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
+                    queue.add(registerRequest);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                    builder.setMessage("Registering feilet")
+                            .setNegativeButton("Retry", null)
+                            .create()
+                            .show();
+                }
             }
         });
-
 
 
     }
 
 
     public void back(View view) {
-        Button button= (Button) view;
+        Button button = (Button) view;
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
     }
@@ -133,9 +126,9 @@ public class RegisterActivity extends AppCompatActivity {
         private static final String REGISTER_REQUEST_URL = "https://truongtrxu.000webhostapp.com/Register.php";
         private Map<String, String> params;
 
-        public RegisterRequest(String name, String username, String email, String password, String position,Response.Listener<String> listener){
+        public RegisterRequest(String name, String username, String email, String password, String position, Response.Listener<String> listener) {
 
-            super(Method.POST, REGISTER_REQUEST_URL, listener,null);
+            super(Method.POST, REGISTER_REQUEST_URL, listener, null);
             params = new HashMap<>();
             params.put("name", name);
             params.put("username", username);
@@ -150,17 +143,17 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public boolean checkValid(String pass1, String pass2, String email){
+    public boolean checkValid(String pass1, String pass2, String email) {
         boolean valid = true;
 
-        if(!pass1.equals(pass2)){
+        if (!pass1.equals(pass2)) {
             valid = false;
-            Toast.makeText(RegisterActivity.this,"Bekreftet passord stemmer ikke",Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "Bekreftet passord stemmer ikke", Toast.LENGTH_LONG).show();
         }
 
-        if(!email.contains("@")){
+        if (!email.contains("@")) {
             valid = false;
-            Toast.makeText(RegisterActivity.this,"Ikke gyldig email",Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "Ikke gyldig email", Toast.LENGTH_LONG).show();
         }
 
         return valid;
