@@ -4,17 +4,22 @@
     android:layout_width="match_parent">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="30dp"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:orientation="vertical">
 
         <!-- Navn på fag-->
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow"
+                android:onClick="backToMain"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -26,16 +31,6 @@
                 android:textColor="#DDDDDD"
                 android:textSize="20dp"/>
 
-            <!-- Navn på tema-->
-
-            <Button
-                android:text="Back"
-                android:layout_width="51dp"
-                android:layout_height="31dp"
-                android:gravity="right"
-                android:id="@+id/button5"
-                android:onClick="BackToMain"
-                android:textSize="10dp"/>
         </FrameLayout>
 
 
@@ -49,15 +44,14 @@
             android:textSize="30dp"
             />
 
-        <!--Oppgavetekst-->
-
+        <!--Assignment text in scrollview in case of much text-->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="128dp"
             android:id="@+id/dfes"
             android:layout_weight="1.21">
 
-
+            <!--Oppgavetekst-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +66,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="25dp"
             android:orientation="horizontal">
 
 
@@ -82,8 +75,10 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:textSize="30dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_margin="1px"
                 android:textColorHint="#ffffff"
                 android:background="#79a9db"/>
 
@@ -93,8 +88,10 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:textSize="30dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_margin="1px"
                 android:textColorHint="#ffffff"
                 android:background="#79a9db"/>
 
@@ -104,6 +101,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:orientation="horizontal">
 
             <Button
@@ -112,8 +110,10 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:textSize="30dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_margin="1px"
                 android:textColorHint="#ffffff"
                 android:background="#79a9db"/>
 
@@ -123,8 +123,10 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:textSize="30dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_margin="1px"
                 android:textColorHint="#ffffff"
                 android:background="#79a9db"/>
 

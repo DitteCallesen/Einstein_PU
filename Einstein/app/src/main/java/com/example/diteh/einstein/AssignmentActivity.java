@@ -73,7 +73,6 @@ public class AssignmentActivity extends AppCompatActivity {
         TextView button2 = (TextView) findViewById(R.id.button2);
         TextView button3 = (TextView) findViewById(R.id.button3);
         TextView button4 = (TextView) findViewById(R.id.button4);
-        TextView button5 = (TextView) findViewById(R.id.button5);
         if(task_id==0){counterC=0;counterW=0;}
 
         //Her kan vi hente ut neste spørsmål fra database med task_id
@@ -87,7 +86,6 @@ public class AssignmentActivity extends AppCompatActivity {
             button2.setHint(answers.get(2));
             button3.setHint(answers.get(3));
             button4.setHint(answers.get(4));
-            button5.setVisibility(View.INVISIBLE);
             answer1 = answers.get(1);
             answer2 = answers.get(2);
             answer3 = answers.get(3);
@@ -102,7 +100,6 @@ public class AssignmentActivity extends AppCompatActivity {
             button2.setVisibility(View.INVISIBLE);
             button3.setVisibility(View.INVISIBLE);
             button4.setVisibility(View.INVISIBLE);
-            button5.setVisibility(View.VISIBLE);
 
         }
 
@@ -237,9 +234,8 @@ public class AssignmentActivity extends AppCompatActivity {
         }
     }
 
-    public void BackToMain(View v){
-        Button button= (Button) v;
-        Intent intent = new Intent(AssignmentActivity.this,MainActivity.class);
+    public void backToMain(View v){
+        Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
         startActivity(intent);
     }
 
