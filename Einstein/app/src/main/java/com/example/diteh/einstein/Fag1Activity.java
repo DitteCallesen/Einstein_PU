@@ -40,9 +40,9 @@ public class Fag1Activity extends AppCompatActivity {
         new Background("Matematikk","Algebra",1).execute();
     }
 
-    public void Back1OnClick(View v){
-        Button button= (Button) v;
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+    public void backToMain(View v){
+        Intent intent = new Intent(Fag1Activity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     public void getJson(View view) {

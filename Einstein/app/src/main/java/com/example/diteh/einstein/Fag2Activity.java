@@ -138,4 +138,9 @@ public class Fag2Activity extends AppCompatActivity {
             }
         }
     }
+
+    public void backToMain(View v){
+        Intent intent = new Intent(Fag2Activity.this, MainActivity.class);
+        startActivity(intent);
+    }
 }
