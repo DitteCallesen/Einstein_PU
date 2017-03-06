@@ -83,10 +83,10 @@ public class AssignmentActivity extends AppCompatActivity {
             subject_view.setText(subject_id);
             question_view.setText(task.get(0));
             List<String> answers = randomizer(task.get(1), task.get(2), task.get(3), task.get(4));
-            button1.setText(answers.get(1));
-            button2.setText(answers.get(2));
-            button3.setText(answers.get(3));
-            button4.setText(answers.get(4));
+            button1.setHint(answers.get(1));
+            button2.setHint(answers.get(2));
+            button3.setHint(answers.get(3));
+            button4.setHint(answers.get(4));
             button5.setVisibility(View.INVISIBLE);
             answer1 = answers.get(1);
             answer2 = answers.get(2);
@@ -154,9 +154,11 @@ public class AssignmentActivity extends AppCompatActivity {
         }
         if (correctAnswersInARow == 10 && !myDb.containsTrophy(4)) {
             addTrophy(4);
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
         if (correctAnswersInARow == 30 && !myDb.containsTrophy(10)) {
             addTrophy(10);
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
     }
 

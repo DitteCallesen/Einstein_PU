@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textSize="30dp"
-                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
                 android:background="#79a9db"/>
 
             <Button
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textSize="30dp"
-                android:textColor="#ffffff"
+                android:textColoHint="#ffffff"
                 android:background="#79a9db"/>
 
         </LinearLayout>
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textSize="30dp"
-                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
                 android:background="#79a9db"/>
 
             <Button
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textSize="30dp"
-                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
                 android:background="#79a9db"/>
 
         </LinearLayout>
