@@ -26,13 +26,16 @@ public class AssignmentActivity extends AppCompatActivity {
     public final static String SUBJECT_ID = "subjectId";
     public final static String TASK_ID = "taskId";
     public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
-    public static int counterC = 0;
-    public static int counterW = 0;
+    public final static String CORRECT_ON_FIRST_TRY = "correctOnFirstTry";
+    public final static String NUMBER_OF_TASKS = "numberOfTasks";
+    boolean answeredWrong = false;
     String classId, subjectId, jstring;
     JSONArray jsonArray;
     JSONObject jsonObject;
     int globalCounter;
     int correctAnswersInARow;
+    int correctOnFirstTry;
+    int numberOfTasks;
     DatabaseHelper myDb;
     Vibrator vibrator;
 
@@ -65,6 +68,8 @@ public class AssignmentActivity extends AppCompatActivity {
         subjectId = extras.getString(SUBJECT_ID);
         int taskId = extras.getInt(TASK_ID);
         correctAnswersInARow = extras.getInt(CORRECT_ANSWERS_IN_A_ROW);
+        correctOnFirstTry = extras.getInt(CORRECT_ON_FIRST_TRY);
+        numberOfTasks = extras.getInt(NUMBER_OF_TASKS);
 
 
         TextView class_view = (TextView) findViewById(R.id.fag);
@@ -74,10 +79,6 @@ public class AssignmentActivity extends AppCompatActivity {
         TextView button2 = (TextView) findViewById(R.id.button2);
         TextView button3 = (TextView) findViewById(R.id.button3);
         TextView button4 = (TextView) findViewById(R.id.button4);
-        if (taskId == 0) {
-            counterC = 0;
-            counterW = 0;
-        }
 
         //Her kan vi hente ut neste spørsmål fra database med taskId
         if (nextTaskExists(jsonArray, taskId)) {
@@ -97,8 +98,8 @@ public class AssignmentActivity extends AppCompatActivity {
             correctAnswer = answers.get(0);
 
         } else {
-            subject_view.setText("Du er ferdig");
-            question_view.setText("Kor/Feil =" + counterC + "/" + counterW);
+            subject_view.setText("Congratulations!");
+            question_view.setText(correctOnFirstTry + "/" + numberOfTasks + " correct on first try");
             button1.setVisibility(View.INVISIBLE);
             button2.setVisibility(View.INVISIBLE);
             button3.setVisibility(View.INVISIBLE);
@@ -141,9 +142,26 @@ public class AssignmentActivity extends AppCompatActivity {
 
     }
 
+    public void goToNextTask(View view) {
+
+        Intent intent = new Intent(this, AssignmentActivity.class);
+        Bundle extras = new Bundle();
+        int taskId = globalCounter + 1;
+        extras.putString(CLASS_ID, classId);
+        extras.putString(SUBJECT_ID, subjectId);
+        extras.putInt(TASK_ID, taskId);
+        extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow + 1);
+        extras.putInt(CORRECT_ON_FIRST_TRY, correctOnFirstTry);
+        extras.putInt(NUMBER_OF_TASKS, numberOfTasks + 1);
+        extras.putString("jsonO", jsonObject.toString());
+        intent.putExtras(extras);
+        startActivity(intent);
+    }
 
     public void correctAnswerClicked() {
-        counterC++;
+        if (!answeredWrong) {
+            correctOnFirstTry++;
+        }
         LinearLayout correctAnswerView = (LinearLayout) findViewById(R.id.correctAnswer);
         correctAnswerView.setVisibility(View.VISIBLE);
 
@@ -161,31 +179,8 @@ public class AssignmentActivity extends AppCompatActivity {
         }
     }
 
-    public void goToNextTask(View view) {
-
-        Intent intent = new Intent(this, AssignmentActivity.class);
-        Bundle extras = new Bundle();
-        int taskId = globalCounter + 1;
-        extras.putString(CLASS_ID, classId);
-        extras.putString(SUBJECT_ID, subjectId);
-        extras.putInt(TASK_ID, taskId);
-        extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow + 1);
-        extras.putString("jsonO", jsonObject.toString());
-        intent.putExtras(extras);
-        startActivity(intent);
-    }
-
-    public int countC() {
-        counterC++;
-        return counterC;
-    }
-
-    public int countW() {
-        return counterW++;
-    }
-
     public void wrongAnswerClicked() {
-        countW();
+        answeredWrong = true;
         vibrator.vibrate(300);
 
         correctAnswersInARow = 1;
@@ -195,18 +190,14 @@ public class AssignmentActivity extends AppCompatActivity {
         if (answer1.equals(correctAnswer)) {
             correctAnswerClicked();
         } else {
-
             wrongAnswerClicked();
-
         }
     }
 
     public void button2Clicked(View view) {
         if (answer2.equals(correctAnswer)) {
-
             correctAnswerClicked();
         } else {
-
             wrongAnswerClicked();
         }
     }
@@ -252,7 +243,6 @@ public class AssignmentActivity extends AppCompatActivity {
     public void addTrophy(int trophyNumber) {
         myDb.insertData(trophyNumber);
     }
-
 
 }
 
