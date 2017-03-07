@@ -20,8 +20,9 @@
                 android:background="#f4e9e3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textSize="36sp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:textSize="30sp"
                 android:onClick="button0_clicked"/>
 
             <ImageView
@@ -42,8 +43,9 @@
             android:background="#f4d2d0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="36sp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:textSize="30sp"
             android:onClick="button1_clicked"/>
 
         <Button
@@ -52,8 +54,9 @@
             android:background="#7987a1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="36sp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:textSize="30sp"
             android:onClick="button2_clicked"/>
 
         <Button
@@ -62,8 +65,9 @@
             android:background="#9eaec5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="36sp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:textSize="30sp"
             android:onClick="button3_clicked"/>
 
         <Button
@@ -71,8 +75,9 @@
             android:background="#c9d3df"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="36sp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:textSize="30sp"
             android:onClick="button4_clicked"/>
 
         <Button
@@ -80,8 +85,9 @@
             android:background="#e4e9ec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="36sp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:textSize="30sp"
             android:onClick="button5_clicked"/>
 
         <Button
@@ -89,18 +95,10 @@
             android:background="#f4e9e3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="36sp"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:textSize="30sp"
             android:onClick="button6_clicked" />
-
-        <Button
-            android:text="@string/theme2_7"
-            android:background="#f4d2d0"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="36sp"
-            android:onClick="button7_clicked" />
 
     </LinearLayout>
 

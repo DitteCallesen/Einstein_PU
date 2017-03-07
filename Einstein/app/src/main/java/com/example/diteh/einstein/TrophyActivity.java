@@ -36,12 +36,6 @@ public class TrophyActivity extends AppCompatActivity {
 
         myDb = new DatabaseHelper(this);
 
-        for (int i = 1; i < 13; i++) {
-            activeTrophies.add(i);
-
-        }
-
-
         //Kommenter vekk denne linja for å slette alle troféer
         //myDb.removeTrophies(myDb.getWritableDatabase());
         getActiveTrophiesFromDatabase();
