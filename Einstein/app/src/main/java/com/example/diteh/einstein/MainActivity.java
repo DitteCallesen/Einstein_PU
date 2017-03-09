@@ -14,39 +14,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView welcomemsg = (TextView) findViewById(R.id.studName);
-
+        final TextView welcomeMessage = (TextView) findViewById(R.id.welcomeMessage);
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
-        String msg = name + " welcome to Einstein";
-        welcomemsg.setText(msg);
+        String msg = "Welcome to Einstein, " + name + "!";
+        welcomeMessage.setText(msg);
 
     }
 
-    // "FAG" buttons
+    // Class buttons
     public void fag1OnClick(View v) {
-        Button button = (Button) v;
         startActivity(new Intent(getApplicationContext(), Class1Activity.class));
     }
 
     public void fag2OnClick(View v) {
-        Button button = (Button) v;
         startActivity(new Intent(getApplicationContext(), Class2Activity.class));
     }
 
-    //Buttons - opens new windowes
-    public void calenderOnClick(View v) {
-        Button button = (Button) v;
-        startActivity(new Intent(getApplicationContext(), CalenderActivity.class));
-    }
-
+    // This method change to the ChatRoomActivity
     public void chatroomOnClick(View v) {
-        Button button = (Button) v;
         startActivity(new Intent(getApplicationContext(), ChatroomActivity.class));
     }
 
+    // This method change to the CalendarActivity
+    public void calenderOnClick(View v) {
+        startActivity(new Intent(getApplicationContext(), CalenderActivity.class));
+    }
+
+    // This method change to the TrophyRoomActicity
     public void trophyOnClick(View v) {
-        Button button = (Button) v;
         startActivity(new Intent(getApplicationContext(), TrophyActivity.class));
     }
 

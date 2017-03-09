@@ -1,93 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
-
-    <ImageView
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_alignRight="@+id/Chatroom"
-        android:layout_alignEnd="@+id/Chatroom" />
-
-    <Button
-        android:text="Chat Room"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:id="@+id/Chatroom"
-        android:background="@color/colorPrimary"
-        android:onClick="chatroomOnClick"
-        android:layout_alignBaseline="@+id/Calender"
-        android:layout_alignBottom="@+id/Calender"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="22dp"
-        android:layout_marginEnd="22dp" />
-
-    <Button
-        android:text="Statistics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:id="@+id/fag2"
-        android:layout_below="@+id/fag1"
-        android:layout_alignRight="@+id/fag1"
-        android:layout_alignEnd="@+id/fag1"
-        android:onClick="fag2OnClick"/>
-
-    <Button
-        android:text="Mathematics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:id="@+id/fag1"
-        android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true"
-        android:onClick="fag1OnClick"/>
-
-    <Button
-        android:text="Calender"
-        android:id="@+id/Calender"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        android:onClick="calenderOnClick"
-        android:layout_marginRight="26dp"
-        android:layout_marginEnd="26dp"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/Chatroom"
-        android:layout_toStartOf="@+id/Chatroom" />
-
-    <Button
-        android:text="Trophy room"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:id="@+id/trophy"
-        android:background="@color/colorPrimary"
-        android:layout_below="@+id/Chatroom"
-        android:layout_alignRight="@+id/Chatroom"
-        android:layout_alignEnd="@+id/Chatroom"
-        android:layout_alignLeft="@+id/Chatroom"
-        android:layout_alignStart="@+id/Chatroom"
-        android:onClick="trophyOnClick"/>
+    android:layout_height="match_parent">
 
     <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
+        android:id="@+id/welcomeMessage"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/studName"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textSize="20dp"/>
+        android:textAlignment="center"
+        android:padding="20dp"
+        android:textSize="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Classes"
+            android:textSize="30dp"/>
+
+        <Button
+            android:text="Mathematics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:textSize="30sp"
+            android:background="#c9d3df"
+            android:onClick="fag1OnClick"/>
+
+        <Button
+            android:text="Statistics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:textSize="30sp"
+            android:background="#e4e9ec"
+            android:onClick="fag2OnClick"/>
 
 
-</RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="30dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="200px"
+                android:src="@mipmap/ic_chatroom"
+                android:layout_weight="1"
+                android:onClick="chatroomOnClick"/>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_calendar"
+                android:layout_weight="1"
+                android:onClick="calenderOnClick"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_trophyroom"
+                android:layout_weight="1"
+                android:onClick="trophyOnClick"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chat Room"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calendar"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trophy Room"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

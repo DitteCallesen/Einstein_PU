@@ -16,8 +16,8 @@
 
             <Button
                 android:id="@+id/theme0"
-                android:text="@string/theme2_0"
-                android:background="#f4e9e3"
+                android:text="@string/theme2_1"
+                android:background="@color/blue1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="20dp"
@@ -39,8 +39,8 @@
 
         <Button
             android:id="@+id/theme1"
-            android:text="@string/theme2_1"
-            android:background="#f4d2d0"
+            android:text="@string/theme2_2"
+            android:background="@color/blue2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="25dp"
@@ -50,8 +50,8 @@
 
         <Button
             android:id="@+id/theme2"
-            android:text="@string/theme2_2"
-            android:background="#7987a1"
+            android:text="@string/theme2_3"
+            android:background="@color/blue3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="25dp"
@@ -61,8 +61,8 @@
 
         <Button
             android:id="@+id/theme3"
-            android:text="@string/theme2_3"
-            android:background="#9eaec5"
+            android:text="@string/theme2_4"
+            android:background="@color/blue4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="25dp"
@@ -71,8 +71,8 @@
             android:onClick="button3_clicked"/>
 
         <Button
-            android:text="@string/theme2_4"
-            android:background="#c9d3df"
+            android:text="@string/theme2_5"
+            android:background="@color/blue1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="25dp"
@@ -81,8 +81,8 @@
             android:onClick="button4_clicked"/>
 
         <Button
-            android:text="@string/theme2_5"
-            android:background="#e4e9ec"
+            android:text="@string/theme2_6"
+            android:background="@color/blue2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="25dp"
@@ -91,8 +91,8 @@
             android:onClick="button5_clicked"/>
 
         <Button
-            android:text="@string/theme2_6"
-            android:background="#f4e9e3"
+            android:text="@string/theme2_7"
+            android:background="@color/blue3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="25dp"
@@ -104,89 +104,3 @@
 
 
 </ScrollView>
-
-
-
-    <!--
-
-
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_fag1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.diteh.einstein.Class1Activityty">
-
-    <Button
-        android:text="Assignments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="37dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="130dp"
-        android:id="@+id/Assignement1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@color/colorPrimary"
-        android:onClick="assignmentOnClick"/>
-
-    <Button
-        android:text="Back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="26dp"
-        android:id="@+id/Back1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="Back1OnClick"/>
-</RelativeLayout>
--->
-
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_fag2"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.diteh.einstein.Class2Activityty">
-
-    <Button
-        android:text="back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
-        android:id="@+id/Back2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="back2OnClick"/>
-
-    <Button
-        android:text="Assignments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="62dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="100dp"
-        android:id="@+id/Assignement2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@color/colorPrimary"
-        android:onClick="assignmentOnClick"/>
-</RelativeLayout>
--->
