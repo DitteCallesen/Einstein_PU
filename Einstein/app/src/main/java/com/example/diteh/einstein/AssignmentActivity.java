@@ -139,12 +139,14 @@ public class AssignmentActivity extends AppCompatActivity {
 
     }
 
-    private String getMessage(int correctOnFirstTry, int numberOfTasks) {
+    //This method decides which message that should be shown to the user depending on
+    //how many of the tasks that were correct on first try
+    public String getMessage(int correctOnFirstTry, int numberOfTasks) {
         if (numberOfTasks == 0) {
-            return "No exersices available";
+            return "No exercises available.";
         }
-        float percentScore = correctOnFirstTry/numberOfTasks;
-        if (percentScore < 0.5) {
+        float percentScore = (float) correctOnFirstTry/numberOfTasks;
+        if (percentScore < 0.6) {
             return "Better luck next time.";
         }
         else {
@@ -204,22 +206,23 @@ public class AssignmentActivity extends AppCompatActivity {
         if (!answeredWrong) {
             correctOnFirstTry++;
             correctAnswersInARow++;
-            Toast.makeText(this, "Winning streak is on "+correctAnswersInARow, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Winning streak is on " + correctAnswersInARow, Toast.LENGTH_LONG).show();
         }
         LinearLayout correctAnswerView = (LinearLayout) findViewById(R.id.correctAnswer);
         correctAnswerView.setVisibility(View.VISIBLE);
 
+
+        if (correctAnswersInARow == 1 && findTrophy(1)) {
+            new Background(2, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+        }
         if (correctAnswersInARow == 5 && findTrophy(2)) {
-            new Background(2,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks).execute();
+            new Background(4, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
-        if (correctAnswersInARow == 10 && findTrophy(4)) {
-            new Background(4,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks).execute();
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
-        }
-        if (correctAnswersInARow == 30 && findTrophy(10)) {
-            new Background(10,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks).execute();
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+        if (correctAnswersInARow == 10 && findTrophy(3)) {
+            new Background(10, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
+
         }
     }
 

@@ -42,6 +42,7 @@ public class Class2Activity extends AppCompatActivity {
 
     }
 
+
     public void backToMain(View v) {
         Intent intent = new Intent(Class2Activity.this, MainActivity.class);
         Bundle extras = new Bundle();
