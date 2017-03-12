@@ -114,12 +114,14 @@ public class AssignmentActivity extends AppCompatActivity {
 
     }
 
-    private String getMessage(int correctOnFirstTry, int numberOfTasks) {
+    //This method decides which message that should be shown to the user depending on
+    //how many of the tasks that were correct on first try
+    public String getMessage(int correctOnFirstTry, int numberOfTasks) {
         if (numberOfTasks == 0) {
-            return "No exersices available";
+            return "No exercises available.";
         }
-        float percentScore = correctOnFirstTry/numberOfTasks;
-        if (percentScore < 0.5) {
+        float percentScore = (float) correctOnFirstTry/numberOfTasks;
+        if (percentScore < 0.6) {
             return "Better luck next time.";
         }
         else {

@@ -56,16 +56,16 @@ public class Class2Activity extends AppCompatActivity {
 
     public void button5_clicked(View view) {
 
-        new Background("Statistics", "Product Rule", 0).execute();
+        new Background("Statistics", "ProductRule", 0).execute();
     }
 
     public void button6_clicked(View view) {
 
-        new Background("Statistics", "Bayes Rule", 0).execute();
+        new Background("Statistics", "BayesRule", 0).execute();
     }
 
     public void button7_clicked(View view) {
-        new Background("Statistics", "Mean of a random variable", 0).execute();
+        new Background("Statistics", "MeanOfARandomVariable", 0).execute();
     }
 
     class Background extends AsyncTask<Void, Void, String> {
