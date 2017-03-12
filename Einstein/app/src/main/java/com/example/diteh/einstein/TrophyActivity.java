@@ -33,7 +33,6 @@ public class TrophyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trophy);
 
-
         myDb = new DatabaseHelper(this);
 
         //Kommenter vekk denne linja for å slette alle troféer
@@ -89,7 +88,6 @@ public class TrophyActivity extends AppCompatActivity {
             default:
                 //
         }
-
     }
 
     public void bigTrophyClicked(View view) {
