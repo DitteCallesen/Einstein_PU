@@ -50,40 +50,40 @@ public class TrophyActivity extends AppCompatActivity {
 
         switch (view.getId()) {
             case R.id.trophy1:
-                trophy_text.setText("Gjort din første oppgave.");
+                trophy_text.setText("Solved your first exercise.");
                 break;
             case R.id.trophy2:
-                trophy_text.setText("Fått riktig på 5 oppgaver på rad.");
+                trophy_text.setText("Answered correctly on 5 exercises in a row.");
                 break;
             case R.id.trophy3:
-                trophy_text.setText("Løst 10 oppgaver på én dag.");
+                trophy_text.setText("Answered correctly on 10 exercises in a row.");
                 break;
             case R.id.trophy4:
-                trophy_text.setText("Fått riktig på 10 oppgaver på rad.");
+                trophy_text.setText("Worked 5 days in one week.");
                 break;
             case R.id.trophy5:
-                trophy_text.setText("Løst 10 oppgaver.");
+                trophy_text.setText("Worked 5 days every week for 3 weeks.");
                 break;
             case R.id.trophy6:
-                trophy_text.setText("Løst 10 oppgaver på én time.");
+                trophy_text.setText("Worked 20 days in a month.");
                 break;
             case R.id.trophy7:
-                trophy_text.setText("Løst 10 oppgaver på en dag.");
+                trophy_text.setText("Solved 5 exercises.");
                 break;
             case R.id.trophy8:
-                trophy_text.setText("Løst 30 oppgaver på én dag.");
+                trophy_text.setText("Solved 10 exercises.");
                 break;
             case R.id.trophy9:
-                trophy_text.setText("Løst 50 oppgaver.");
+                trophy_text.setText("Solved 50 exercises.");
                 break;
             case R.id.trophy10:
-                trophy_text.setText("Fått riktig på 30 oppgaver på rad.");
+                trophy_text.setText("Solved 100 exercises.");
                 break;
             case R.id.trophy11:
-                trophy_text.setText("Løst 100 oppgaver.");
+                trophy_text.setText("Solved 500 exercises.");
                 break;
             case R.id.trophy12:
-                trophy_text.setText("Løst 500 oppgaver.");
+                trophy_text.setText("Solved 1000 exercises.");
                 break;
 
             default:

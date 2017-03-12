@@ -182,16 +182,16 @@ public class AssignmentActivity extends AppCompatActivity {
         LinearLayout correctAnswerView = (LinearLayout) findViewById(R.id.correctAnswer);
         correctAnswerView.setVisibility(View.VISIBLE);
 
+        if (!myDb.containsTrophy(1)) {
+            addTrophy(1);
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+        }
         if (correctAnswersInARow == 5 && !myDb.containsTrophy(2)) {
             addTrophy(2);
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
-        if (correctAnswersInARow == 10 && !myDb.containsTrophy(4)) {
-            addTrophy(4);
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
-        }
-        if (correctAnswersInARow == 30 && !myDb.containsTrophy(10)) {
-            addTrophy(10);
+        if (correctAnswersInARow == 10 && !myDb.containsTrophy(3)) {
+            addTrophy(3);
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
     }
