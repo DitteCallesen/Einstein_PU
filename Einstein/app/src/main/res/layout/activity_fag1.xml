@@ -16,14 +16,17 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:text="@string/theme1_1"
-                android:background="@color/blue1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="20dp"
+                android:background="@color/blue1"
+                android:onClick="getJson"
                 android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="@string/theme1_1"
                 android:textSize="30sp"
-                android:onClick="button1_clicked"/>
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -35,41 +38,45 @@
         </RelativeLayout>
 
         <Button
-            android:text="@string/theme1_2"
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/blue2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="20dp"
+            android:onClick="getJson"
             android:paddingBottom="20dp"
-            android:textSize="30sp"
-            android:onClick="getJson" />
+            android:paddingTop="20dp"
+            android:text="@string/theme1_2"
+            android:textSize="30sp" />
 
         <Button
-            android:text="@string/theme1_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/blue3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="20dp"
+            android:onClick="getJson"
             android:paddingBottom="20dp"
-            android:textSize="30sp"/>
+            android:paddingTop="20dp"
+            android:text="@string/theme1_3"
+            android:textSize="30sp" />
 
         <Button
-            android:text="@string/theme1_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/blue4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="20dp"
+            android:onClick="getJson"
             android:paddingBottom="20dp"
-            android:textSize="30sp"/>
+            android:paddingTop="20dp"
+            android:text="@string/theme1_4"
+            android:textSize="30sp" />
 
         <Button
-            android:text="@string/theme1_5"
-            android:background="@color/blue1"
+            android:id="@+id/button6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
+            android:background="@color/blue1"
             android:paddingBottom="20dp"
-            android:textSize="30sp"/>
+            android:paddingTop="20dp"
+            android:text="@string/theme1_5"
+            android:textSize="30sp" />
 
         <Button
             android:text="@string/theme1_6"

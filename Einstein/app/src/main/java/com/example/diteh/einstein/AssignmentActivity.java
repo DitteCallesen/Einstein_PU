@@ -2,6 +2,7 @@ package com.example.diteh.einstein;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,11 +42,13 @@ public class AssignmentActivity extends AppCompatActivity {
     JSONObject jsonObject;
     int globalCounter;
     int correctAnswersInARow;
-    int correctOnFirstTry;
+    int correctOnFirstTry,courseSubjectID;
     int numberOfTasks;
+    int[] myTrophies;
+    int taskId;
     DatabaseHelper myDb;
     Vibrator vibrator;
-
+    public String username,name;
     String correctAnswer = "";
     String answer1 = "";
     String answer2 = "";
@@ -53,23 +63,36 @@ public class AssignmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_assignment);
         myDb = new DatabaseHelper(this);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        Intent intent = getIntent();
 
+        Bundle extras = getIntent().getExtras();
+        classId = extras.getString(CLASS_ID);
+        subjectId = extras.getString(SUBJECT_ID);
+        taskId = extras.getInt(TASK_ID);
+        correctAnswersInARow = extras.getInt(CORRECT_ANSWERS_IN_A_ROW);
+        correctOnFirstTry = extras.getInt(CORRECT_ON_FIRST_TRY);
+        numberOfTasks = extras.getInt(NUMBER_OF_TASKS);
+        name=extras.getString("name");
+        username=extras.getString("username");
         //Får jsonobjekt forrige aktivitet
         try {
-            jsonObject = new JSONObject(getIntent().getStringExtra("jsonO"));
-            jsonArray = jsonObject.getJSONArray("server_response");
+            jsonObject = new JSONObject(extras.getString("jsonO"));
+            jsonArray = jsonObject.getJSONArray("assignments");
+            JSONArray userdataArray = jsonObject.getJSONArray("userdata");
+            JSONObject  userdata = userdataArray.getJSONObject(0);
+            courseSubjectID = userdata.getInt("courseSubjectID");
+            JSONArray Optrophies= jsonObject.getJSONArray("trophy");
+            myTrophies = new int[Optrophies.length()];
+            for (int i=0;i<Optrophies.length();i++){
+                JSONObject gettro = Optrophies.getJSONObject(i);
+                myTrophies[i]=gettro.getInt("trophynum");
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-        Bundle extras = getIntent().getExtras();
-        classId = extras.getString(CLASS_ID);
-        subjectId = extras.getString(SUBJECT_ID);
-        int taskId = extras.getInt(TASK_ID);
-        correctAnswersInARow = extras.getInt(CORRECT_ANSWERS_IN_A_ROW);
-        correctOnFirstTry = extras.getInt(CORRECT_ON_FIRST_TRY);
-        numberOfTasks = extras.getInt(NUMBER_OF_TASKS);
 
 
         TextView class_view = (TextView) findViewById(R.id.fag);
@@ -106,6 +129,8 @@ public class AssignmentActivity extends AppCompatActivity {
             button2.setVisibility(View.INVISIBLE);
             button3.setVisibility(View.INVISIBLE);
             button4.setVisibility(View.INVISIBLE);
+
+            new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username,numberOfTasks).execute();
 
         }
 
@@ -161,14 +186,16 @@ public class AssignmentActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, AssignmentActivity.class);
         Bundle extras = new Bundle();
-        int taskId = globalCounter + 1;
+        taskId = globalCounter + 1;
         extras.putString(CLASS_ID, classId);
         extras.putString(SUBJECT_ID, subjectId);
         extras.putInt(TASK_ID, taskId);
-        extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow + 1);
+        extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow);
         extras.putInt(CORRECT_ON_FIRST_TRY, correctOnFirstTry);
-        extras.putInt(NUMBER_OF_TASKS, numberOfTasks + 1);
+        extras.putInt(NUMBER_OF_TASKS, numberOfTasks);
         extras.putString("jsonO", jsonObject.toString());
+        extras.putString("name", name);
+        extras.putString("username", username);
         intent.putExtras(extras);
         startActivity(intent);
     }
@@ -176,20 +203,22 @@ public class AssignmentActivity extends AppCompatActivity {
     public void correctAnswerClicked() {
         if (!answeredWrong) {
             correctOnFirstTry++;
+            correctAnswersInARow++;
+            Toast.makeText(this, "Winning streak is on "+correctAnswersInARow, Toast.LENGTH_LONG).show();
         }
         LinearLayout correctAnswerView = (LinearLayout) findViewById(R.id.correctAnswer);
         correctAnswerView.setVisibility(View.VISIBLE);
 
-        if (correctAnswersInARow == 5 && !myDb.containsTrophy(2)) {
-            addTrophy(2);
+        if (correctAnswersInARow == 5 && findTrophy(2)) {
+            new Background(2,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks).execute();
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
-        if (correctAnswersInARow == 10 && !myDb.containsTrophy(4)) {
-            addTrophy(4);
+        if (correctAnswersInARow == 10 && findTrophy(4)) {
+            new Background(4,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks).execute();
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
-        if (correctAnswersInARow == 30 && !myDb.containsTrophy(10)) {
-            addTrophy(10);
+        if (correctAnswersInARow == 30 && findTrophy(10)) {
+            new Background(10,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks).execute();
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
     }
@@ -198,7 +227,8 @@ public class AssignmentActivity extends AppCompatActivity {
         answeredWrong = true;
         vibrator.vibrate(300);
 
-        correctAnswersInARow = 1;
+        correctAnswersInARow = 0;
+        Toast.makeText(this, "To bad, winning streak reset to "+correctAnswersInARow, Toast.LENGTH_LONG).show();
     }
 
     public void button1Clicked(View view) {
@@ -239,6 +269,11 @@ public class AssignmentActivity extends AppCompatActivity {
 
     public void backToMain(View v) {
         Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        intent.putExtras(extras);
+        new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks).execute();
         startActivity(intent);
     }
 
@@ -259,32 +294,84 @@ public class AssignmentActivity extends AppCompatActivity {
         myDb.insertData(trophyNumber);
     }
 
-}
-
-
-/*
-package com.example.diteh.einstein;
-
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
-public class AssignmentActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assignment);
+    public boolean findTrophy(int trophynumber){
+        for(int i=0;i<myTrophies.length;i++){
+            if(myTrophies[i]==trophynumber){
+                return false;
+            }
+        }
+        return true;
     }
 
+    class Background extends AsyncTask<Void, Void, String> {
+        //Gets data from database
+        String username;
+        String JSON_STRING,js_string;
+        String json_url;
+        int ansInARow,taskID,correctOnFirstTry,courseSubjectID,trophynum,numberOfTask;
 
-    public void backOnClick(View v){
-        Button button= (Button) v;
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        //get input data
+        public Background(int trophynum, int courseSubjectID, int ansInARow, int correctOnFirstTry, int taskID,String username, int numberOfTask) {
+           this.trophynum = trophynum;
+           this.courseSubjectID=courseSubjectID;
+           this.correctOnFirstTry=correctOnFirstTry;
+           this.taskID=taskID;
+           this.ansInARow=ansInARow;
+           this.username = username;
+           this.numberOfTask=numberOfTask;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            //reset assignments so user can start over
+            if(taskID==numberOfTask){
+                taskID=0;
+                correctOnFirstTry=0;
+            }
+
+            //url for php that fetch data from database, comes back as json object
+            json_url = "https://truongtrxu.000webhostapp.com/updateUserProgress.php?courseSubjectID=" + courseSubjectID+"&username="+username
+            +"&trophynum="+trophynum+"&taskID="+taskID+"&ansInARow="+ansInARow+"&correctOnFirstTry="+correctOnFirstTry;
+        }
+
+
+
+        @Override
+        protected String doInBackground(Void... params) {
+            //åpner linje til database
+
+            try {
+                URL url = new URL(json_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((JSON_STRING = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(JSON_STRING + "\n");
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return stringBuilder.toString().trim();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            js_string = result;
+
+        }
     }
 }
 
-
-*/

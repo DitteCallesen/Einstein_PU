@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,7 +25,10 @@ public class Class2Activity extends AppCompatActivity {
     public final static String SUBJECT_ID = "subjectId";
     public final static String TASK_ID = "taskId";
     public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
-
+    public final static String CORRECT_ON_FIRST_TRY  = "correctOnFirstTry";
+    public final static String NUMBER_OF_TASKS = "numberOfTasks";
+    public String username,name;
+    String classId = "Statistics", subjectId;
     String JSON_STRING;
     String js_string;
 
@@ -32,59 +36,45 @@ public class Class2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fag2);
+        Bundle extras = getIntent().getExtras();
+        name=extras.getString("name");
+        username=extras.getString("username");
+
     }
 
-    public void button0_clicked(View view) {
-        new Background("Statistics", "Mean", 0).execute();
+    public void backToMain(View v) {
+        Intent intent = new Intent(Class2Activity.this, MainActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 
-    public void button1_clicked(View view) {
-        new Background("Statistics", "Median", 0).execute();
-    }
+    public void getJson2(View view) {
+        Button b = (Button) view;
+        subjectId=b.getText().toString();
+        new Background(classId,subjectId).execute();
 
-    public void button2_clicked(View view) {
-        new Background("Statistics", "Variance", 0).execute();
-    }
-
-    public void button3_clicked(View view) {
-        new Background("Statistics", "Standarddeviation", 0).execute();
-    }
-
-    public void button4_clicked(View view) {
-        new Background("Statistics", "AdditiveRules", 0).execute();
-    }
-
-    public void button5_clicked(View view) {
-
-        new Background("Statistics", "Product Rule", 0).execute();
-    }
-
-    public void button6_clicked(View view) {
-
-        new Background("Statistics", "Bayes Rule", 0).execute();
-    }
-
-    public void button7_clicked(View view) {
-        new Background("Statistics", "Mean of a random variable", 0).execute();
     }
 
     class Background extends AsyncTask<Void, Void, String> {
-        //Henter data fra database
+        //Gets data from database
         String classId, subjectId;
         String json_url;
-        int CorrAnsIn;
+        int CorrAnsIn,taskID,correctOnFirstTry,numberOfTasks;
 
         //krever at kurs navn og emnet blir lagt til
-        public Background(String classId, String subjectId, int CorrAnsIn) {
+        public Background(String classId, String subjectId) {
             this.classId = classId;
             this.subjectId = subjectId;
-            this.CorrAnsIn = CorrAnsIn;
+
         }
 
         @Override
         protected void onPreExecute() {
-            //url for php som henter data fra database, kommer tilbake som json objekt
-            json_url = "https://truongtrxu.000webhostapp.com/json_get_data.php?course=" + classId + "&subject=" + subjectId;
+            //url for php that fetch data from database, comes back as json object
+            json_url = "https://truongtrxu.000webhostapp.com/getJsonAssign.php?course=" + classId + "&subject=" + subjectId+"&username="+username;
         }
 
         @Override
@@ -122,14 +112,30 @@ public class Class2Activity extends AppCompatActivity {
             //sender jsonobjekt til assignment aktivitet som string
             js_string = result;
             try {
-                //funnet data fra database, sender info til assignment aktivitet
+                //prepear data for sending to assignment activity
                 JSONObject jsonObject = new JSONObject(js_string);
+                JSONObject server_response = jsonObject.getJSONObject("server_response");
+                JSONArray userdataArray = server_response.getJSONArray("userdata");
+                JSONObject  userdata = userdataArray.getJSONObject(0);
+
+                CorrAnsIn = userdata.getInt("ansInARow");
+                taskID=userdata.getInt("taskID");
+                correctOnFirstTry=userdata.getInt("correctOnFirstTry");
+                numberOfTasks = server_response.getJSONArray("assignments").length();
+
+
                 Intent intent = new Intent(Class2Activity.this, AssignmentActivity.class);
-                intent.putExtra("jsonO", jsonObject.toString());
-                intent.putExtra(CLASS_ID, classId);
-                intent.putExtra(SUBJECT_ID, subjectId);
-                intent.putExtra(CORRECT_ANSWERS_IN_A_ROW, CorrAnsIn);
-                intent.putExtra(TASK_ID, 0);
+                Bundle extras = new Bundle();
+                extras.putString(CLASS_ID, classId);
+                extras.putString(SUBJECT_ID, subjectId);
+                extras.putInt(TASK_ID, taskID);
+                extras.putInt(CORRECT_ANSWERS_IN_A_ROW, CorrAnsIn);
+                extras.putInt(CORRECT_ON_FIRST_TRY, correctOnFirstTry);
+                extras.putInt(NUMBER_OF_TASKS, numberOfTasks);
+                extras.putString("jsonO", server_response.toString());
+                extras.putString("name", name);
+                extras.putString("username", username);
+                intent.putExtras(extras);
                 Class2Activity.this.startActivity(intent);
 
             } catch (JSONException e) {
@@ -138,8 +144,6 @@ public class Class2Activity extends AppCompatActivity {
         }
     }
 
-    public void backToMain(View v) {
-        Intent intent = new Intent(Class2Activity.this, MainActivity.class);
-        startActivity(intent);
-    }
+
+
 }

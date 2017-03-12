@@ -16,14 +16,14 @@
 
             <Button
                 android:id="@+id/theme0"
-                android:text="@string/theme2_1"
-                android:background="@color/blue1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="20dp"
+                android:background="@color/blue1"
+                android:onClick="getJson2"
                 android:paddingBottom="20dp"
-                android:textSize="30sp"
-                android:onClick="button0_clicked"/>
+                android:paddingTop="20dp"
+                android:text="@string/theme2_1"
+                android:textSize="30sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -35,70 +35,70 @@
         </RelativeLayout>
 
 
-
-
         <Button
             android:id="@+id/theme1"
-            android:text="@string/theme2_2"
-            android:background="@color/blue2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="25dp"
+            android:background="@color/blue2"
+            android:onClick="getJson2"
             android:paddingBottom="25dp"
-            android:textSize="30sp"
-            android:onClick="button1_clicked"/>
+            android:paddingTop="25dp"
+            android:text="@string/theme2_2"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/theme2"
-            android:text="@string/theme2_3"
-            android:background="@color/blue3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="25dp"
+            android:background="@color/blue3"
+            android:onClick="getJson2"
             android:paddingBottom="25dp"
-            android:textSize="30sp"
-            android:onClick="button2_clicked"/>
+            android:paddingTop="25dp"
+            android:text="@string/theme2_3"
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/theme3"
-            android:text="@string/theme2_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/blue4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="25dp"
+            android:onClick="getJson2"
             android:paddingBottom="25dp"
-            android:textSize="30sp"
-            android:onClick="button3_clicked"/>
+            android:paddingTop="25dp"
+            android:text="@string/theme2_4"
+            android:textSize="30sp" />
 
         <Button
-            android:text="@string/theme2_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/blue1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="25dp"
+            android:onClick="getJson2"
             android:paddingBottom="25dp"
-            android:textSize="30sp"
-            android:onClick="button4_clicked"/>
+            android:paddingTop="25dp"
+            android:text="@string/theme2_5"
+            android:textSize="30sp" />
 
         <Button
-            android:text="@string/theme2_6"
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/blue2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="25dp"
+            android:onClick="getJson2"
             android:paddingBottom="25dp"
-            android:textSize="30sp"
-            android:onClick="button5_clicked"/>
+            android:paddingTop="25dp"
+            android:text="@string/theme2_6"
+            android:textSize="30sp" />
 
         <Button
-            android:text="@string/theme2_7"
-            android:background="@color/blue3"
+            android:id="@+id/button7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="25dp"
+            android:background="@color/blue3"
+            android:onClick="getJson2"
             android:paddingBottom="25dp"
-            android:textSize="30sp"
-            android:onClick="button6_clicked" />
+            android:paddingTop="25dp"
+            android:text="@string/theme2_7"
+            android:textSize="30sp" />
 
     </LinearLayout>
 

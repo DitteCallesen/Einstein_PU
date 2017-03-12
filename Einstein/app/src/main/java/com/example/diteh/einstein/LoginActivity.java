@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if (success) {
                                 String name = jsonResponse.getString("name");
-                                String email = jsonResponse.getString("email");
+                                String username = jsonResponse.getString("username");
                                 String checkpass = jsonResponse.getString("password");
                                 if (!checkpass.equals(password)) {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
@@ -75,9 +75,10 @@ public class LoginActivity extends AppCompatActivity {
                                             .show();
                                 } else {
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("name", name);
-
-
+                                    Bundle extras = new Bundle();
+                                    extras.putString("name", name);
+                                    extras.putString("username", username);
+                                    intent.putExtras(extras);
                                     LoginActivity.this.startActivity(intent);
                                 }
                             } else {

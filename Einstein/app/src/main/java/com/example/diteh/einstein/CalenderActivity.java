@@ -7,15 +7,24 @@ import android.view.View;
 import android.widget.Button;
 
 public class CalenderActivity extends AppCompatActivity {
-
+String name, username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calender);
+        Bundle extras = getIntent().getExtras();
+        name=extras.getString("name");
+        username=extras.getString("username");
+
     }
 
     public void backOnClick(View v){
-        Button button= (Button) v;
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        Intent intent = new Intent(CalenderActivity.this, MainActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        intent.putExtras(extras);
+        startActivity(intent);
+
     }
 }
