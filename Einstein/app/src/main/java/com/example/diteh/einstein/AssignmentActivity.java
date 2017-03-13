@@ -213,15 +213,15 @@ public class AssignmentActivity extends AppCompatActivity {
 
 
         if (correctAnswersInARow == 1 && findTrophy(1)) {
-            new Background(2, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
+            new Background(1, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
         if (correctAnswersInARow == 5 && findTrophy(2)) {
-            new Background(4, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
+            new Background(2, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
         if (correctAnswersInARow == 10 && findTrophy(3)) {
-            new Background(10, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
+            new Background(3, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
 
         }
     }
