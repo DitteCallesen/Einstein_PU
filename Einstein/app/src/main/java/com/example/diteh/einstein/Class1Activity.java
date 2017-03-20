@@ -21,16 +21,17 @@ import java.net.URL;
 
 public class Class1Activity extends AppCompatActivity {
 
-    public final static String CLASS_ID = "classId";
-    public final static String SUBJECT_ID = "subjectId";
-    public final static String TASK_ID = "taskId";
-    public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
-    public final static String CORRECT_ON_FIRST_TRY  = "correctOnFirstTry";
-    public final static String NUMBER_OF_TASKS = "numberOfTasks";
-    public String username,name;
-    String JSON_STRING;
-    String js_string;
-    String classId = "Mathematics", subjectId;
+    private final static String CLASS_ID = "classId";
+    private final static String SUBJECT_ID = "subjectId";
+    private final static String TASK_ID = "taskId";
+    private final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
+    private final static String CORRECT_ON_FIRST_TRY  = "correctOnFirstTry";
+    private final static String NUMBER_OF_TASKS = "numberOfTasks";
+    private String username,name;
+    private String JSON_STRING;
+    private String js_string;
+    private String classId = "Mathematics", subjectId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

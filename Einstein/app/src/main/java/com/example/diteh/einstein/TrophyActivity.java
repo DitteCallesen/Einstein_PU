@@ -35,10 +35,10 @@ import java.util.List;
 
 public class TrophyActivity extends AppCompatActivity {
 
-    String name, username;
-    public int[] myTrophies;
-    ImageButton imageButton;
-    //
+    private String name, username;
+    private int[] myTrophies;
+    private ImageButton imageButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

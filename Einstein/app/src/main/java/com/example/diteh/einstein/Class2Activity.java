@@ -21,16 +21,16 @@ import java.net.URL;
 
 public class Class2Activity extends AppCompatActivity {
 
-    public final static String CLASS_ID = "classId";
-    public final static String SUBJECT_ID = "subjectId";
-    public final static String TASK_ID = "taskId";
-    public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
-    public final static String CORRECT_ON_FIRST_TRY  = "correctOnFirstTry";
-    public final static String NUMBER_OF_TASKS = "numberOfTasks";
-    public String username,name;
-    String classId = "Statistics", subjectId;
-    String JSON_STRING;
-    String js_string;
+    private final static String CLASS_ID = "classId";
+    private final static String SUBJECT_ID = "subjectId";
+    private final static String TASK_ID = "taskId";
+    private final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
+    private final static String CORRECT_ON_FIRST_TRY  = "correctOnFirstTry";
+    private final static String NUMBER_OF_TASKS = "numberOfTasks";
+    private String username,name;
+    private String classId = "Statistics", subjectId;
+    private String JSON_STRING;
+    private String js_string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,6 @@ public class Class2Activity extends AppCompatActivity {
         Button b = (Button) view;
         subjectId=b.getText().toString();
         new Background(classId,subjectId).execute();
-
     }
 
     class Background extends AsyncTask<Void, Void, String> {
@@ -69,7 +68,6 @@ public class Class2Activity extends AppCompatActivity {
         public Background(String classId, String subjectId) {
             this.classId = classId;
             this.subjectId = subjectId;
-
         }
 
         @Override

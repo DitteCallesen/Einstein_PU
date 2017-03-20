@@ -30,30 +30,30 @@ import java.util.Random;
 
 public class AssignmentActivity extends AppCompatActivity {
 
-    public final static String CLASS_ID = "classId";
-    public final static String SUBJECT_ID = "subjectId";
-    public final static String TASK_ID = "taskId";
-    public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
-    public final static String CORRECT_ON_FIRST_TRY = "correctOnFirstTry";
-    public final static String NUMBER_OF_TASKS = "numberOfTasks";
-    boolean answeredWrong = false;
-    String classId, subjectId, jstring;
-    JSONArray jsonArray;
-    JSONObject jsonObject;
-    int globalCounter;
-    int correctAnswersInARow;
-    int correctOnFirstTry,courseSubjectID;
-    int numberOfTasks;
-    int[] myTrophies;
-    int taskId;
-    DatabaseHelper myDb;
-    Vibrator vibrator;
-    public String username,name;
-    String correctAnswer = "";
-    String answer1 = "";
-    String answer2 = "";
-    String answer3 = "";
-    String answer4 = "";
+    private final static String CLASS_ID = "classId";
+    private final static String SUBJECT_ID = "subjectId";
+    private final static String TASK_ID = "taskId";
+    private final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
+    private final static String CORRECT_ON_FIRST_TRY = "correctOnFirstTry";
+    private final static String NUMBER_OF_TASKS = "numberOfTasks";
+    private boolean answeredWrong = false;
+    private String classId, subjectId, jstring;
+    private JSONArray jsonArray;
+    private JSONObject jsonObject;
+    private int globalCounter;
+    private int correctAnswersInARow;
+    private int correctOnFirstTry,courseSubjectID;
+    private int numberOfTasks;
+    private int[] myTrophies;
+    private int taskId;
+    private DatabaseHelper myDb;
+    private Vibrator vibrator;
+    private String username,name;
+    private String correctAnswer = "";
+    private String answer1 = "";
+    private String answer2 = "";
+    private String answer3 = "";
+    private String answer4 = "";
 
 
     @Override

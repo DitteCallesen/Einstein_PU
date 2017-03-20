@@ -14,11 +14,11 @@ import static android.os.Build.ID;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "trophies.db";
-    public static final String TABLE_NAME = "trophies_table";
-    public static final String COL_1 = "trophy_number";
+    private static final String DATABASE_NAME = "trophies.db";
+    private static final String TABLE_NAME = "trophies_table";
+    private static final String COL_1 = "trophy_number";
 
-    public DatabaseHelper(Context context) {
+    DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 
