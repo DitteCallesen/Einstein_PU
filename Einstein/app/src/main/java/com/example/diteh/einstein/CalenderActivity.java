@@ -25,6 +25,7 @@ String name, username;
         extras.putString("username", username);
         intent.putExtras(extras);
         startActivity(intent);
+        finish();
 
     }
 }

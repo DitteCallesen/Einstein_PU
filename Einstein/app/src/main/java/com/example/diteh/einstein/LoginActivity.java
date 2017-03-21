@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                                     extras.putString("username", username);
                                     intent.putExtras(extras);
                                     LoginActivity.this.startActivity(intent);
+                                    finish();
                                 }
                             } else {
 

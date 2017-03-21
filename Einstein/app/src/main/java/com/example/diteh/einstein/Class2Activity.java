@@ -50,6 +50,7 @@ public class Class2Activity extends AppCompatActivity {
         extras.putString("username", username);
         intent.putExtras(extras);
         startActivity(intent);
+        finish();
     }
 
     public void getJson2(View view) {
@@ -138,6 +139,7 @@ public class Class2Activity extends AppCompatActivity {
                 extras.putString("username", username);
                 intent.putExtras(extras);
                 Class2Activity.this.startActivity(intent);
+                finish();
 
             } catch (JSONException e) {
                 e.printStackTrace();

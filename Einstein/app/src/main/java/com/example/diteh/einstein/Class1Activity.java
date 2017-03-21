@@ -49,6 +49,7 @@ public class Class1Activity extends AppCompatActivity {
         extras.putString("username", username);
         intent.putExtras(extras);
         startActivity(intent);
+        finish();
     }
 
     public void getJson(View view) {
@@ -137,6 +138,7 @@ public class Class1Activity extends AppCompatActivity {
                 extras.putString("username", username);
                 intent.putExtras(extras);
                 Class1Activity.this.startActivity(intent);
+                finish();
 
             } catch (JSONException e) {
                 e.printStackTrace();

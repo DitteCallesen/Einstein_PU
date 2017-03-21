@@ -13,6 +13,7 @@
         android:layout_alignParentLeft="true"/>
 
     <TextView
+
         android:layout_alignParentBottom="@+id/messageuser"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -31,10 +32,4 @@
         android:textStyle="normal|bold"
         android:id="@+id/message_text"
         android:layout_alignParentLeft="true"/>
-
-
-
-
-
-
 </RelativeLayout>

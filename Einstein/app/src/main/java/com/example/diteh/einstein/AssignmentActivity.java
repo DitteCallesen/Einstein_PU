@@ -200,6 +200,7 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putString("username", username);
         intent.putExtras(extras);
         startActivity(intent);
+        finish();
     }
 
     public void correctAnswerClicked() {

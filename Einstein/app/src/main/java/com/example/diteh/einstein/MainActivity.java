@@ -5,10 +5,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.*;
-import android.widget.Button;
 import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,7 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-public String name,username;
+private String name,username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +44,7 @@ public String name,username;
         extras.putString("username", username);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
+
     }
 
     public void fag2OnClick(View v) {
@@ -55,16 +54,18 @@ public String name,username;
         extras.putString("username", username);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
+
     }
 
     // This method change to the ChatRoomActivity
     public void chatroomOnClick(View v) {
-        Intent intent = new Intent(MainActivity.this, ChatroomActivity.class);
+        Intent intent = new Intent(MainActivity.this, ListOfChatroomActivity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
+
     }
 
     // This method change to the CalendarActivity
@@ -75,6 +76,7 @@ public String name,username;
         extras.putString("username", username);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
+
     }
 
     // This method change to the TrophyRoomActicity
@@ -151,6 +153,7 @@ public String name,username;
 
 
                 MainActivity.this.startActivity(intent);
+
 
 
             } catch (JSONException e) {
