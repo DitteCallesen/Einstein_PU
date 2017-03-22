@@ -7,6 +7,7 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -188,7 +189,7 @@ public class AssignmentActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, AssignmentActivity.class);
         Bundle extras = new Bundle();
-        taskId = globalCounter + 1;
+
         extras.putString(CLASS_ID, classId);
         extras.putString(SUBJECT_ID, subjectId);
         extras.putInt(TASK_ID, taskId);
@@ -207,7 +208,17 @@ public class AssignmentActivity extends AppCompatActivity {
         if (!answeredWrong) {
             correctOnFirstTry++;
             correctAnswersInARow++;
+            taskId = globalCounter + 1;
             Toast.makeText(this, "Winning streak is on " + correctAnswersInARow, Toast.LENGTH_LONG).show();
+            Button bt1 = (Button) findViewById(R.id.button1);
+            Button bt2 = (Button) findViewById(R.id.button2);
+            Button bt3 = (Button) findViewById(R.id.button3);
+            Button bt4 = (Button) findViewById(R.id.button4);
+            bt1.setEnabled(false);
+            bt2.setEnabled(false);
+            bt3.setEnabled(false);
+            bt4.setEnabled(false);
+
         }
         LinearLayout correctAnswerView = (LinearLayout) findViewById(R.id.correctAnswer);
         correctAnswerView.setVisibility(View.VISIBLE);
@@ -270,8 +281,19 @@ public class AssignmentActivity extends AppCompatActivity {
             wrongAnswerClicked();
         }
     }
-
+    //push back button on screen
     public void backToMain(View v) {
+        Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        intent.putExtras(extras);
+        new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks).execute();
+        startActivity(intent);
+    }
+    //use anndroid back button
+    @Override
+    public void onBackPressed() {
         Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
