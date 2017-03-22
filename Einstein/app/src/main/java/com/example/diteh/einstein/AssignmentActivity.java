@@ -4,13 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Vibrator;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +35,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -47,16 +59,16 @@ public class AssignmentActivity extends AppCompatActivity {
     int numberOfTasks;
     int[] myTrophies;
     int taskId;
+    String name, username;
     DatabaseHelper myDb;
     Vibrator vibrator;
-    public String username,name;
     String correctAnswer = "";
     String answer1 = "";
     String answer2 = "";
     String answer3 = "";
     String answer4 = "";
-
-
+    private int[] solved, assignID;
+    ImageView backTmain;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -75,6 +87,7 @@ public class AssignmentActivity extends AppCompatActivity {
         numberOfTasks = extras.getInt(NUMBER_OF_TASKS);
         name=extras.getString("name");
         username=extras.getString("username");
+        solved = extras.getIntArray("solved");
         //Får jsonobjekt forrige aktivitet
         try {
             jsonObject = new JSONObject(extras.getString("jsonO"));
@@ -87,11 +100,18 @@ public class AssignmentActivity extends AppCompatActivity {
             for (int i=0;i<Optrophies.length();i++){
                 JSONObject gettro = Optrophies.getJSONObject(i);
                 myTrophies[i]=gettro.getInt("trophynum");
-            }
 
+                assignID = new int[jsonArray.length()];
+                for (int j =0;j<jsonArray.length();j++){
+                JSONObject getAssignID = jsonArray.getJSONObject(j);
+                    assignID[j]=getAssignID.getInt("assignID");
+                }
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
 
 
 
@@ -131,12 +151,13 @@ public class AssignmentActivity extends AppCompatActivity {
             button3.setVisibility(View.INVISIBLE);
             button4.setVisibility(View.INVISIBLE);
 
-            new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username,numberOfTasks).execute();
+            new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username,numberOfTasks, assignID, solved).execute();
 
         }
 
 
         globalCounter = taskId;
+
 
     }
 
@@ -199,6 +220,7 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putString("jsonO", jsonObject.toString());
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putIntArray("solved", solved);
         intent.putExtras(extras);
         startActivity(intent);
         finish();
@@ -208,6 +230,7 @@ public class AssignmentActivity extends AppCompatActivity {
         if (!answeredWrong) {
             correctOnFirstTry++;
             correctAnswersInARow++;
+            solved[taskId]=1;
             taskId = globalCounter + 1;
             Toast.makeText(this, "Winning streak is on " + correctAnswersInARow, Toast.LENGTH_LONG).show();
             Button bt1 = (Button) findViewById(R.id.button1);
@@ -219,22 +242,23 @@ public class AssignmentActivity extends AppCompatActivity {
             bt3.setEnabled(false);
             bt4.setEnabled(false);
 
+
         }
         LinearLayout correctAnswerView = (LinearLayout) findViewById(R.id.correctAnswer);
         correctAnswerView.setVisibility(View.VISIBLE);
 
 
         if (correctAnswersInARow == 1 && findTrophy(1)) {
-            new Background(1, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
+            new Background(1, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved).execute();
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
         if (correctAnswersInARow == 5 && findTrophy(2)) {
-            new Background(2, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
+            new Background(2, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved).execute();
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
         if (correctAnswersInARow == 10 && findTrophy(3)) {
-            new Background(3, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks).execute();
-
+            new Background(3, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved).execute();
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -288,7 +312,7 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putString("name", name);
         extras.putString("username", username);
         intent.putExtras(extras);
-        new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks).execute();
+        new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks, assignID, solved).execute();
         startActivity(intent);
     }
     //use anndroid back button
@@ -299,7 +323,7 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putString("name", name);
         extras.putString("username", username);
         intent.putExtras(extras);
-        new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks).execute();
+        new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks, assignID, solved).execute();
         startActivity(intent);
     }
 
@@ -335,9 +359,9 @@ public class AssignmentActivity extends AppCompatActivity {
         String JSON_STRING,js_string;
         String json_url;
         int ansInARow,taskID,correctOnFirstTry,courseSubjectID,trophynum,numberOfTask;
-
+        int[] assignID, solved;
         //get input data
-        public Background(int trophynum, int courseSubjectID, int ansInARow, int correctOnFirstTry, int taskID,String username, int numberOfTask) {
+        public Background(int trophynum, int courseSubjectID, int ansInARow, int correctOnFirstTry, int taskID,String username, int numberOfTask, int[] assignID, int[] solved) {
            this.trophynum = trophynum;
            this.courseSubjectID=courseSubjectID;
            this.correctOnFirstTry=correctOnFirstTry;
@@ -345,6 +369,9 @@ public class AssignmentActivity extends AppCompatActivity {
            this.ansInARow=ansInARow;
            this.username = username;
            this.numberOfTask=numberOfTask;
+           this.assignID = assignID;
+           this.solved = solved;
+
         }
 
         @Override
@@ -355,9 +382,15 @@ public class AssignmentActivity extends AppCompatActivity {
                 correctOnFirstTry=0;
             }
 
+            String Ssolved="", SassignID="";
+            for(int i = 0;i<solved.length;i++){
+                Ssolved = ""+Ssolved+","+solved[i];
+                SassignID = ""+SassignID+","+assignID[i];
+            }
+
             //url for php that fetch data from database, comes back as json object
-            json_url = "https://truongtrxu.000webhostapp.com/updateUserProgress.php?courseSubjectID=" + courseSubjectID+"&username="+username
-            +"&trophynum="+trophynum+"&taskID="+taskID+"&ansInARow="+ansInARow+"&correctOnFirstTry="+correctOnFirstTry;
+            json_url = "https://truongtrxu.000webhostapp.com/updateUserProgress1.php?courseSubjectID=" + courseSubjectID+"&username="+username
+            +"&trophynum="+trophynum+"&taskID="+taskID+"&ansInARow="+ansInARow+"&correctOnFirstTry="+correctOnFirstTry+"&assignID="+ SassignID+"&solved="+Ssolved;
         }
 
 
@@ -399,5 +432,9 @@ public class AssignmentActivity extends AppCompatActivity {
 
         }
     }
+
+
+
+
 }
 
