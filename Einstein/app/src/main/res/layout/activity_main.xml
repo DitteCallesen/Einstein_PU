@@ -26,6 +26,7 @@
             android:textSize="30dp"/>
 
         <Button
+            android:id="@+id/class1Button"
             android:text="Mathematics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,6 +37,7 @@
             android:onClick="fag1OnClick"/>
 
         <Button
+            android:id="@+id/class2Button"
             android:text="Statistics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
