@@ -40,7 +40,7 @@ private String name,username;
     }
 
     // Class buttons
-    public void fag1OnClick(View v) {
+    public void class1OnClick(View v) {
 
         Intent intent = new Intent(MainActivity.this, Class1Activity.class);
         Bundle extras = new Bundle();
@@ -50,7 +50,7 @@ private String name,username;
         MainActivity.this.startActivity(intent);
     }
 
-    public void fag2OnClick(View v) {
+    public void class2OnClick(View v) {
         Intent intent = new Intent(MainActivity.this, Class2Activity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);

@@ -15,7 +15,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/theme0"
+                android:id="@+id/button1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/blue1"
@@ -36,7 +36,7 @@
 
 
         <Button
-            android:id="@+id/theme1"
+            android:id="@+id/button2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue2"
@@ -47,7 +47,7 @@
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/theme2"
+            android:id="@+id/button3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue3"
@@ -58,7 +58,7 @@
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/theme3"
+            android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue4"
@@ -69,6 +69,7 @@
             android:textSize="30sp" />
 
         <Button
+            android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue1"
@@ -79,7 +80,7 @@
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/blue2"

@@ -34,10 +34,12 @@ public class MainActivityTest {
             return result;
         }
     };
-
+    Instrumentation.ActivityMonitor monitorClass1Activity = getInstrumentation().addMonitor(Class1Activity.class.getName(), null, false);
+    Instrumentation.ActivityMonitor monitorClass2Activity = getInstrumentation().addMonitor(Class2Activity.class.getName(), null, false);
+    Instrumentation.ActivityMonitor monitorChatroomActivity = getInstrumentation().addMonitor(ChatroomActivity.class.getName(), null, false);
+    Instrumentation.ActivityMonitor monitorCalenderActivity = getInstrumentation().addMonitor(CalenderActivity.class.getName(), null, false);
+    Instrumentation.ActivityMonitor monitorTrophyroomActivity = getInstrumentation().addMonitor(TrophyActivity.class.getName(), null, false);
     private MainActivity mActivity = null;
-
-    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(Class1Activity.class.getName(), null, false);
 
     @Before
     public void setUp() throws Exception {
@@ -48,7 +50,7 @@ public class MainActivityTest {
     public void testLaunchOfClass1ActivityOnButtonClick() {
         assertNotNull(mActivity.findViewById(R.id.class1Button));
         onView(withId(R.id.class1Button)).perform(click());
-        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorClass1Activity, 5000);
         assertNotNull(nextActivity);
         nextActivity.finish();
     }
@@ -57,7 +59,7 @@ public class MainActivityTest {
     public void testLaunchOfClass2ActivityOnButtonClick() {
         assertNotNull(mActivity.findViewById(R.id.class2Button));
         onView(withId(R.id.class2Button)).perform(click());
-        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorClass2Activity, 5000);
         assertNotNull(nextActivity);
         nextActivity.finish();
     }
@@ -66,12 +68,28 @@ public class MainActivityTest {
     public void testLaunchOfChatroomActivityOnButtonClick() {
         assertNotNull(mActivity.findViewById(R.id.chatroomButton));
         onView(withId(R.id.chatroomButton)).perform(click());
-        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorChatroomActivity, 5000);
         assertNotNull(nextActivity);
         nextActivity.finish();
     }
 
+    @Test
+    public void testLaunchOfCalenderActivityOnButtonClick() {
+        assertNotNull(mActivity.findViewById(R.id.calendarButton));
+        onView(withId(R.id.calendarButton)).perform(click());
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorCalenderActivity, 5000);
+        assertNotNull(nextActivity);
+        nextActivity.finish();
+    }
 
+    @Test
+    public void testLaunchOfTrophyActivityOnButtonClick() {
+        assertNotNull(mActivity.findViewById(R.id.trophyroomButton));
+        onView(withId(R.id.trophyroomButton)).perform(click());
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorTrophyroomActivity, 5000);
+        assertNotNull(nextActivity);
+        nextActivity.finish();
+    }
 
     @After
     public void tearDown() throws Exception {
