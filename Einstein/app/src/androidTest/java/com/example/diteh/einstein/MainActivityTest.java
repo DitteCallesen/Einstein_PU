@@ -53,6 +53,26 @@ public class MainActivityTest {
         nextActivity.finish();
     }
 
+    @Test
+    public void testLaunchOfClass2ActivityOnButtonClick() {
+        assertNotNull(mActivity.findViewById(R.id.class2Button));
+        onView(withId(R.id.class2Button)).perform(click());
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+        assertNotNull(nextActivity);
+        nextActivity.finish();
+    }
+
+    @Test
+    public void testLaunchOfChatroomActivityOnButtonClick() {
+        assertNotNull(mActivity.findViewById(R.id.chatroomButton));
+        onView(withId(R.id.chatroomButton)).perform(click());
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+        assertNotNull(nextActivity);
+        nextActivity.finish();
+    }
+
+
+
     @After
     public void tearDown() throws Exception {
         mActivity = null;
