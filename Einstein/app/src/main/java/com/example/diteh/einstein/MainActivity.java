@@ -19,13 +19,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-<<<<<<< HEAD
+
 
 private String name,username;
 
-=======
-private String name,username;
->>>>>>> refs/remotes/origin/master
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -4,19 +4,6 @@
     android:layout_height="match_parent">
 
 
-    <Button
-<<<<<<< HEAD
-        android:text="Back"
-=======
-        android:id="@+id/btSend"
->>>>>>> refs/remotes/origin/master
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="Send"
-        android:layout_below="@+id/messageList" />
 
     <Button
         android:id="@+id/button10"
@@ -41,20 +28,23 @@
         android:hint="Write your message"
         android:inputType="text" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/btSend"
+        android:text="Send"
+        android:layout_below="@+id/messageList"
+        android:layout_alignLeft="@+id/button10"
+        android:layout_alignStart="@+id/button10" />
+
     <ListView
         android:id="@+id/messageList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-<<<<<<< HEAD
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp"
-        android:id="@+id/backToMainButton"
-        android:onClick="backOnClick"/>
-</RelativeLayout>
-=======
         android:layout_above="@+id/msgInput" />
 
+
 </RelativeLayout>
->>>>>>> refs/remotes/origin/master
+

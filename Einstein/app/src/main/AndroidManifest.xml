@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -30,9 +30,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
+
         <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <activity android:name=".CalendarActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ChatroomActivity"
@@ -45,36 +45,15 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Class2Activity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".RegisterActivity"
-=======
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".CalenderActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".RegisterActivity"/>
         <activity
             android:name=".ListOfChatroomActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AssignmentActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Class1Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".TrophyActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Class2Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".RegisterActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Chatroom"
->>>>>>> refs/remotes/origin/master
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>

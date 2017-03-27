@@ -43,7 +43,7 @@ import java.util.Random;
 
 public class AssignmentActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
+
     private final static String CLASS_ID = "classId";
     private final static String SUBJECT_ID = "subjectId";
     private final static String TASK_ID = "taskId";
@@ -68,36 +68,11 @@ public class AssignmentActivity extends AppCompatActivity {
     private String answer2 = "";
     private String answer3 = "";
     private String answer4 = "";
-
-
-=======
-    public final static String CLASS_ID = "classId";
-    public final static String SUBJECT_ID = "subjectId";
-    public final static String TASK_ID = "taskId";
-    public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
-    public final static String CORRECT_ON_FIRST_TRY = "correctOnFirstTry";
-    public final static String NUMBER_OF_TASKS = "numberOfTasks";
-    boolean answeredWrong = false;
-    String classId, subjectId, jstring;
-    JSONArray jsonArray;
-    JSONObject jsonObject;
-    int globalCounter;
-    int correctAnswersInARow;
-    int correctOnFirstTry,courseSubjectID;
-    int numberOfTasks;
-    int[] myTrophies;
-    int taskId;
-    String name, username;
-    DatabaseHelper myDb;
-    Vibrator vibrator;
-    String correctAnswer = "";
-    String answer1 = "";
-    String answer2 = "";
-    String answer3 = "";
-    String answer4 = "";
-    private int[] solved, assignID;
     ImageView backTmain;
->>>>>>> refs/remotes/origin/master
+
+    private int[] solved, assignID;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
