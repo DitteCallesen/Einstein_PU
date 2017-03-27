@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class ChatroomActivity extends AppCompatActivity {
+    private String name, username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,7 +15,11 @@ public class ChatroomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chatroom);
     }
     public void backOnClick(View v){
-        Button button= (Button) v;
-        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        Intent intent = new Intent(ChatroomActivity.this, MainActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 }

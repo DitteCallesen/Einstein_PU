@@ -31,8 +31,7 @@ public class Class1ActivityTest {
             Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
             Intent result = new Intent(targetContext, Class1Activity.class);
             Bundle extras = new Bundle();
-            extras.putString("name", "name");
-            extras.putString("username", "username");
+            extras.putString("", "");
             result.putExtras(extras);
             return result;
         }

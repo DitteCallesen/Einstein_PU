@@ -63,8 +63,6 @@ public class AssignmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_assignment);
         myDb = new DatabaseHelper(this);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        Intent intent = getIntent();
-
         Bundle extras = getIntent().getExtras();
         classId = extras.getString(CLASS_ID);
         subjectId = extras.getString(SUBJECT_ID);

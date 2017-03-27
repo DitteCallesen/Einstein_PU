@@ -11,7 +11,7 @@
     tools:context="com.example.diteh.einstein.ChatroomActivity">
 
     <Button
-        android:text="Back "
+        android:text="Back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -19,6 +19,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="27dp"
         android:layout_marginStart="27dp"
-        android:id="@+id/buttonback"
+        android:id="@+id/backToMainButton"
         android:onClick="backOnClick"/>
 </RelativeLayout>

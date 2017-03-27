@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 
@@ -30,14 +29,14 @@ public class MainActivityTest {
         protected Intent getActivityIntent() {
             Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
             Intent result = new Intent(targetContext, MainActivity.class);
-            result.putExtra("Name", "Value");
+            result.putExtra("", "");
             return result;
         }
     };
     Instrumentation.ActivityMonitor monitorClass1Activity = getInstrumentation().addMonitor(Class1Activity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorClass2Activity = getInstrumentation().addMonitor(Class2Activity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorChatroomActivity = getInstrumentation().addMonitor(ChatroomActivity.class.getName(), null, false);
-    Instrumentation.ActivityMonitor monitorCalenderActivity = getInstrumentation().addMonitor(CalenderActivity.class.getName(), null, false);
+    Instrumentation.ActivityMonitor monitorCalenderActivity = getInstrumentation().addMonitor(CalendarActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorTrophyroomActivity = getInstrumentation().addMonitor(TrophyActivity.class.getName(), null, false);
     private MainActivity mActivity = null;
 

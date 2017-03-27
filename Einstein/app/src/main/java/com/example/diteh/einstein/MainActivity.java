@@ -5,10 +5,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.*;
-import android.widget.Button;
 import android.widget.TextView;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -70,8 +68,8 @@ private String name,username;
     }
 
     // This method change to the CalendarActivity
-    public void calenderOnClick(View v) {
-        Intent intent = new Intent(MainActivity.this, CalenderActivity.class);
+    public void calendarOnClick(View v) {
+        Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);

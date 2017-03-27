@@ -71,7 +71,7 @@
                 android:layout_height="match_parent"
                 android:src="@mipmap/ic_calendar"
                 android:layout_weight="1"
-                android:onClick="calenderOnClick"/>
+                android:onClick="calendarOnClick"/>
 
             <ImageView
                 android:id="@+id/trophyroomButton"
