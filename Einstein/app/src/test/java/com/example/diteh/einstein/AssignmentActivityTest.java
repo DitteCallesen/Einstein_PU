@@ -16,37 +16,37 @@ public class AssignmentActivityTest {
 
     @Test
     public void getMessage() throws Exception {
-        int test1input1 = 5;
-        int test1input2 = 10;
-
-        int test2input1 = 5;
-        int test2input2 = 0;
-
-        int test3input1 = 6;
-        int test3input2 = 10;
-
-        String output1;
-        String output2;
-        String output3;
-
-        String expected1 = "Better luck next time.";
-        String expected2 = "No exercises available.";
-        String expected3 = "Congratulations!";
-
         AssignmentActivity assignmentActivity = new AssignmentActivity();
+        int input1;
+        int input2;
+        String output;
+        String expected;
 
-        output1 = assignmentActivity.getMessage(test1input1,test1input2);
-        output2 = assignmentActivity.getMessage(test2input1,test2input2);
-        output3 = assignmentActivity.getMessage(test3input1,test3input2);
+        input1 = 5;
+        input2 = 10;
+        expected = "Better luck next time.";
+        output = assignmentActivity.getMessage(input1,input2);
+        assertEquals(expected, output);
 
-        //assertEquals(expected1, output1);
-        //assertEquals(expected2, output2);
-        //assertEquals(expected3, output3);
+        input1 = 5;
+        input2 = 0;
+        expected = "No exercises available.";
+        output = assignmentActivity.getMessage(input1,input2);
+        assertEquals(expected, output);
+
+        input1 = 6;
+        input2 = 10;
+        expected = "Congratulations!";
+        output = assignmentActivity.getMessage(input1,input2);
+        assertEquals(expected, output);
     }
 
     @Test
     public void nextTaskExists() throws Exception {
-
+        //AssignmentActivity assignmentActivity = new AssignmentActivity();
+        //int input1;
+        //int input2;
+        // dette er simon sitt  =)
     }
 
     @Test
