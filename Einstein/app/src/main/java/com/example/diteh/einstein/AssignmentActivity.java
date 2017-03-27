@@ -69,6 +69,7 @@ public class AssignmentActivity extends AppCompatActivity {
     private String answer3 = "";
     private String answer4 = "";
     ImageView backTmain;
+    String test1= "{\"userdata\":[{\"username\":\"a\",\"taskID\":\"10\",\"courseSubjectID\":\"1\",\"ansInARow\":\"7\",\"Asolved\":\"0\",\"correctOnFirstTry\":\"10\"}],\"assignments\":[{\"task\":\"x + 4 = 6_x = 2_x = 3_x = 4_x = 5\",\"difficulty\":\"1\",\"assignID\":\"1\"},{\"task\":\"4 + x = 8_x = 4_x = 5_x = 6_x = 7\",\"difficulty\":\"1\",\"assignID\":\"3\"},{\"task\":\"-8 = 2 - x_x = 10_x = 12_x = 14_x = 16\",\"difficulty\":\"1\",\"assignID\":\"4\"},{\"task\":\"8 - x = 7_x = 1_x = 2_x=3_x=4\",\"difficulty\":\"1\",\"assignID\":\"5\"},{\"task\":\"5 + x = 21_x = 16_x = 21_x = 1_x = 5_x = 3\",\"difficulty\":\"1\",\"assignID\":\"6\"},{\"task\":\"x - 3 = 4_x = 7_x = 4_x = 6_x = 11\",\"difficulty\":\"1\",\"assignID\":\"7\"},{\"task\":\"8 = x - 5_x = 13_x = 5_x = 10_x = 12_x = 8\",\"difficulty\":\"1\",\"assignID\":\"8\"},{\"task\":\"4x + 3x = 14_x = 2_x = 3_x = 4_x = 5\",\"difficulty\":\"2\",\"assignID\":\"9\"},{\"task\":\"12 + x = 5x_x = 3_ x = 4_ x = 5_ x = 6\",\"difficulty\":\"2\",\"assignID\":\"10\"},{\"task\":\"8x + 18 = 26x_x = 1_x = 7_x = 8_x = 9\",\"difficulty\":\"2\",\"assignID\":\"11\"},{\"task\":\"2x*4 = 2x + 12_x = 2_x = 7_x = 8_x = 9\",\"difficulty\":\"2\",\"assignID\":\"12\"},{\"task\":\"4 - 2x = 2*2x + 1_x = 2_x = 1_x = -1_x = 3\",\"difficulty\":\"2\",\"assignID\":\"13\"},{\"task\":\"x + 15 = 36_x = 21_x = 13_x = 14_x = 15\",\"difficulty\":\"1\",\"assignID\":\"14\"}],\"trophy\":[{\"trophynum\":\"1\"},{\"trophynum\":\"10\"},{\"trophynum\":\"6\"},{\"trophynum\":\"4\"},{\"trophynum\":\"3\"},{\"trophynum\":\"2\"}]}";
 
     private int[] solved, assignID;
 
@@ -77,6 +78,7 @@ public class AssignmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_assignment);
         myDb = new DatabaseHelper(this);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -92,8 +94,10 @@ public class AssignmentActivity extends AppCompatActivity {
         solved = extras.getIntArray("solved");
         //Får jsonobjekt forrige aktivitet
         try {
+
             jsonObject = new JSONObject(extras.getString("jsonO"));
             jsonArray = jsonObject.getJSONArray("assignments");
+
             JSONArray userdataArray = jsonObject.getJSONArray("userdata");
             JSONObject  userdata = userdataArray.getJSONObject(0);
             courseSubjectID = userdata.getInt("courseSubjectID");
@@ -181,7 +185,17 @@ public class AssignmentActivity extends AppCompatActivity {
     //This method return true if there is a next task in the database
     //Otherwise it return false
     public boolean nextTaskExists(JSONArray jsonArray, int taskId) {
-
+        //for Unit test--------------------------------------
+        JSONObject test= null;
+        if(jsonArray ==null){
+            try {
+                test = new JSONObject(test1);
+                jsonArray=test.getJSONArray("assignments");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        //-----------------------------
         if (taskId < jsonArray.length()) {
             return true;
         } else {
@@ -195,6 +209,17 @@ public class AssignmentActivity extends AppCompatActivity {
     public List<String> nextTask(JSONArray jsonArray, int taskId) {
         List<String> foo = new ArrayList<String>(Arrays.asList("f"));
         String exersices = "";
+        //for Unit test--------------------------------------
+        JSONObject test= null;
+        if(jsonArray ==null){
+            try {
+                test = new JSONObject(test1);
+                jsonArray=test.getJSONArray("assignments");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        //-----------------------------
         try {
             JSONObject jo = jsonArray.getJSONObject(taskId);
             exersices = jo.getString("task");
@@ -383,7 +408,17 @@ public class AssignmentActivity extends AppCompatActivity {
                 taskID=0;
                 correctOnFirstTry=0;
             }
-
+            //for Unit test--------------------------------------
+            JSONObject test= null;
+            if(solved ==null){
+               solved = new int[2];
+                solved[0]=1;
+                solved[1]=1;
+                assignID=new int[2];
+                assignID[0]=1;
+                assignID[1]=2;
+            }
+            //-----------------------------
             String Ssolved="", SassignID="";
             for(int i = 0;i<solved.length;i++){
                 Ssolved = ""+Ssolved+","+solved[i];
