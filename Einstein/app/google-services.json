@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "484767000169",
+    "firebase_url": "https://einstein-a4945.firebaseio.com",
+    "project_id": "einstein-a4945",
+    "storage_bucket": "einstein-a4945.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484767000169:android:a3c41d652e08fc7e",
+        "android_client_info": {
+          "package_name": "com.example.diteh.einstein"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484767000169-bsthjm0u18imu7ol2k44fmvb30ud6eg4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.diteh.einstein",
+            "certificate_hash": "903c3816d763dbd50f5dc8a7b158675ce86e2703"
+          }
+        },
+        {
+          "client_id": "484767000169-74n8cggqh11rqvblfv3sk8gg55noq7qc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-a8GwueXHAL5JYLNKZAEoWrubdFmoFmk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484767000169-74n8cggqh11rqvblfv3sk8gg55noq7qc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

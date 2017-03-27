@@ -19,9 +19,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
+<<<<<<< HEAD
 
 private String name,username;
 
+=======
+private String name,username;
+>>>>>>> refs/remotes/origin/master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,7 @@ private String name,username;
         extras.putString("username", username);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
+
     }
 
     public void class2OnClick(View v) {
@@ -54,16 +59,18 @@ private String name,username;
         extras.putString("username", username);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
+
     }
 
     // This method change to the ChatRoomActivity
     public void chatroomOnClick(View v) {
-        Intent intent = new Intent(MainActivity.this, ChatroomActivity.class);
+        Intent intent = new Intent(MainActivity.this, ListOfChatroomActivity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
+
     }
 
     // This method change to the CalendarActivity
@@ -74,6 +81,7 @@ private String name,username;
         extras.putString("username", username);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
+
     }
 
     // This method change to the TrophyRoomActicity
@@ -150,6 +158,7 @@ private String name,username;
 
 
                 MainActivity.this.startActivity(intent);
+
 
 
             } catch (JSONException e) {

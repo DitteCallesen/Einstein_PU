@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.diteh.einstein">
+
+    <uses-sdk tools:overrideLibrary="com.firebase.ui" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -15,18 +18,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <!--android:theme="@style/AppTheme">-->
-        <activity
-            android:screenOrientation="portrait"
-            android:name=".LoginActivity"
-            android:label="@string/app_name">
 
+        <!-- android:theme="@style/AppTheme"> -->
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".CalendarActivity"
@@ -42,6 +46,34 @@
         <activity android:name=".Class2Activity"
             android:screenOrientation="portrait"/>
         <activity android:name=".RegisterActivity"
+=======
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalenderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListOfChatroomActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AssignmentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Class1Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TrophyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Class2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Chatroom"
+>>>>>>> refs/remotes/origin/master
             android:screenOrientation="portrait"></activity>
     </application>
 

@@ -21,6 +21,7 @@ import java.net.URL;
 
 public class Class1Activity extends AppCompatActivity {
 
+<<<<<<< HEAD
     private final static String CLASS_ID = "classId";
     private final static String SUBJECT_ID = "subjectId";
     private final static String TASK_ID = "taskId";
@@ -32,6 +33,19 @@ public class Class1Activity extends AppCompatActivity {
     private String js_string;
     private String classId = "Mathematics", subjectId;
 
+=======
+    public final static String CLASS_ID = "classId";
+    public final static String SUBJECT_ID = "subjectId";
+    public final static String TASK_ID = "taskId";
+    public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
+    public final static String CORRECT_ON_FIRST_TRY  = "correctOnFirstTry";
+    public final static String NUMBER_OF_TASKS = "numberOfTasks";
+    public String username,name;
+    String JSON_STRING;
+    String js_string;
+    String classId = "Mathematics", subjectId;
+    private int[] solved;
+>>>>>>> refs/remotes/origin/master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +63,7 @@ public class Class1Activity extends AppCompatActivity {
         extras.putString("username", username);
         intent.putExtras(extras);
         startActivity(intent);
+        finish();
     }
 
     public void getJson(View view) {
@@ -122,7 +137,7 @@ public class Class1Activity extends AppCompatActivity {
                 taskID = userdata.getInt("taskID");
                 correctOnFirstTry = userdata.getInt("correctOnFirstTry");
                 numberOfTasks = server_response.getJSONArray("assignments").length();
-
+                solved = new int[numberOfTasks];
 
                 Intent intent = new Intent(Class1Activity.this, AssignmentActivity.class);
                 Bundle extras = new Bundle();
@@ -135,8 +150,10 @@ public class Class1Activity extends AppCompatActivity {
                 extras.putString("jsonO", server_response.toString());
                 extras.putString("name", name);
                 extras.putString("username", username);
+                extras.putIntArray("solved",solved);
                 intent.putExtras(extras);
                 Class1Activity.this.startActivity(intent);
+                finish();
 
             } catch (JSONException e) {
                 e.printStackTrace();

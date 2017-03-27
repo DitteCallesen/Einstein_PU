@@ -51,6 +51,16 @@ public class LoginActivity extends AppCompatActivity {
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                    Bundle extras = new Bundle();
+//                                    extras.putString("name", "truong");
+//                                    extras.putString("username", "a");
+//                                    intent.putExtras(extras);
+//                                    LoginActivity.this.startActivity(intent);
+//                                    finish();
+
+
+
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
 
@@ -80,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                     extras.putString("username", username);
                                     intent.putExtras(extras);
                                     LoginActivity.this.startActivity(intent);
+                                    finish();
                                 }
                             } else {
 

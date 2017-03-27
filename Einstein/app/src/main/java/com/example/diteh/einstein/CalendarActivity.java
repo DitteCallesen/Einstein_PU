@@ -25,6 +25,7 @@ public class CalendarActivity extends AppCompatActivity {
         extras.putString("username", username);
         intent.putExtras(extras);
         startActivity(intent);
+        finish();
 
     }
 }

@@ -115,11 +115,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    public void back(View view) {
-        Button button = (Button) view;
-        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-        startActivity(intent);
-    }
 
     public class RegisterRequest extends StringRequest {
 
