@@ -39,7 +39,6 @@ private String name,username;
 
     // Class buttons
     public void class1OnClick(View v) {
-
         Intent intent = new Intent(MainActivity.this, Class1Activity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
