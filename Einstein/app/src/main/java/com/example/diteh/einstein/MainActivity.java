@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,10 +17,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 private String name,username;
@@ -44,7 +39,7 @@ private String name,username;
     }
 
     // Class buttons
-    public void fag1OnClick(View v) {
+    public void class1OnClick(View v) {
 
         Intent intent = new Intent(MainActivity.this, Class1Activity.class);
         Bundle extras = new Bundle();
@@ -55,7 +50,7 @@ private String name,username;
 
     }
 
-    public void fag2OnClick(View v) {
+    public void class2OnClick(View v) {
         Intent intent = new Intent(MainActivity.this, Class2Activity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
@@ -78,7 +73,7 @@ private String name,username;
 
     // This method change to the CalendarActivity
     public void calenderOnClick(View v) {
-        Intent intent = new Intent(MainActivity.this, CalenderActivity.class);
+        Intent intent = new Intent(MainActivity.this, CalendarActivity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);

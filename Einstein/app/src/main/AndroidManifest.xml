@@ -34,7 +34,7 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CalenderActivity"
+            android:name=".CalendarActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ListOfChatroomActivity"

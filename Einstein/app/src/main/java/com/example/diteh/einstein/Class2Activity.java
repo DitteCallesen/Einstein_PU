@@ -37,7 +37,7 @@ public class Class2Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fag2);
+        setContentView(R.layout.activity_class2);
         Bundle extras = getIntent().getExtras();
         name = extras.getString("name");
         username = extras.getString("username");

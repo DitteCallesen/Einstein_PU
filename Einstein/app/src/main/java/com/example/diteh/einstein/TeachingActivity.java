@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,8 +15,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -78,7 +75,7 @@ public class TeachingActivity extends AppCompatActivity {
 
     // This method change to the CalendarActivity
     public void calenderOnClick(View v) {
-        Intent intent = new Intent(TeachingActivity.this, CalenderActivity.class);
+        Intent intent = new Intent(TeachingActivity.this, CalendarActivity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);

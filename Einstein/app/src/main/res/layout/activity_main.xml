@@ -18,20 +18,22 @@
             android:textSize="30dp" />
 
         <Button
+            android:id="@+id/class1Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#c9d3df"
-            android:onClick="fag1OnClick"
+            android:onClick="class1OnClick"
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
             android:text="Mathematics"
             android:textSize="30sp" />
 
         <Button
+            android:id="@+id/class2Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#e4e9ec"
-            android:onClick="fag2OnClick"
+            android:onClick="class2OnClick"
             android:paddingBottom="20dp"
             android:paddingTop="20dp"
             android:text="Statistics"
@@ -45,6 +47,7 @@
             android:paddingTop="30dp">
 
             <ImageView
+                android:id="@+id/chatroomButton"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:layout_weight="1"
@@ -53,6 +56,7 @@
 
 
             <ImageView
+                android:id="@+id/calendarButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -60,6 +64,7 @@
                 android:src="@mipmap/ic_calendar" />
 
             <ImageView
+                android:id="@+id/trophyroomButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
