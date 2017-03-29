@@ -1,10 +1,8 @@
 package com.example.diteh.einstein;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Vibrator;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,19 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,11 +21,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 
@@ -55,7 +43,7 @@ public class AssignmentActivity extends AppCompatActivity {
     JSONObject jsonObject;
     int globalCounter;
     int correctAnswersInARow;
-    int correctOnFirstTry,courseSubjectID;
+    int correctOnFirstTry, courseSubjectID;
     int numberOfTasks;
     int[] myTrophies;
     int taskId;
@@ -68,16 +56,20 @@ public class AssignmentActivity extends AppCompatActivity {
     String answer3 = "";
     String answer4 = "";
     private int[] solved, assignID;
+    int Asolved;
     ImageView backTmain;
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMyy");
+    Calendar c = Calendar.getInstance();
+    String mmyy;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment);
-        myDb = new DatabaseHelper(this);
-        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        Intent intent = getIntent();
 
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+        mmyy = dateFormat.format(c.getTime());
         Bundle extras = getIntent().getExtras();
         classId = extras.getString(CLASS_ID);
         subjectId = extras.getString(SUBJECT_ID);
@@ -85,35 +77,41 @@ public class AssignmentActivity extends AppCompatActivity {
         correctAnswersInARow = extras.getInt(CORRECT_ANSWERS_IN_A_ROW);
         correctOnFirstTry = extras.getInt(CORRECT_ON_FIRST_TRY);
         numberOfTasks = extras.getInt(NUMBER_OF_TASKS);
-        name=extras.getString("name");
-        username=extras.getString("username");
+        name = extras.getString("name");
+        username = extras.getString("username");
         solved = extras.getIntArray("solved");
+        Asolved=extras.getInt("Asolved");;
         //Får jsonobjekt forrige aktivitet
         try {
             jsonObject = new JSONObject(extras.getString("jsonO"));
             jsonArray = jsonObject.getJSONArray("assignments");
             JSONArray userdataArray = jsonObject.getJSONArray("userdata");
-            JSONObject  userdata = userdataArray.getJSONObject(0);
+            JSONObject userdata = userdataArray.getJSONObject(0);
             courseSubjectID = userdata.getInt("courseSubjectID");
-            JSONArray Optrophies= jsonObject.getJSONArray("trophy");
-            myTrophies = new int[Optrophies.length()];
-            for (int i=0;i<Optrophies.length();i++){
-                JSONObject gettro = Optrophies.getJSONObject(i);
-                myTrophies[i]=gettro.getInt("trophynum");
+            JSONArray Optrophies = jsonObject.getJSONArray("trophy");
 
-                assignID = new int[jsonArray.length()];
-                for (int j =0;j<jsonArray.length();j++){
-                JSONObject getAssignID = jsonArray.getJSONObject(j);
-                    assignID[j]=getAssignID.getInt("assignID");
+            String ls = Optrophies.toString();
+            if(!ls.equals("[]")){
+                myTrophies = new int[12];
+                for (int i = 0; i < Optrophies.length(); i++) {
+                    JSONObject gettro = Optrophies.getJSONObject(i);
+                    myTrophies[i] = gettro.getInt("trophynum");
                 }
+            }
+            else{
+                myTrophies = new int[12];
+
+            }
+            assignID = new int[jsonArray.length()];
+            for (int j = 0; j < jsonArray.length(); j++) {
+                JSONObject getAssignID = jsonArray.getJSONObject(j);
+                assignID[j] = getAssignID.getInt("assignID");
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            myTrophies = new int[1];
+            myTrophies[0]=0;
         }
-
-
-
-
 
 
         TextView class_view = (TextView) findViewById(R.id.fag);
@@ -151,7 +149,7 @@ public class AssignmentActivity extends AppCompatActivity {
             button3.setVisibility(View.INVISIBLE);
             button4.setVisibility(View.INVISIBLE);
 
-            new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username,numberOfTasks, assignID, solved).execute();
+            new Background(0, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
 
         }
 
@@ -167,15 +165,14 @@ public class AssignmentActivity extends AppCompatActivity {
         if (numberOfTasks == 0) {
             return "No exercises available.";
         }
-        float percentScore = (float) correctOnFirstTry/numberOfTasks;
+        float percentScore = (float) correctOnFirstTry / numberOfTasks;
         if (percentScore < 0.6) {
             return "Better luck next time.";
-        }
-        else {
+        } else {
             return "Congratulations!";
         }
     }
-    
+
     //This method return true if there is a next task in the database
     //Otherwise it return false
     public boolean nextTaskExists(JSONArray jsonArray, int taskId) {
@@ -187,7 +184,7 @@ public class AssignmentActivity extends AppCompatActivity {
         }
 
     }
-    
+
     //Finds the given exercise from the database
     //Returns a list with all the info from the exercise
     public List<String> nextTask(JSONArray jsonArray, int taskId) {
@@ -221,6 +218,7 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putString("name", name);
         extras.putString("username", username);
         extras.putIntArray("solved", solved);
+        extras.putInt("Asolved", Asolved);
         intent.putExtras(extras);
         startActivity(intent);
         finish();
@@ -230,8 +228,9 @@ public class AssignmentActivity extends AppCompatActivity {
         if (!answeredWrong) {
             correctOnFirstTry++;
             correctAnswersInARow++;
-            solved[taskId]=1;
+            solved[taskId] = 1;
             taskId = globalCounter + 1;
+            Asolved++;
             Toast.makeText(this, "Winning streak is on " + correctAnswersInARow, Toast.LENGTH_LONG).show();
             Button bt1 = (Button) findViewById(R.id.button1);
             Button bt2 = (Button) findViewById(R.id.button2);
@@ -249,15 +248,48 @@ public class AssignmentActivity extends AppCompatActivity {
 
 
         if (correctAnswersInARow == 1 && findTrophy(1)) {
-            new Background(1, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved).execute();
+            new Background(1, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+            tempTrophyArray(1);
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
         if (correctAnswersInARow == 5 && findTrophy(2)) {
-            new Background(2, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved).execute();
+            new Background(2, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+            tempTrophyArray(2);
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
         if (correctAnswersInARow == 10 && findTrophy(3)) {
-            new Background(3, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved).execute();
+            new Background(3, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+            tempTrophyArray(3);
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+        }
+        if (Asolved == 5 && findTrophy(7)) {
+            new Background(7, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+            tempTrophyArray(7);
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+        }
+        if (Asolved == 10 && findTrophy(8)) {
+            new Background(8, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+            tempTrophyArray(8);
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+        }
+        if (Asolved == 50 && findTrophy(9)) {
+            new Background(9, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+            tempTrophyArray(9);
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+        }
+        if (Asolved == 100 && findTrophy(10)) {
+            new Background(10, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+            tempTrophyArray(10);
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+        }
+        if (Asolved == 500 && findTrophy(11)) {
+            new Background(11, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+            tempTrophyArray(11);
+            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+        }
+        if (Asolved == 1000 && findTrophy(12)) {
+            new Background(12, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+            tempTrophyArray(12);
             Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
         }
     }
@@ -267,7 +299,7 @@ public class AssignmentActivity extends AppCompatActivity {
         vibrator.vibrate(300);
 
         correctAnswersInARow = 0;
-        Toast.makeText(this, "To bad, winning streak reset to "+correctAnswersInARow, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "To bad, winning streak reset to " + correctAnswersInARow, Toast.LENGTH_LONG).show();
     }
 
     public void button1Clicked(View view) {
@@ -305,6 +337,7 @@ public class AssignmentActivity extends AppCompatActivity {
             wrongAnswerClicked();
         }
     }
+
     //push back button on screen
     public void backToMain(View v) {
         Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
@@ -312,9 +345,10 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putString("name", name);
         extras.putString("username", username);
         intent.putExtras(extras);
-        new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks, assignID, solved).execute();
+        new Background(0, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
         startActivity(intent);
     }
+
     //use anndroid back button
     @Override
     public void onBackPressed() {
@@ -323,7 +357,7 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putString("name", name);
         extras.putString("username", username);
         intent.putExtras(extras);
-        new Background(0,courseSubjectID,correctAnswersInARow,correctOnFirstTry,taskId,username, numberOfTasks, assignID, solved).execute();
+        new Background(0, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
         startActivity(intent);
     }
 
@@ -344,55 +378,66 @@ public class AssignmentActivity extends AppCompatActivity {
         myDb.insertData(trophyNumber);
     }
 
-    public boolean findTrophy(int trophynumber){
-        for(int i=0;i<myTrophies.length;i++){
-            if(myTrophies[i]==trophynumber){
-                return false;
+    public boolean findTrophy(int trophynumber) {
+            for (int i = 0; i < myTrophies.length; i++) {
+                if (myTrophies[i] == trophynumber) {
+                    return false;
+                }
+            }
+            return true;
+    }
+
+    public void tempTrophyArray(int trophynum){
+        for(int i =0;i<myTrophies.length;i++){
+            if(myTrophies[i]==0){
+                myTrophies[i]=trophynum;
+                break;
             }
         }
-        return true;
     }
 
     class Background extends AsyncTask<Void, Void, String> {
         //Gets data from database
-        String username;
-        String JSON_STRING,js_string;
+        String username, mmyy;
+        String JSON_STRING, js_string;
         String json_url;
-        int ansInARow,taskID,correctOnFirstTry,courseSubjectID,trophynum,numberOfTask;
+        int ansInARow, taskID, correctOnFirstTry, courseSubjectID, trophynum, numberOfTask;
         int[] assignID, solved;
+
         //get input data
-        public Background(int trophynum, int courseSubjectID, int ansInARow, int correctOnFirstTry, int taskID,String username, int numberOfTask, int[] assignID, int[] solved) {
-           this.trophynum = trophynum;
-           this.courseSubjectID=courseSubjectID;
-           this.correctOnFirstTry=correctOnFirstTry;
-           this.taskID=taskID;
-           this.ansInARow=ansInARow;
-           this.username = username;
-           this.numberOfTask=numberOfTask;
-           this.assignID = assignID;
-           this.solved = solved;
+        public Background(int trophynum, int courseSubjectID, int ansInARow, int correctOnFirstTry, int taskID, String username, int numberOfTask, int[] assignID, int[] solved, String mmyy){
+            this.trophynum = trophynum;
+            this.courseSubjectID = courseSubjectID;
+            this.correctOnFirstTry = correctOnFirstTry;
+            this.taskID = taskID;
+            this.ansInARow = ansInARow;
+            this.username = username;
+            this.numberOfTask = numberOfTask;
+            this.assignID = assignID;
+            this.solved = solved;
+            this.mmyy=mmyy;
 
         }
 
         @Override
         protected void onPreExecute() {
             //reset assignments so user can start over
-            if(taskID==numberOfTask){
-                taskID=0;
-                correctOnFirstTry=0;
+            if (taskID == numberOfTask) {
+                taskID = 0;
+                correctOnFirstTry = 0;
             }
 
-            String Ssolved="", SassignID="";
-            for(int i = 0;i<solved.length;i++){
-                Ssolved = ""+Ssolved+","+solved[i];
-                SassignID = ""+SassignID+","+assignID[i];
+            String Ssolved = "", SassignID = "";
+            for (int i = 0; i < solved.length; i++) {
+                Ssolved = "" + Ssolved + "," + solved[i];
+                SassignID = "" + SassignID + "," + assignID[i];
             }
 
             //url for php that fetch data from database, comes back as json object
-            json_url = "https://truongtrxu.000webhostapp.com/updateUserProgress1.php?courseSubjectID=" + courseSubjectID+"&username="+username
-            +"&trophynum="+trophynum+"&taskID="+taskID+"&ansInARow="+ansInARow+"&correctOnFirstTry="+correctOnFirstTry+"&assignID="+ SassignID+"&solved="+Ssolved;
+            json_url = "https://truongtrxu.000webhostapp.com/updateUserProgress.php?courseSubjectID=" + courseSubjectID + "&username=" + username
+                    + "&trophynum=" + trophynum + "&taskID=" + taskID + "&ansInARow=" + ansInARow + "&correctOnFirstTry=" + correctOnFirstTry + "&assignID=" + SassignID + "&solved=" + Ssolved
+                    +"&mmyy="+mmyy;
         }
-
 
 
         @Override
@@ -432,8 +477,6 @@ public class AssignmentActivity extends AppCompatActivity {
 
         }
     }
-
-
 
 
 }

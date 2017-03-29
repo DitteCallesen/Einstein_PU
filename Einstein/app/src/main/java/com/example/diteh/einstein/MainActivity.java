@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,9 +18,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 private String name,username;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +39,7 @@ private String name,username;
         username=extras.getString("username");
         String msg = "Welcome to Einstein, " + name + "!";
         welcomeMessage.setText(msg);
+
 
     }
 
@@ -82,6 +90,12 @@ private String name,username;
     // This method change to the TrophyRoomActicity
     public void trophyOnClick(View v) {
         new Background(username).execute();
+    }
+
+    public void goToLogin(View view) {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        MainActivity.this.startActivity(intent);
+        finish();
     }
 
     class Background extends AsyncTask<Void, Void, String> {

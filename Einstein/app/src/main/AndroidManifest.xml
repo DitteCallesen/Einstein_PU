@@ -56,7 +56,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Chatroom"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".TeachingActivity" />
+        <activity android:name=".ChartActivity"></activity>
     </application>
 
 </manifest>

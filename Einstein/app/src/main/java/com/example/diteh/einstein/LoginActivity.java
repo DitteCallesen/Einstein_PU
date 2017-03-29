@@ -51,22 +51,12 @@ public class LoginActivity extends AppCompatActivity {
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                    Bundle extras = new Bundle();
-//                                    extras.putString("name", "truong");
-//                                    extras.putString("username", "a");
-//                                    intent.putExtras(extras);
-//                                    LoginActivity.this.startActivity(intent);
-//                                    finish();
-
-
 
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
 
-
                 // Response received from the server
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                final Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
@@ -77,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String name = jsonResponse.getString("name");
                                 String username = jsonResponse.getString("username");
                                 String checkpass = jsonResponse.getString("password");
+                                String position = jsonResponse.getString("position");
                                 if (!checkpass.equals(password)) {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                     builder.setMessage("Wrong password")
@@ -84,13 +75,25 @@ public class LoginActivity extends AppCompatActivity {
                                             .create()
                                             .show();
                                 } else {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    Bundle extras = new Bundle();
-                                    extras.putString("name", name);
-                                    extras.putString("username", username);
-                                    intent.putExtras(extras);
-                                    LoginActivity.this.startActivity(intent);
-                                    finish();
+                                    if(position=="Student") {
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        Bundle extras = new Bundle();
+                                        extras.putString("name", name);
+                                        extras.putString("username", username);
+                                        intent.putExtras(extras);
+                                        LoginActivity.this.startActivity(intent);
+                                        finish();
+                                    }
+                                    else{
+
+                                        Intent intent = new Intent(LoginActivity.this, TeachingActivity.class);
+                                        Bundle extras = new Bundle();
+                                        extras.putString("name", name);
+                                        extras.putString("username", username);
+                                        intent.putExtras(extras);
+                                        LoginActivity.this.startActivity(intent);
+                                        finish();
+                                    }
                                 }
                             } else {
 
