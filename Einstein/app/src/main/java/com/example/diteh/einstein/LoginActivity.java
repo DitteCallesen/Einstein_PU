@@ -22,8 +22,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.Manifest.permission.READ_CONTACTS;
-
 /**
  * A login screen that offers login via email/password.
  */
@@ -37,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
 
-        final TextView tvRegisterLink = (TextView) findViewById(R.id.tvRegisterhere);
+        final TextView tvRegisterLink = (TextView) findViewById(R.id.registerButton);
         final Button bLogin = (Button) findViewById(R.id.blogin);
 
         tvRegisterLink.setOnClickListener(new View.OnClickListener() {

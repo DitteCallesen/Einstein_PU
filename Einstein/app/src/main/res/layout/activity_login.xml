@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/blogin"
-        android:layout_above="@+id/tvRegisterhere"
+        android:layout_above="@+id/registerButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -39,7 +39,7 @@
         android:text="Register here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvRegisterhere"
+        android:id="@+id/registerButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="63dp" />
