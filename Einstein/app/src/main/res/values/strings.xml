@@ -25,4 +25,11 @@
         <item>Student</item>
         <item>UndervisningsPersonell</item>
     </string-array>
+
+    <string-array name="type">
+        <item>Per assignment</item>
+        <item>All assignment per month</item>
+    </string-array>
+
+
 </resources>

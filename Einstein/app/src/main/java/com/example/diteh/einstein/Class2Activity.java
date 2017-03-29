@@ -21,6 +21,7 @@ import java.net.URL;
 
 public class Class2Activity extends AppCompatActivity {
 
+
     private final static String CLASS_ID = "classId";
     private final static String SUBJECT_ID = "subjectId";
     private final static String TASK_ID = "taskId";
@@ -31,14 +32,16 @@ public class Class2Activity extends AppCompatActivity {
     private String classId = "Statistics", subjectId;
     private String JSON_STRING;
     private String js_string;
+    private int[] solved;
+    int Asolved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class2);
         Bundle extras = getIntent().getExtras();
-        name=extras.getString("name");
-        username=extras.getString("username");
+        name = extras.getString("name");
+        username = extras.getString("username");
 
     }
 
@@ -55,15 +58,16 @@ public class Class2Activity extends AppCompatActivity {
 
     public void getJson2(View view) {
         Button b = (Button) view;
-        subjectId=b.getText().toString();
-        new Background(classId,subjectId).execute();
+
+        subjectId = b.getText().toString();
+        new Background(classId, subjectId).execute();
     }
 
     class Background extends AsyncTask<Void, Void, String> {
         //Gets data from database
         String classId, subjectId;
         String json_url;
-        int CorrAnsIn,taskID,correctOnFirstTry,numberOfTasks;
+        int CorrAnsIn, taskID, correctOnFirstTry, numberOfTasks;
 
         //krever at kurs navn og emnet blir lagt til
         public Background(String classId, String subjectId) {
@@ -74,7 +78,7 @@ public class Class2Activity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             //url for php that fetch data from database, comes back as json object
-            json_url = "https://truongtrxu.000webhostapp.com/getJsonAssign.php?course=" + classId + "&subject=" + subjectId+"&username="+username;
+            json_url = "https://truongtrxu.000webhostapp.com/getJsonAssign.php?course=" + classId + "&subject=" + subjectId + "&username=" + username;
         }
 
         @Override
@@ -116,13 +120,13 @@ public class Class2Activity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(js_string);
                 JSONObject server_response = jsonObject.getJSONObject("server_response");
                 JSONArray userdataArray = server_response.getJSONArray("userdata");
-                JSONObject  userdata = userdataArray.getJSONObject(0);
+                JSONObject userdata = userdataArray.getJSONObject(0);
 
                 CorrAnsIn = userdata.getInt("ansInARow");
-                taskID=userdata.getInt("taskID");
-                correctOnFirstTry=userdata.getInt("correctOnFirstTry");
+                taskID = userdata.getInt("taskID");
+                correctOnFirstTry = userdata.getInt("correctOnFirstTry");
                 numberOfTasks = server_response.getJSONArray("assignments").length();
-
+                solved = new int[numberOfTasks];
 
                 Intent intent = new Intent(Class2Activity.this, AssignmentActivity.class);
                 Bundle extras = new Bundle();
@@ -135,6 +139,8 @@ public class Class2Activity extends AppCompatActivity {
                 extras.putString("jsonO", server_response.toString());
                 extras.putString("name", name);
                 extras.putString("username", username);
+                extras.putIntArray("solved", solved);
+                extras.putInt("Asolved", Asolved);
                 intent.putExtras(extras);
                 Class2Activity.this.startActivity(intent);
                 finish();
@@ -144,7 +150,6 @@ public class Class2Activity extends AppCompatActivity {
             }
         }
     }
-
 
 
 }

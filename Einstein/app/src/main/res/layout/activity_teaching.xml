@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,26 +19,25 @@
             android:textSize="30dp" />
 
         <Button
-            android:id="@+id/class1Button"
-            android:text="Mathematics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:textSize="30sp"
             android:background="#c9d3df"
-            android:onClick="class1OnClick"/>
+            android:onClick="fag1OnClick"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="Mathematics"
+            android:textSize="30sp" />
 
         <Button
-            android:id="@+id/class2Button"
-            android:text="Statistics"
+            android:id="@+id/button8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:textSize="30sp"
             android:background="#e4e9ec"
-            android:onClick="class2OnClick"/>
+            android:onClick="fag2OnClick"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="Statistics"
+            android:textSize="30sp" />
 
 
         <LinearLayout
@@ -47,7 +47,6 @@
             android:paddingTop="30dp">
 
             <ImageView
-                android:id="@+id/chatroomButton"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:layout_weight="1"
@@ -56,21 +55,18 @@
 
 
             <ImageView
-                android:id="@+id/calendarButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="calendarOnClick"
+                android:onClick="calenderOnClick"
                 android:src="@mipmap/ic_calendar" />
 
-
             <ImageView
-                android:id="@+id/trophyroomButton"
-                android:layout_width="wrap_content"
+                android:layout_width="127dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="trophyOnClick"
-                android:src="@mipmap/ic_trophyroom" />
+                android:onClick="chartOnClick"
+                app:srcCompat="@drawable/chart"
+                android:layout_weight="0.04" />
 
         </LinearLayout>
 
@@ -99,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Trophy Room"
+                android:text="Charts"
                 android:textSize="20dp" />
         </LinearLayout>
 

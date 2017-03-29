@@ -39,42 +39,44 @@ public class Chatroom extends AppCompatActivity {
     private String username, roomName, name, tempKey;
     private DatabaseReference root;
     private Chatmessage chatmessage;
-    private SimpleDateFormat DateFormat= new SimpleDateFormat("HH:mm dd/MM/yyyy");
+    private SimpleDateFormat DateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
     private ListView chatlist;
     private ChatroomAdapter adapter;
     private List<Chatmessage> mChatmessage;
+    private String chatMsg, chatName, chatTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatroom);
-        btSendMsg = (Button)findViewById(R.id.btSend);
-        inputMsg = (EditText)findViewById(R.id.msgInput);
-        chatConversation=(TextView)findViewById(R.id.textView);
+        btSendMsg = (Button) findViewById(R.id.btSend);
+        inputMsg = (EditText) findViewById(R.id.msgInput);
+        chatConversation = (TextView) findViewById(R.id.textView);
         mChatmessage = new ArrayList<>();
 
-        chatlist = (ListView)findViewById(R.id.messageList) ;
+        chatlist = (ListView) findViewById(R.id.messageList);
         Bundle extras = getIntent().getExtras();
-        name=extras.getString("name");
-        username=extras.getString("username");
+        name = extras.getString("name");
+        username = extras.getString("username");
         roomName = extras.getString("roomName");
 
         setTitle("Room " + roomName);
 
-        root= FirebaseDatabase.getInstance().getReference().child(roomName);
+        root = FirebaseDatabase.getInstance().getReference().child(roomName);
 
         btSendMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, Object> map = new HashMap<String,Object>();
-                tempKey=root.push().getKey();
+                Map<String, Object> map = new HashMap<String, Object>();
+                tempKey = root.push().getKey();
                 root.updateChildren(map);
                 Calendar calendar = Calendar.getInstance();
                 String date = DateFormat.format(calendar.getTime());
                 DatabaseReference messageRoot = root.child(tempKey);
                 Map<String, Object> map2 = new HashMap<String, Object>();
-                map2.put("name",name);
+                map2.put("name", name);
                 map2.put("msg", inputMsg.getText().toString());
-                map2.put("stamp",date);
+                map2.put("stamp", date);
 
                 messageRoot.updateChildren(map2);
                 inputMsg.setText("");
@@ -119,22 +121,18 @@ public class Chatroom extends AppCompatActivity {
             }
         });
     }
-    private String chatMsg, chatName, chatTime;
-
-
 
     private void appendChatConversation(DataSnapshot dataSnapshot) {
 
         Iterator i = dataSnapshot.getChildren().iterator();
-        int j=0;
-        while(i.hasNext()){
-                chatMsg=(String)((DataSnapshot)i.next()).getValue();
-                chatName=(String)((DataSnapshot)i.next()).getValue();
-                chatTime=(String)((DataSnapshot)i.next()).getValue();
-            mChatmessage.add(new Chatmessage(j,chatMsg,chatName,chatTime));
+        int j = 0;
+        while (i.hasNext()) {
+            chatMsg = (String) ((DataSnapshot) i.next()).getValue();
+            chatName = (String) ((DataSnapshot) i.next()).getValue();
+            chatTime = (String) ((DataSnapshot) i.next()).getValue();
+            mChatmessage.add(new Chatmessage(j, chatMsg, chatName, chatTime));
             j++;
         }
-
 
 
     }
@@ -150,7 +148,7 @@ public class Chatroom extends AppCompatActivity {
         finish();
     }
 
-    private class ChatroomAdapter extends BaseAdapter{
+    private class ChatroomAdapter extends BaseAdapter {
         private Context mContext;
         private List<Chatmessage> chatmessageList;
 
@@ -180,26 +178,26 @@ public class Chatroom extends AppCompatActivity {
             mChatmessage.addAll(chatmessageList);
             notifyDataSetChanged();
         }
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View v = View.inflate(mContext, R.layout.list_item,null);
-            TextView Rname = (TextView)v.findViewById(R.id.msgName);
-            TextView msg = (TextView)v.findViewById(R.id.msgText);
-            TextView stamp = (TextView)v.findViewById(R.id.msgStamp);
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)msg.getLayoutParams();
-            LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams)Rname.getLayoutParams();
-            LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams)stamp.getLayoutParams();
+            View v = View.inflate(mContext, R.layout.list_item, null);
+            TextView Rname = (TextView) v.findViewById(R.id.msgName);
+            TextView msg = (TextView) v.findViewById(R.id.msgText);
+            TextView stamp = (TextView) v.findViewById(R.id.msgStamp);
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) msg.getLayoutParams();
+            LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) Rname.getLayoutParams();
+            LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) stamp.getLayoutParams();
             //set text
             Rname.setText(chatmessageList.get(position).getMessageUser());
             msg.setText(chatmessageList.get(position).getMessageText());
             stamp.setText(chatmessageList.get(position).getMessageTIme().toString());
-            if(name.equals(chatmessageList.get(position).getMessageUser())){
+            if (name.equals(chatmessageList.get(position).getMessageUser())) {
                 msg.setBackground(getDrawable(R.drawable.bubble_right_green));
                 layoutParams.gravity = Gravity.RIGHT;
                 layoutParams1.gravity = Gravity.RIGHT;
                 layoutParams2.gravity = Gravity.RIGHT;
-            }
-            else{
+            } else {
                 msg.setBackground(getDrawable(R.drawable.bubble_left_gray));
                 layoutParams.gravity = Gravity.LEFT;
                 layoutParams1.gravity = Gravity.LEFT;

@@ -21,7 +21,6 @@ import java.net.URL;
 
 public class Class1Activity extends AppCompatActivity {
 
-
     private final static String CLASS_ID = "classId";
     private final static String SUBJECT_ID = "subjectId";
     private final static String TASK_ID = "taskId";
@@ -32,6 +31,7 @@ public class Class1Activity extends AppCompatActivity {
     private String JSON_STRING;
     private String js_string;
     private String classId = "Mathematics", subjectId;
+    private int Asolved;
     private int[] solved;
 
     @Override
@@ -125,6 +125,7 @@ public class Class1Activity extends AppCompatActivity {
                 taskID = userdata.getInt("taskID");
                 correctOnFirstTry = userdata.getInt("correctOnFirstTry");
                 numberOfTasks = server_response.getJSONArray("assignments").length();
+                Asolved = userdata.getInt("Asolved");
                 solved = new int[numberOfTasks];
 
                 Intent intent = new Intent(Class1Activity.this, AssignmentActivity.class);
@@ -138,7 +139,8 @@ public class Class1Activity extends AppCompatActivity {
                 extras.putString("jsonO", server_response.toString());
                 extras.putString("name", name);
                 extras.putString("username", username);
-                extras.putIntArray("solved",solved);
+                extras.putIntArray("solved", solved);
+                extras.putInt("Asolved", Asolved);
                 intent.putExtras(extras);
                 Class1Activity.this.startActivity(intent);
                 finish();
