@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                                             .create()
                                             .show();
                                 } else {
-                                    if(position=="Student") {
+                                    if(position.equals("Student")) {
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                         Bundle extras = new Bundle();
                                         extras.putString("name", name);
