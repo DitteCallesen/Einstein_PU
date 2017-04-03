@@ -2,8 +2,8 @@ package com.example.diteh.einstein;
 
 import org.json.JSONArray;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import java.util.Arrays;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by SimonBeast on 20.03.2017.
@@ -26,36 +26,36 @@ public class AssignmentActivityTest {
         input1 = 5;
         input2 = 10;
         expected = "Better luck next time.";
-        output = assignmentActivity.getMessage(input1,input2);
+        output = assignmentActivity.getMessage(input1, input2);
         assertEquals(expected, output);
 
         input1 = 5;
         input2 = 0;
         expected = "No exercises available.";
-        output = assignmentActivity.getMessage(input1,input2);
+        output = assignmentActivity.getMessage(input1, input2);
         assertEquals(expected, output);
 
         input1 = 6;
         input2 = 10;
         expected = "Congratulations!";
-        output = assignmentActivity.getMessage(input1,input2);
+        output = assignmentActivity.getMessage(input1, input2);
         assertEquals(expected, output);
     }
 
     @Test
     public void nextTaskExists() throws Exception {
-        /**AssignmentActivity assignmentActivity = new AssignmentActivity();
+        AssignmentActivity assignmentActivity = new AssignmentActivity();
         JSONArray inputArray;
-        int inputTask;
+        int inputTaskId;
         boolean output;
         boolean expected;
 
-        inputArray =
-        inputTask = 2;
-        expected = false;
-        output = assignmentActivity.nextTaskExists(inputArray,inputTask);
+        String[] data = {"stringone", "stringtwo"};
+        inputArray = new JSONArray(Arrays.asList(data));
+        inputTaskId = 0;
+        output = assignmentActivity.nextTaskExists(inputArray, inputTaskId);
+        expected = true;
         assertEquals(expected, output);
-         */
     }
 
     @Test
