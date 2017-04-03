@@ -1,5 +1,6 @@
 package com.example.diteh.einstein;
 
+import org.json.JSONArray;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -43,10 +44,18 @@ public class AssignmentActivityTest {
 
     @Test
     public void nextTaskExists() throws Exception {
-        //AssignmentActivity assignmentActivity = new AssignmentActivity();
-        //int input1;
-        //int input2;
-        // dette er simon sitt  =)
+        /**AssignmentActivity assignmentActivity = new AssignmentActivity();
+        JSONArray inputArray;
+        int inputTask;
+        boolean output;
+        boolean expected;
+
+        inputArray =
+        inputTask = 2;
+        expected = false;
+        output = assignmentActivity.nextTaskExists(inputArray,inputTask);
+        assertEquals(expected, output);
+         */
     }
 
     @Test
