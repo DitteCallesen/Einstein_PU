@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue1"
+                android:onClick="getJson2"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="@string/theme2_1"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:id="@id/backToMainButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow"
+                android:onClick="backToMain"
+                android:elevation="2dp"/>
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue2"
+            android:onClick="getJson2"
+            android:paddingBottom="25dp"
+            android:paddingTop="25dp"
+            android:text="@string/theme2_2"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue3"
+            android:onClick="getJson2"
+            android:paddingBottom="25dp"
+            android:paddingTop="25dp"
+            android:text="@string/theme2_3"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue4"
+            android:onClick="getJson2"
+            android:paddingBottom="25dp"
+            android:paddingTop="25dp"
+            android:text="@string/theme2_4"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue1"
+            android:onClick="getJson2"
+            android:paddingBottom="25dp"
+            android:paddingTop="25dp"
+            android:text="@string/theme2_5"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue2"
+            android:onClick="getJson2"
+            android:paddingBottom="25dp"
+            android:paddingTop="25dp"
+            android:text="@string/theme2_6"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue3"
+            android:onClick="getJson2"
+            android:paddingBottom="25dp"
+            android:paddingTop="25dp"
+            android:text="@string/theme2_7"
+            android:textSize="30sp" />
+
+    </LinearLayout>
+
+
+</ScrollView>

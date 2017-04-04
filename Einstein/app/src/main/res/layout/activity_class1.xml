@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue1"
+                android:onClick="getJson"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:text="@string/theme1_1"
+                android:textSize="30sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/backToMainButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/arrow"
+                android:onClick="backToMain"
+                android:elevation="2dp"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue2"
+            android:onClick="getJson"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="@string/theme1_2"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue3"
+            android:onClick="getJson"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="@string/theme1_3"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue4"
+            android:onClick="getJson"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="@string/theme1_4"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue1"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:text="@string/theme1_5"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/button6"
+            android:text="@string/theme1_6"
+            android:background="@color/blue2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:textSize="30sp"/>
+
+        <Button
+            android:id="@+id/button7"
+            android:text="@string/theme1_7"
+            android:background="@color/blue3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:textSize="30sp"/>
+
+        <Button
+            android:id="@+id/button8"
+            android:text="@string/theme1_8"
+            android:background="@color/blue4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:textSize="30sp"/>
+
+    </LinearLayout>
+
+
+</ScrollView>
+
