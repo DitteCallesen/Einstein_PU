@@ -1,12 +1,12 @@
 package com.example.diteh.einstein;
 
+import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
-import android.view.View;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,7 +17,6 @@ import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -46,11 +45,20 @@ public class TrophyActivityTest {
         TrophyActivity = trophyActivityTestRule.getActivity();
     }
 
-    @Test
+    /*@Test
     public void testViewOfBigTrophyOnTrophyClick() {
         assertNotNull(TrophyActivity.findViewById(R.id.trophy1));
         onView(withId(R.id.trophy1)).perform(click());
         assertEquals(TrophyActivity.findViewById(R.id.big_trophy).getVisibility(), View.VISIBLE);
+    }*/
+
+    @Test
+    public void testLaunchOfMainActivityOnBackButtonClick() {
+        assertNotNull(TrophyActivity.findViewById(R.id.backButton));
+        onView(withId(R.id.backButton)).perform(click());
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+        assertNotNull(nextActivity);
+        nextActivity.finish();
     }
 
     @After

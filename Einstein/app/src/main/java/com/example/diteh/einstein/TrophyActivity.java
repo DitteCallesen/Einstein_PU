@@ -178,7 +178,15 @@ public class TrophyActivity extends AppCompatActivity {
 
     }
 
-
+    public void backButtonOnClick(View v) {
+        Intent intent = new Intent(TrophyActivity.this, MainActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        intent.putExtras(extras);
+        startActivity(intent);
+        finish();
+    }
 }
 
 
