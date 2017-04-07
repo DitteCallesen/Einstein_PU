@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TeachingActivity extends AppCompatActivity {
-    private String name,username;
+    private String name,username,position;
 
 
     @Override
@@ -34,9 +34,10 @@ public class TeachingActivity extends AppCompatActivity {
     final TextView welcomeMessage = (TextView) findViewById(R.id.welcomeMessage);
 
     Bundle extras = getIntent().getExtras();
-    name=extras.getString("name");
-    username=extras.getString("username");
-    String msg = "Welcome to Einstein, " + name + "!";
+        name=extras.getString("name");
+        username=extras.getString("username");
+        position=extras.getString("position");
+        String msg = "Welcome to Einstein, " + name + "!";
         welcomeMessage.setText(msg);
 
 
@@ -50,6 +51,7 @@ public class TeachingActivity extends AppCompatActivity {
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         TeachingActivity.this.startActivity(intent);
 
@@ -60,6 +62,7 @@ public class TeachingActivity extends AppCompatActivity {
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         TeachingActivity.this.startActivity(intent);
 
@@ -71,6 +74,7 @@ public class TeachingActivity extends AppCompatActivity {
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         TeachingActivity.this.startActivity(intent);
 
@@ -82,6 +86,7 @@ public class TeachingActivity extends AppCompatActivity {
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         TeachingActivity.this.startActivity(intent);
 
@@ -112,6 +117,7 @@ public class TeachingActivity extends AppCompatActivity {
                     extras.putString("name", name);
                     extras.putString("username", username);
                     extras.putString("courseSubject", coursesubject);
+                    extras.putString("position", position);
                     intent.putExtras(extras);
                     TeachingActivity.this.startActivity(intent);
                 }

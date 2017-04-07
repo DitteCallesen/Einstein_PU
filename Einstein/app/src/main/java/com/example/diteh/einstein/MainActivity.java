@@ -26,7 +26,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
 
-private String name,username;
+private String name,username, position;
 
 
     @Override
@@ -39,6 +39,7 @@ private String name,username;
         Bundle extras = getIntent().getExtras();
         name=extras.getString("name");
         username=extras.getString("username");
+        position=extras.getString("position");
         String msg = "Welcome to Einstein, " + name + "!";
         welcomeMessage.setText(msg);
 
@@ -51,6 +52,7 @@ private String name,username;
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
 
@@ -61,6 +63,7 @@ private String name,username;
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
 
@@ -72,6 +75,7 @@ private String name,username;
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
 
@@ -83,6 +87,7 @@ private String name,username;
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
 
@@ -164,6 +169,7 @@ private String name,username;
                 extras.putString("jsonO", server_response.toString());
                 extras.putString("name", name);
                 extras.putString("username", username);
+                extras.putString("position", position);
                 intent.putExtras(extras);
 
 

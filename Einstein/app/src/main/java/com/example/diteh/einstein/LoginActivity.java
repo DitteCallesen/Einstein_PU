@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                                         Bundle extras = new Bundle();
                                         extras.putString("name", name);
                                         extras.putString("username", username);
+                                        extras.putString("position", position);
                                         intent.putExtras(extras);
                                         LoginActivity.this.startActivity(intent);
                                         finish();
@@ -90,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                                         Bundle extras = new Bundle();
                                         extras.putString("name", name);
                                         extras.putString("username", username);
+                                        extras.putString("position", position);
                                         intent.putExtras(extras);
                                         LoginActivity.this.startActivity(intent);
                                         finish();

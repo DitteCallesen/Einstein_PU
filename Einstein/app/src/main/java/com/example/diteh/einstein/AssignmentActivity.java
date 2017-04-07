@@ -40,7 +40,7 @@ public class AssignmentActivity extends AppCompatActivity {
     private final static String CORRECT_ON_FIRST_TRY = "correctOnFirstTry";
     private final static String NUMBER_OF_TASKS = "numberOfTasks";
     private boolean answeredWrong = false;
-    private String classId, subjectId, jstring;
+    private String classId, subjectId;
     private JSONArray jsonArray;
     private JSONObject jsonObject;
     private int globalCounter;
@@ -49,9 +49,9 @@ public class AssignmentActivity extends AppCompatActivity {
     private int numberOfTasks;
     private int[] myTrophies;
     private int taskId;
-    private DatabaseHelper myDb;
+
     private Vibrator vibrator;
-    private String username,name;
+    private String username,name, position;
     private String correctAnswer = "";
     private String answer1 = "";
     private String answer2 = "";
@@ -83,7 +83,8 @@ public class AssignmentActivity extends AppCompatActivity {
         name = extras.getString("name");
         username = extras.getString("username");
         solved = extras.getIntArray("solved");
-        Asolved=extras.getInt("Asolved");;
+        Asolved=extras.getInt("Asolved");
+        position=extras.getString("position");
         //Får jsonobjekt forrige aktivitet
         try {
 
@@ -245,6 +246,7 @@ public class AssignmentActivity extends AppCompatActivity {
         extras.putString("username", username);
         extras.putIntArray("solved", solved);
         extras.putInt("Asolved", Asolved);
+        extras.putString("position", position);
         intent.putExtras(extras);
         startActivity(intent);
         finish();
@@ -272,51 +274,52 @@ public class AssignmentActivity extends AppCompatActivity {
         LinearLayout correctAnswerView = (LinearLayout) findViewById(R.id.correctAnswer);
         correctAnswerView.setVisibility(View.VISIBLE);
 
-
-        if (correctAnswersInARow == 1 && findTrophy(1)) {
-            new Background(1, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
-            tempTrophyArray(1);
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
-        }
-        if (correctAnswersInARow == 5 && findTrophy(2)) {
-            new Background(2, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
-            tempTrophyArray(2);
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
-        }
-        if (correctAnswersInARow == 10 && findTrophy(3)) {
-            new Background(3, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
-            tempTrophyArray(3);
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
-        }
-        if (Asolved == 5 && findTrophy(7)) {
-            new Background(7, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
-            tempTrophyArray(7);
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
-        }
-        if (Asolved == 10 && findTrophy(8)) {
-            new Background(8, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
-            tempTrophyArray(8);
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
-        }
-        if (Asolved == 50 && findTrophy(9)) {
-            new Background(9, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
-            tempTrophyArray(9);
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
-        }
-        if (Asolved == 100 && findTrophy(10)) {
-            new Background(10, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
-            tempTrophyArray(10);
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
-        }
-        if (Asolved == 500 && findTrophy(11)) {
-            new Background(11, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
-            tempTrophyArray(11);
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
-        }
-        if (Asolved == 1000 && findTrophy(12)) {
-            new Background(12, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
-            tempTrophyArray(12);
-            Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+        if(position.equals("Student")) {
+            if (correctAnswersInARow == 1 && findTrophy(1)) {
+                new Background(1, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+                tempTrophyArray(1);
+                Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+            }
+            if (correctAnswersInARow == 5 && findTrophy(2)) {
+                new Background(2, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+                tempTrophyArray(2);
+                Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+            }
+            if (correctAnswersInARow == 10 && findTrophy(3)) {
+                new Background(3, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+                tempTrophyArray(3);
+                Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+            }
+            if (Asolved == 5 && findTrophy(7)) {
+                new Background(7, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+                tempTrophyArray(7);
+                Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+            }
+            if (Asolved == 10 && findTrophy(8)) {
+                new Background(8, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+                tempTrophyArray(8);
+                Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+            }
+            if (Asolved == 50 && findTrophy(9)) {
+                new Background(9, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+                tempTrophyArray(9);
+                Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+            }
+            if (Asolved == 100 && findTrophy(10)) {
+                new Background(10, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+                tempTrophyArray(10);
+                Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+            }
+            if (Asolved == 500 && findTrophy(11)) {
+                new Background(11, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+                tempTrophyArray(11);
+                Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+            }
+            if (Asolved == 1000 && findTrophy(12)) {
+                new Background(12, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
+                tempTrophyArray(12);
+                Toast.makeText(this, "Congrats! New trophy in the Trophy Room!", Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -366,10 +369,17 @@ public class AssignmentActivity extends AppCompatActivity {
 
     //push back button on screen
     public void backToMain(View v) {
-        Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
+        Intent intent;
+        if(position.equals("Student")){
+            intent = new Intent(AssignmentActivity.this, MainActivity.class);
+        }
+        else{
+            intent = new Intent(AssignmentActivity.this, TeachingActivity.class);
+        }
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         new Background(0, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
         startActivity(intent);
@@ -379,10 +389,17 @@ public class AssignmentActivity extends AppCompatActivity {
     //use anndroid back button
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(AssignmentActivity.this, MainActivity.class);
+        Intent intent;
+        if(position.equals("Student")){
+            intent = new Intent(AssignmentActivity.this, MainActivity.class);
+        }
+        else{
+            intent = new Intent(AssignmentActivity.this, TeachingActivity.class);
+        }
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         new Background(0, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
         startActivity(intent);
@@ -402,9 +419,7 @@ public class AssignmentActivity extends AppCompatActivity {
         return randomList;
     }
 
-    public void addTrophy(int trophyNumber) {
-        myDb.insertData(trophyNumber);
-    }
+
 
     public boolean findTrophy(int trophynumber) {
             for (int i = 0; i < myTrophies.length; i++) {

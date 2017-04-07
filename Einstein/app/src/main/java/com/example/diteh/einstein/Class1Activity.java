@@ -27,7 +27,7 @@ public class Class1Activity extends AppCompatActivity {
     private final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
     private final static String CORRECT_ON_FIRST_TRY = "correctOnFirstTry";
     private final static String NUMBER_OF_TASKS = "numberOfTasks";
-    private String username, name;
+    private String username, name, position;
     private String JSON_STRING;
     private String js_string;
     private String classId = "Mathematics", subjectId;
@@ -41,14 +41,41 @@ public class Class1Activity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         name = extras.getString("name");
         username = extras.getString("username");
+        position=extras.getString("position");
     }
 
 
     public void backToMain(View v) {
-        Intent intent = new Intent(Class1Activity.this, MainActivity.class);
+        Intent intent;
+        if(position.equals("Student")){
+            intent = new Intent(Class1Activity.this, MainActivity.class);
+        }
+        else{
+            intent = new Intent(Class1Activity.this, TeachingActivity.class);
+        }
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
+        intent.putExtras(extras);
+        Class1Activity.this.startActivity(intent);
+        finish();
+    }
+
+    //use anndroid back button
+    @Override
+    public void onBackPressed() {
+        Intent intent;
+        if(position.equals("Student")){
+            intent = new Intent(Class1Activity.this, MainActivity.class);
+        }
+        else{
+            intent = new Intent(Class1Activity.this, TeachingActivity.class);
+        }
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         startActivity(intent);
         finish();
@@ -141,6 +168,7 @@ public class Class1Activity extends AppCompatActivity {
                 extras.putString("username", username);
                 extras.putIntArray("solved", solved);
                 extras.putInt("Asolved", Asolved);
+                extras.putString("position", position);
                 intent.putExtras(extras);
                 Class1Activity.this.startActivity(intent);
                 finish();

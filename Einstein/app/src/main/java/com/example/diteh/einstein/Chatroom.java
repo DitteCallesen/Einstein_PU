@@ -36,7 +36,7 @@ public class Chatroom extends AppCompatActivity {
     private Button btSendMsg;
     private EditText inputMsg;
     private TextView chatConversation;
-    private String username, roomName, name, tempKey;
+    private String username, roomName, name, tempKey, position;
     private DatabaseReference root;
     private Chatmessage chatmessage;
     private SimpleDateFormat DateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
@@ -59,7 +59,7 @@ public class Chatroom extends AppCompatActivity {
         name = extras.getString("name");
         username = extras.getString("username");
         roomName = extras.getString("roomName");
-
+        position=extras.getString("position");
         setTitle("Room " + roomName);
 
         root = FirebaseDatabase.getInstance().getReference().child(roomName);
@@ -139,12 +139,38 @@ public class Chatroom extends AppCompatActivity {
 
 
     public void backToRooms(View view) {
-        Intent intent = new Intent(Chatroom.this, ListOfChatroomActivity.class);
+        Intent intent;
+        if(position.equals("Student")){
+            intent = new Intent(Chatroom.this, MainActivity.class);
+        }
+        else{
+            intent = new Intent(Chatroom.this, TeachingActivity.class);
+        }
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         Chatroom.this.startActivity(intent);
+        finish();
+    }
+
+    //use anndroid back button
+    @Override
+    public void onBackPressed() {
+        Intent intent;
+        if(position.equals("Student")){
+            intent = new Intent(Chatroom.this, MainActivity.class);
+        }
+        else{
+            intent = new Intent(Chatroom.this, TeachingActivity.class);
+        }
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        extras.putString("position", position);
+        intent.putExtras(extras);
+        startActivity(intent);
         finish();
     }
 
