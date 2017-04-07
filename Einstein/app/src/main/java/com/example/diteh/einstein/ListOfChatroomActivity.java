@@ -27,7 +27,7 @@ import java.util.Set;
 public class ListOfChatroomActivity extends AppCompatActivity {
     private Button add_room;
     private EditText room_name;
-    private String name, username;
+    private String name, username, position1;
     private ListView listView;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> listOfRooms = new ArrayList<>();
@@ -39,6 +39,7 @@ public class ListOfChatroomActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         name=extras.getString("name");
         username=extras.getString("username");
+        position1=extras.getString("position");
         add_room = (Button) findViewById(R.id.btAddRoom);
         room_name= (EditText) findViewById(R.id.roomNameEdittext);
         listView = (ListView) findViewById(R.id.listView);
@@ -82,6 +83,7 @@ public class ListOfChatroomActivity extends AppCompatActivity {
                 Bundle extras = new Bundle();
                 extras.putString("name", name);
                 extras.putString("username", username);
+                extras.putString("position", position1);
                 extras.putString("roomName",((TextView)view).getText().toString());
                 intent.putExtras(extras);
                 ListOfChatroomActivity.this.startActivity(intent);
@@ -92,15 +94,40 @@ public class ListOfChatroomActivity extends AppCompatActivity {
     }
 
     public void backOnClick(View view){
-        Intent intent = new Intent(ListOfChatroomActivity.this, MainActivity.class);
+        Intent intent;
+        if(position1.equals("Student")){
+            intent = new Intent(ListOfChatroomActivity.this, MainActivity.class);
+        }
+        else{
+            intent = new Intent(ListOfChatroomActivity.this, TeachingActivity.class);
+        }
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position1);
         intent.putExtras(extras);
         ListOfChatroomActivity.this.startActivity(intent);
         finish();
     }
 
+    //use anndroid back button
+    @Override
+    public void onBackPressed() {
+        Intent intent;
+        if(position1.equals("Student")){
+            intent = new Intent(ListOfChatroomActivity.this, MainActivity.class);
+        }
+        else{
+            intent = new Intent(ListOfChatroomActivity.this, TeachingActivity.class);
+        }
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        extras.putString("position", position1);
+        intent.putExtras(extras);
+        startActivity(intent);
+        finish();
+    }
 
 
 }

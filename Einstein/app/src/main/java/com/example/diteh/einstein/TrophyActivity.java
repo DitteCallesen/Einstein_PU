@@ -35,10 +35,10 @@ import java.util.List;
 
 public class TrophyActivity extends AppCompatActivity {
 
-    String name, username;
-    public int[] myTrophies;
-    ImageButton imageButton;
-    //
+    private String name, username,position;
+    private int[] myTrophies;
+    private ImageButton imageButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +46,8 @@ public class TrophyActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         name=extras.getString("name");
         username=extras.getString("username");
+        position=extras.getString("position");
+
 
 
         //make an array of all the activated trophies
@@ -178,7 +180,28 @@ public class TrophyActivity extends AppCompatActivity {
 
     }
 
-
+    public void backButtonOnClick(View v) {
+        Intent intent = new Intent(TrophyActivity.this, MainActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        extras.putString("position", position);
+        intent.putExtras(extras);
+        startActivity(intent);
+        finish();
+    }
+    //use anndroid back button
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(TrophyActivity.this, MainActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        extras.putString("position", position);
+        intent.putExtras(extras);
+        startActivity(intent);
+        finish();
+    }
 }
 
 

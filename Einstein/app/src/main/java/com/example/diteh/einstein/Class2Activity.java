@@ -21,16 +21,17 @@ import java.net.URL;
 
 public class Class2Activity extends AppCompatActivity {
 
-    public final static String CLASS_ID = "classId";
-    public final static String SUBJECT_ID = "subjectId";
-    public final static String TASK_ID = "taskId";
-    public final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
-    public final static String CORRECT_ON_FIRST_TRY = "correctOnFirstTry";
-    public final static String NUMBER_OF_TASKS = "numberOfTasks";
-    public String username, name;
-    String classId = "Statistics", subjectId;
-    String JSON_STRING;
-    String js_string;
+
+    private final static String CLASS_ID = "classId";
+    private final static String SUBJECT_ID = "subjectId";
+    private final static String TASK_ID = "taskId";
+    private final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
+    private final static String CORRECT_ON_FIRST_TRY  = "correctOnFirstTry";
+    private final static String NUMBER_OF_TASKS = "numberOfTasks";
+    private String username,name, position;
+    private String classId = "Statistics", subjectId;
+    private String JSON_STRING;
+    private String js_string;
     private int[] solved;
     int Asolved;
 
@@ -41,15 +42,42 @@ public class Class2Activity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         name = extras.getString("name");
         username = extras.getString("username");
+        position=extras.getString("position");
 
     }
 
 
     public void backToMain(View v) {
-        Intent intent = new Intent(Class2Activity.this, MainActivity.class);
+        Intent intent;
+        if(position.equals("Student")){
+            intent = new Intent(Class2Activity.this, MainActivity.class);
+        }
+        else{
+            intent = new Intent(Class2Activity.this, TeachingActivity.class);
+        }
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
+        intent.putExtras(extras);
+        Class2Activity.this.startActivity(intent);
+        finish();
+    }
+
+    //use anndroid back button
+    @Override
+    public void onBackPressed() {
+        Intent intent;
+        if(position.equals("Student")){
+            intent = new Intent(Class2Activity.this, MainActivity.class);
+        }
+        else{
+            intent = new Intent(Class2Activity.this, TeachingActivity.class);
+        }
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         startActivity(intent);
         finish();
@@ -57,9 +85,9 @@ public class Class2Activity extends AppCompatActivity {
 
     public void getJson2(View view) {
         Button b = (Button) view;
+
         subjectId = b.getText().toString();
         new Background(classId, subjectId).execute();
-
     }
 
     class Background extends AsyncTask<Void, Void, String> {
@@ -72,7 +100,6 @@ public class Class2Activity extends AppCompatActivity {
         public Background(String classId, String subjectId) {
             this.classId = classId;
             this.subjectId = subjectId;
-
         }
 
         @Override
@@ -141,6 +168,7 @@ public class Class2Activity extends AppCompatActivity {
                 extras.putString("username", username);
                 extras.putIntArray("solved", solved);
                 extras.putInt("Asolved", Asolved);
+                extras.putString("position", position);
                 intent.putExtras(extras);
                 Class2Activity.this.startActivity(intent);
                 finish();

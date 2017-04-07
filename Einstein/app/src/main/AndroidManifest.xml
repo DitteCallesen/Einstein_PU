@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -30,35 +30,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".CalendarActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CalendarActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ChatroomActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AssignmentActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Class1Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TrophyActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Class2Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity"/>
+
         <activity
             android:name=".ListOfChatroomActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AssignmentActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Class1Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".TrophyActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Class2Activity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".RegisterActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Chatroom"
-            android:screenOrientation="portrait" />
-        <activity android:name=".TeachingActivity" />
-        <activity android:name=".ChartActivity"></activity>
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TeachingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ChartActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

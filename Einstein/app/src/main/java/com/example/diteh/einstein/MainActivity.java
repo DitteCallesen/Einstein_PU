@@ -19,7 +19,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-private String name,username;
+
+
+private String name,username, position;
 
 
     @Override
@@ -32,6 +34,7 @@ private String name,username;
         Bundle extras = getIntent().getExtras();
         name=extras.getString("name");
         username=extras.getString("username");
+        position=extras.getString("position");
         String msg = "Welcome to Einstein, " + name + "!";
         welcomeMessage.setText(msg);
 
@@ -40,11 +43,11 @@ private String name,username;
 
     // Class buttons
     public void class1OnClick(View v) {
-
         Intent intent = new Intent(MainActivity.this, Class1Activity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
 
@@ -55,6 +58,7 @@ private String name,username;
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
 
@@ -66,6 +70,7 @@ private String name,username;
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
 
@@ -77,6 +82,7 @@ private String name,username;
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         MainActivity.this.startActivity(intent);
 
@@ -88,6 +94,14 @@ private String name,username;
     }
 
     public void goToLogin(View view) {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        MainActivity.this.startActivity(intent);
+        finish();
+    }
+
+    //use anndroid back button
+    @Override
+    public void onBackPressed() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         MainActivity.this.startActivity(intent);
         finish();
@@ -158,6 +172,7 @@ private String name,username;
                 extras.putString("jsonO", server_response.toString());
                 extras.putString("name", name);
                 extras.putString("username", username);
+                extras.putString("position", position);
                 intent.putExtras(extras);
 
 

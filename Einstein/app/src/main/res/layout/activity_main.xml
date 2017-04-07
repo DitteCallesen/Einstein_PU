@@ -19,25 +19,25 @@
 
         <Button
             android:id="@+id/class1Button"
+            android:text="Mathematics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#c9d3df"
-            android:onClick="class1OnClick"
-            android:paddingBottom="20dp"
             android:paddingTop="20dp"
-            android:text="Mathematics"
-            android:textSize="30sp" />
+            android:paddingBottom="20dp"
+            android:textSize="30sp"
+            android:background="#c9d3df"
+            android:onClick="class1OnClick"/>
 
         <Button
             android:id="@+id/class2Button"
+            android:text="Statistics"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#e4e9ec"
-            android:onClick="class2OnClick"
-            android:paddingBottom="20dp"
             android:paddingTop="20dp"
-            android:text="Statistics"
-            android:textSize="30sp" />
+            android:paddingBottom="20dp"
+            android:textSize="30sp"
+            android:background="#e4e9ec"
+            android:onClick="class2OnClick"/>
 
 
         <LinearLayout
@@ -62,6 +62,7 @@
                 android:layout_weight="1"
                 android:onClick="calenderOnClick"
                 android:src="@mipmap/ic_calendar" />
+
 
             <ImageView
                 android:id="@+id/trophyroomButton"

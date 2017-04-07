@@ -37,7 +37,7 @@ public class ChartActivity extends AppCompatActivity {
     BarChart barChart;
     private int[] courseID, subjectID;
     private ArrayList<String> course, subject;
-    private String name,username,coursesubject;
+    private String name,username,coursesubject, position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +46,7 @@ public class ChartActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         name=extras.getString("name");
         username=extras.getString("username");
+        position=extras.getString("position");
         coursesubject=extras.getString("courseSubject");
         final JSONArray chartData = null;
         try {
@@ -145,14 +146,25 @@ public class ChartActivity extends AppCompatActivity {
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
+        extras.putString("position", position);
         intent.putExtras(extras);
         startActivity(intent);
         finish();
     }
 
-    public void btGetData(View view) {
-
+    //use anndroid back button
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ChartActivity.this, TeachingActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("name", name);
+        extras.putString("username", username);
+        extras.putString("position", position);
+        intent.putExtras(extras);
+        startActivity(intent);
+        finish();
     }
+
 
     public void setTable(String response, String select){
         ArrayList<BarEntry> barEntries = new ArrayList<>();
