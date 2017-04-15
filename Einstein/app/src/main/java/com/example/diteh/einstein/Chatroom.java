@@ -141,7 +141,7 @@ public class Chatroom extends AppCompatActivity {
     public void backToRooms(View view) {
         Intent intent;
         if(position.equals("Student")){
-            intent = new Intent(Chatroom.this, MainActivity.class);
+            intent = new Intent(Chatroom.this, ListOfChatroomActivity.class);
         }
         else{
             intent = new Intent(Chatroom.this, TeachingActivity.class);
