@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                             boolean succes = jsonResponse.getBoolean("success");
 
                             if (succes) {
-                                Toast.makeText(RegisterActivity.this, "Registering suksess!",
+                                Toast.makeText(RegisterActivity.this, "Account created",
                                         Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                 RegisterActivity.this.startActivity(intent);
@@ -79,13 +79,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 if (!nameAvail) {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                    builder.setMessage("Bruker navn er tatt")
+                                    builder.setMessage("Username has already been taken.")
                                             .setNegativeButton("Retry", null)
                                             .create()
                                             .show();
                                 } else if (!emailAvil) {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                    builder.setMessage("Email er brukt")
+                                    builder.setMessage("Email is already used.")
                                             .setNegativeButton("Retry", null)
                                             .create()
                                             .show();
@@ -103,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                     queue.add(registerRequest);
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                    builder.setMessage("Registering feilet")
+                    builder.setMessage("Account setup failed.")
                             .setNegativeButton("Retry", null)
                             .create()
                             .show();
@@ -143,12 +143,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (!pass1.equals(pass2)) {
             valid = false;
-            Toast.makeText(RegisterActivity.this, "Bekreftet passord stemmer ikke", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "The passwords do not match.", Toast.LENGTH_LONG).show();
         }
 
         if (!email.contains("@")) {
             valid = false;
-            Toast.makeText(RegisterActivity.this, "Ikke gyldig email", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "Email address is not valid.", Toast.LENGTH_LONG).show();
         }
 
         return valid;
