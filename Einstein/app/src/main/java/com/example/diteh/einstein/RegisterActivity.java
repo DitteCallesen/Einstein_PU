@@ -101,12 +101,6 @@ public class RegisterActivity extends AppCompatActivity {
                     RegisterRequest registerRequest = new RegisterRequest(name, username, email, password, stilling, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                     queue.add(registerRequest);
-                } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                    builder.setMessage("Account setup failed.")
-                            .setNegativeButton("Retry", null)
-                            .create()
-                            .show();
                 }
             }
         });
@@ -139,20 +133,26 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public boolean checkValid(String pass1, String pass2, String email) {
-        boolean valid = true;
 
         if (!pass1.equals(pass2)) {
-            valid = false;
-            Toast.makeText(RegisterActivity.this, "The passwords do not match.", Toast.LENGTH_LONG).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+            builder.setMessage("The passwords do not match.")
+                    .setNegativeButton("Retry", null)
+                    .create()
+                    .show();
+            return false;
         }
 
-        if (!email.contains("@")) {
-            valid = false;
-            Toast.makeText(RegisterActivity.this, "Email address is not valid.", Toast.LENGTH_LONG).show();
+        else if (!email.contains("@")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+            builder.setMessage("Email address is not valid.")
+                    .setNegativeButton("Retry", null)
+                    .create()
+                    .show();
+            return false;
         }
 
-        return valid;
-
+        return true;
     }
 
 }
