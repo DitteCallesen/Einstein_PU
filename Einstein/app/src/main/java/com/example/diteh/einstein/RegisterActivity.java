@@ -1,9 +1,9 @@
 package com.example.diteh.einstein;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -104,11 +104,28 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
+    public boolean checkValid(String pass1, String pass2, String email) {
 
+        if (!pass1.equals(pass2)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+            builder.setMessage("The passwords do not match.")
+                    .setNegativeButton("Retry", null)
+                    .create()
+                    .show();
+            return false;
+        } else if (!email.contains("@")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+            builder.setMessage("Email address is not valid.")
+                    .setNegativeButton("Retry", null)
+                    .create()
+                    .show();
+            return false;
+        }
+
+        return true;
+    }
 
     public class RegisterRequest extends StringRequest {
 
@@ -130,29 +147,6 @@ public class RegisterActivity extends AppCompatActivity {
         public Map<String, String> getParams() {
             return params;
         }
-    }
-
-    public boolean checkValid(String pass1, String pass2, String email) {
-
-        if (!pass1.equals(pass2)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-            builder.setMessage("The passwords do not match.")
-                    .setNegativeButton("Retry", null)
-                    .create()
-                    .show();
-            return false;
-        }
-
-        else if (!email.contains("@")) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-            builder.setMessage("Email address is not valid.")
-                    .setNegativeButton("Retry", null)
-                    .create()
-                    .show();
-            return false;
-        }
-
-        return true;
     }
 
 }

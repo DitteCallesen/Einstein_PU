@@ -12,70 +12,70 @@
     tools:context="com.example.diteh.einstein.LoginActivity">
 
     <EditText
+        android:id="@+id/etUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/etUsername"
-        android:hint="Username"
         android:layout_above="@+id/etPassword"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName" />
 
     <Button
-        android:text="Login"
+        android:id="@+id/blogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/blogin"
         android:layout_above="@+id/tvRegisterhere"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:text="Login" />
 
     <TextView
-        android:text="Register here"
+        android:id="@+id/tvRegisterhere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvRegisterhere"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="63dp" />
+        android:layout_marginBottom="63dp"
+        android:text="Register here" />
 
     <EditText
+        android:id="@+id/etPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/etPassword"
-        android:hint="Password"
-        android:inputType="textPassword"
         android:layout_above="@+id/blogin"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:layout_marginBottom="69dp"
         android:layout_above="@+id/etUsername"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="69dp"
+        app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView4"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="48dp"
         android:text="Einstein App"
         android:textAllCaps="false"
-        android:textSize="36sp"
-        android:layout_above="@+id/imageView4"
-        android:layout_centerHorizontal="true" />
+        android:textSize="36sp" />
 
     <TextView
         android:id="@+id/textView3"

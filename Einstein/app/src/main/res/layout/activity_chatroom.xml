@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <Button
         android:id="@+id/button10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="backToRooms"
-        android:text="Back to rooms"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentTop="true"
+        android:onClick="backToRooms"
+        android:text="Back to rooms" />
 
     <EditText
         android:id="@+id/msgInput"
@@ -29,21 +29,21 @@
         android:inputType="text" />
 
     <Button
+        android:id="@+id/btSend"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/btSend"
-        android:text="Send"
-        android:layout_below="@+id/messageList"
         android:layout_alignLeft="@+id/button10"
-        android:layout_alignStart="@+id/button10" />
+        android:layout_alignStart="@+id/button10"
+        android:layout_below="@+id/messageList"
+        android:text="Send" />
 
     <ListView
         android:id="@+id/messageList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/msgInput"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/msgInput" />
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

@@ -5,9 +5,9 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
 
         <RelativeLayout
@@ -29,9 +29,9 @@
                 android:id="@id/backToMainButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/arrow"
+                android:elevation="2dp"
                 android:onClick="backToMain"
-                android:elevation="2dp"/>
+                android:src="@mipmap/arrow" />
 
         </RelativeLayout>
 

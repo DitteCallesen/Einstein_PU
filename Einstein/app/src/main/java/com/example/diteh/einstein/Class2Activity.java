@@ -2,8 +2,8 @@ package com.example.diteh.einstein;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -26,14 +26,14 @@ public class Class2Activity extends AppCompatActivity {
     private final static String SUBJECT_ID = "subjectId";
     private final static String TASK_ID = "taskId";
     private final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
-    private final static String CORRECT_ON_FIRST_TRY  = "correctOnFirstTry";
+    private final static String CORRECT_ON_FIRST_TRY = "correctOnFirstTry";
     private final static String NUMBER_OF_TASKS = "numberOfTasks";
-    private String username,name, position;
+    int Asolved;
+    private String username, name, position;
     private String classId = "Statistics", subjectId;
     private String JSON_STRING;
     private String js_string;
     private int[] solved;
-    int Asolved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +42,16 @@ public class Class2Activity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         name = extras.getString("name");
         username = extras.getString("username");
-        position=extras.getString("position");
+        position = extras.getString("position");
 
     }
 
 
     public void backToMain(View v) {
         Intent intent;
-        if(position.equals("Student")){
+        if (position.equals("Student")) {
             intent = new Intent(Class2Activity.this, MainActivity.class);
-        }
-        else{
+        } else {
             intent = new Intent(Class2Activity.this, TeachingActivity.class);
         }
         Bundle extras = new Bundle();
@@ -64,14 +63,13 @@ public class Class2Activity extends AppCompatActivity {
         finish();
     }
 
-    //use anndroid back button
+    //use Android back button
     @Override
     public void onBackPressed() {
         Intent intent;
-        if(position.equals("Student")){
+        if (position.equals("Student")) {
             intent = new Intent(Class2Activity.this, MainActivity.class);
-        }
-        else{
+        } else {
             intent = new Intent(Class2Activity.this, TeachingActivity.class);
         }
         Bundle extras = new Bundle();
@@ -96,7 +94,7 @@ public class Class2Activity extends AppCompatActivity {
         String json_url;
         int CorrAnsIn, taskID, correctOnFirstTry, numberOfTasks;
 
-        //krever at kurs navn og emnet blir lagt til
+        //course name and subject is added
         public Background(String classId, String subjectId) {
             this.classId = classId;
             this.subjectId = subjectId;
@@ -110,7 +108,7 @@ public class Class2Activity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-            //åpner linje til database
+            //open line to database
             try {
                 URL url = new URL(json_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -140,7 +138,7 @@ public class Class2Activity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            //sender jsonobjekt til assignment aktivitet som string
+            //sends JSONObject to AssisgnmentActivity as a string
             js_string = result;
             try {
                 //prepear data for sending to assignment activity

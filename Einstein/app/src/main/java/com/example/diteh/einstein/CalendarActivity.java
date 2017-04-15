@@ -36,7 +36,7 @@ public class CalendarActivity extends AppCompatActivity {
         finish();
     }
 
-    //use anndroid back button
+    //use Android back button
     @Override
     public void onBackPressed() {
         Intent intent;
