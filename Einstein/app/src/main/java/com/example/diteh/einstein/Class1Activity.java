@@ -41,16 +41,15 @@ public class Class1Activity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         name = extras.getString("name");
         username = extras.getString("username");
-        position=extras.getString("position");
+        position = extras.getString("position");
     }
 
 
     public void backToMain(View v) {
         Intent intent;
-        if(position.equals("Student")){
+        if (position.equals("Student")) {
             intent = new Intent(Class1Activity.this, MainActivity.class);
-        }
-        else{
+        } else {
             intent = new Intent(Class1Activity.this, TeachingActivity.class);
         }
         Bundle extras = new Bundle();
@@ -62,14 +61,13 @@ public class Class1Activity extends AppCompatActivity {
         finish();
     }
 
-    //use anndroid back button
+    //use Android back button
     @Override
     public void onBackPressed() {
         Intent intent;
-        if(position.equals("Student")){
+        if (position.equals("Student")) {
             intent = new Intent(Class1Activity.this, MainActivity.class);
-        }
-        else{
+        } else {
             intent = new Intent(Class1Activity.this, TeachingActivity.class);
         }
         Bundle extras = new Bundle();
@@ -94,7 +92,7 @@ public class Class1Activity extends AppCompatActivity {
         String json_url;
         int CorrAnsIn, taskID, correctOnFirstTry, numberOfTasks;
 
-        //krever at kurs navn og emnet blir lagt til
+        //course name and subject is added
         public Background(String classId, String subjectId) {
             this.classId = classId;
             this.subjectId = subjectId;
@@ -109,7 +107,7 @@ public class Class1Activity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-            //åpner linje til database
+            //open line to database
             try {
                 URL url = new URL(json_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -139,10 +137,10 @@ public class Class1Activity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            //sender jsonobjekt til assignment aktivitet som string
+            //sends JSONObject to AssignmentActivity as a String
             js_string = result;
             try {
-                //prepear data for sending to assignment activity
+                //prepare data for sending to assignment activity
                 JSONObject jsonObject = new JSONObject(js_string);
                 JSONObject server_response = jsonObject.getJSONObject("server_response");
                 JSONArray userdataArray = server_response.getJSONArray("userdata");

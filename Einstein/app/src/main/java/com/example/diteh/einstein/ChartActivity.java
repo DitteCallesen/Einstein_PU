@@ -2,15 +2,14 @@ package com.example.diteh.einstein;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -37,51 +36,51 @@ public class ChartActivity extends AppCompatActivity {
     BarChart barChart;
     private int[] courseID, subjectID;
     private ArrayList<String> course, subject;
-    private String name,username,coursesubject, position;
+    private String name, username, coursesubject, position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
-        fillWithData = (Button)findViewById(R.id.getdata);
+        fillWithData = (Button) findViewById(R.id.getdata);
         Bundle extras = getIntent().getExtras();
-        name=extras.getString("name");
-        username=extras.getString("username");
-        position=extras.getString("position");
-        coursesubject=extras.getString("courseSubject");
-        final JSONArray chartData = null;
+        name = extras.getString("name");
+        username = extras.getString("username");
+        position = extras.getString("position");
+        coursesubject = extras.getString("courseSubject");
+
         try {
             JSONObject jsonObject = new JSONObject(coursesubject);
-            JSONObject server_respons= jsonObject.getJSONObject("server_response");
+            JSONObject server_respons = jsonObject.getJSONObject("server_response");
             JSONArray courses = server_respons.getJSONArray("course");
             JSONArray subjects = server_respons.getJSONArray("subject");
             courseID = new int[courses.length()];
-            subjectID=new int[subjects.length()];
+            subjectID = new int[subjects.length()];
             course = new ArrayList<>();
-            subject=new ArrayList<>();
-            for (int i = 0;i<courses.length();i++){
+            subject = new ArrayList<>();
+            for (int i = 0; i < courses.length(); i++) {
                 JSONObject C = courses.getJSONObject(i);
-                courseID[i]= C.getInt("courseID");
+                courseID[i] = C.getInt("courseID");
                 course.add(C.getString("course"));
             }
 
-            for(int j=0;j<subjects.length();j++){
+            for (int j = 0; j < subjects.length(); j++) {
                 JSONObject S = subjects.getJSONObject(j);
-                subjectID[j]=S.getInt("subjectID");
+                subjectID[j] = S.getInt("subjectID");
                 subject.add(S.getString("subject"));
             }
 
-        }
-        catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
         final Spinner spin = (Spinner) findViewById(R.id.Scourse);
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,course);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, course);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
 
         final Spinner spin2 = (Spinner) findViewById(R.id.Ssubject);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter(this,android.R.layout.simple_spinner_item,subject);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter(this, android.R.layout.simple_spinner_item, subject);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin2.setAdapter(adapter2);
 
@@ -93,20 +92,19 @@ public class ChartActivity extends AppCompatActivity {
         fillWithData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String courseName=spin.getSelectedItem().toString();
-                final String subjectName=spin2.getSelectedItem().toString();
-                final String choice=spin3.getSelectedItem().toString();
+                final String courseName = spin.getSelectedItem().toString();
+                final String subjectName = spin2.getSelectedItem().toString();
+                final String choice = spin3.getSelectedItem().toString();
                 int selSID = subjectID[subject.indexOf(subjectName)];
                 int selCID = courseID[course.indexOf(courseName)];
                 final String select;
-                if(choice.equals("Per assignment")){
+                if (choice.equals("Per assignment")) {
                     select = "per";
-                }
-                else{
+                } else {
                     select = "assign";
                 }
-                TextView text = (TextView)findViewById(R.id.textCS);
-                text.setText("Course: "+courseName+" subject: " +subjectName);
+                TextView text = (TextView) findViewById(R.id.textCS);
+                text.setText("Course: " + courseName + " subject: " + subjectName);
 
                 final Response.Listener<String> reStringListener = new Response.Listener<String>() {
                     @Override
@@ -115,10 +113,9 @@ public class ChartActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONObject server_response = jsonObject.getJSONObject("server_response");
                             setTable(server_response.toString(), select);
-                        }
-                        catch (JSONException e){
+                        } catch (JSONException e) {
                             e.printStackTrace();
-                            AlertDialog.Builder errormsg= new AlertDialog.Builder(ChartActivity.this);
+                            AlertDialog.Builder errormsg = new AlertDialog.Builder(ChartActivity.this);
                             errormsg.setMessage("Error in loading data from database")
                                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                         @Override
@@ -131,7 +128,7 @@ public class ChartActivity extends AppCompatActivity {
                         }
                     }
                 };
-                GetDataToChart getDataToChart = new GetDataToChart(selCID,selSID,select,reStringListener);
+                GetDataToChart getDataToChart = new GetDataToChart(selCID, selSID, select, reStringListener);
                 RequestQueue queue = Volley.newRequestQueue(ChartActivity.this);
                 queue.add(getDataToChart);
 
@@ -152,7 +149,7 @@ public class ChartActivity extends AppCompatActivity {
         finish();
     }
 
-    //use anndroid back button
+    //use Android back button
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(ChartActivity.this, TeachingActivity.class);
@@ -166,12 +163,12 @@ public class ChartActivity extends AppCompatActivity {
     }
 
 
-    public void setTable(String response, String select){
+    public void setTable(String response, String select) {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
         ArrayList<String> theDates = new ArrayList<>();
         BarDataSet barDataSet;
-        TextView xlabel = (TextView)findViewById(R.id.xLabel);
-        TextView ylabel = (TextView)findViewById(R.id.yLabel);
+        TextView xlabel = (TextView) findViewById(R.id.xLabel);
+        TextView ylabel = (TextView) findViewById(R.id.yLabel);
         barChart = (BarChart) findViewById(R.id.barchart);
         XAxis xAxis = barChart.getXAxis();
         YAxis yAxis = barChart.getAxisRight();
@@ -179,37 +176,35 @@ public class ChartActivity extends AppCompatActivity {
         try {
             JSONObject server_response = new JSONObject(response);
             JSONArray chartData = server_response.getJSONArray("chartData");
-            if(select.equals("per")) {
+            if (select.equals("per")) {
                 for (int i = 0; i < chartData.length(); i++) {
                     JSONObject rowData = chartData.getJSONObject(i);
-                    barEntries.add(new BarEntry(rowData.getInt("Solved"),i));
+                    barEntries.add(new BarEntry(rowData.getInt("Solved"), i));
                     theDates.add(rowData.getString("assignID"));
                 }
                 xlabel.setText("Xaxis: AssigmentID");
                 ylabel.setText("Yaxis:#solved assignments");
-            }
-            else{
+            } else {
                 for (int i = 0; i < chartData.length(); i++) {
                     JSONObject rowData = chartData.getJSONObject(i);
-                    barEntries.add(new BarEntry(rowData.getInt("NumOFSolved"),i));
+                    barEntries.add(new BarEntry(rowData.getInt("NumOFSolved"), i));
                     theDates.add(rowData.getString("mmyy"));
                 }
                 xlabel.setText("Xaxis:month and year (mmyy)");
                 ylabel.setText("Yaxis:#solved assignments");
 
             }
-        }
-        catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
         xAxis.setGridLineWidth(1);
         yAxis.setGridLineWidth(1);
         barChart.clear();
-        barDataSet = new BarDataSet(barEntries,"Solved assignments");
+        barDataSet = new BarDataSet(barEntries, "Solved assignments");
 
 
-        BarData theData = new BarData(theDates,barDataSet);
+        BarData theData = new BarData(theDates, barDataSet);
 
         barChart.setData(theData);
         barChart.setTouchEnabled(true);
@@ -239,8 +234,6 @@ public class ChartActivity extends AppCompatActivity {
             return params;
         }
     }
-
-
 
 
 }

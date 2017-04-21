@@ -1,19 +1,21 @@
 package com.example.diteh.einstein;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,8 +33,6 @@ import java.util.Random;
 
 public class AssignmentActivity extends AppCompatActivity {
 
-
-
     private final static String CLASS_ID = "classId";
     private final static String SUBJECT_ID = "subjectId";
     private final static String TASK_ID = "taskId";
@@ -49,7 +49,6 @@ public class AssignmentActivity extends AppCompatActivity {
     private int numberOfTasks;
     protected int[] myTrophies;
     protected int taskId;
-
     private Vibrator vibrator;
     protected String username,name, position;
     protected String correctAnswer = "";
@@ -83,8 +82,8 @@ public class AssignmentActivity extends AppCompatActivity {
         name = extras.getString("name");
         username = extras.getString("username");
         solved = extras.getIntArray("solved");
-        Asolved=extras.getInt("Asolved");
-        position=extras.getString("position");
+        Asolved = extras.getInt("Asolved");
+        position = extras.getString("position");
         //Får jsonobjekt forrige aktivitet
         try {
 
@@ -97,14 +96,13 @@ public class AssignmentActivity extends AppCompatActivity {
             JSONArray Optrophies = jsonObject.getJSONArray("trophy");
 
             String ls = Optrophies.toString();
-            if(!ls.equals("[]")){
+            if (!ls.equals("[]")) {
                 myTrophies = new int[12];
                 for (int i = 0; i < Optrophies.length(); i++) {
                     JSONObject gettro = Optrophies.getJSONObject(i);
                     myTrophies[i] = gettro.getInt("trophynum");
                 }
-            }
-            else{
+            } else {
                 myTrophies = new int[12];
 
             }
@@ -116,7 +114,7 @@ public class AssignmentActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
             myTrophies = new int[1];
-            myTrophies[0]=0;
+            myTrophies[0] = 0;
         }
 
 
@@ -183,11 +181,11 @@ public class AssignmentActivity extends AppCompatActivity {
     //Otherwise it return false
     public boolean nextTaskExists(JSONArray jsonArray, int taskId) {
         //for Unit test--------------------------------------
-        JSONObject test= null;
-        if(jsonArray ==null){
+        JSONObject test = null;
+        if (jsonArray == null) {
             try {
                 test = new JSONObject(test1);
-                jsonArray=test.getJSONArray("assignments");
+                jsonArray = test.getJSONArray("assignments");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -207,11 +205,11 @@ public class AssignmentActivity extends AppCompatActivity {
         List<String> foo = new ArrayList<String>(Arrays.asList("f"));
         String exersices = "";
         //for Unit test--------------------------------------
-        JSONObject test= null;
-        if(jsonArray ==null){
+        JSONObject test = null;
+        if (jsonArray == null) {
             try {
                 test = new JSONObject(test1);
-                jsonArray=test.getJSONArray("assignments");
+                jsonArray = test.getJSONArray("assignments");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -276,7 +274,7 @@ public class AssignmentActivity extends AppCompatActivity {
         LinearLayout correctAnswerView = (LinearLayout) findViewById(R.id.correctAnswer);
         correctAnswerView.setVisibility(View.VISIBLE);
 
-        if(position.equals("Student")) {
+        if (position.equals("Student")) {
             if (correctAnswersInARow == 1 && findTrophy(1)) {
                 new Background(1, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();
                 tempTrophyArray(1);
@@ -372,10 +370,9 @@ public class AssignmentActivity extends AppCompatActivity {
     //push back button on screen
     public void backToMain(View v) {
         Intent intent;
-        if(position.equals("Student")){
+        if (position.equals("Student")) {
             intent = new Intent(AssignmentActivity.this, MainActivity.class);
-        }
-        else{
+        } else {
             intent = new Intent(AssignmentActivity.this, TeachingActivity.class);
         }
         Bundle extras = new Bundle();
@@ -392,10 +389,9 @@ public class AssignmentActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent;
-        if(position.equals("Student")){
+        if (position.equals("Student")) {
             intent = new Intent(AssignmentActivity.this, MainActivity.class);
-        }
-        else{
+        } else {
             intent = new Intent(AssignmentActivity.this, TeachingActivity.class);
         }
         Bundle extras = new Bundle();
@@ -422,20 +418,19 @@ public class AssignmentActivity extends AppCompatActivity {
     }
 
 
-
     public boolean findTrophy(int trophynumber) {
-            for (int i = 0; i < myTrophies.length; i++) {
-                if (myTrophies[i] == trophynumber) {
-                    return false;
-                }
+        for (int i = 0; i < myTrophies.length; i++) {
+            if (myTrophies[i] == trophynumber) {
+                return false;
             }
-            return true;
+        }
+        return true;
     }
 
-    public void tempTrophyArray(int trophynum){
-        for(int i =0;i<myTrophies.length;i++){
-            if(myTrophies[i]==0){
-                myTrophies[i]=trophynum;
+    public void tempTrophyArray(int trophynum) {
+        for (int i = 0; i < myTrophies.length; i++) {
+            if (myTrophies[i] == 0) {
+                myTrophies[i] = trophynum;
                 break;
             }
         }
@@ -450,7 +445,7 @@ public class AssignmentActivity extends AppCompatActivity {
         int[] assignID, solved;
 
         //get input data
-        public Background(int trophynum, int courseSubjectID, int ansInARow, int correctOnFirstTry, int taskID, String username, int numberOfTask, int[] assignID, int[] solved, String mmyy){
+        public Background(int trophynum, int courseSubjectID, int ansInARow, int correctOnFirstTry, int taskID, String username, int numberOfTask, int[] assignID, int[] solved, String mmyy) {
             this.trophynum = trophynum;
             this.courseSubjectID = courseSubjectID;
             this.correctOnFirstTry = correctOnFirstTry;
@@ -460,7 +455,7 @@ public class AssignmentActivity extends AppCompatActivity {
             this.numberOfTask = numberOfTask;
             this.assignID = assignID;
             this.solved = solved;
-            this.mmyy=mmyy;
+            this.mmyy = mmyy;
 
         }
 
@@ -473,27 +468,27 @@ public class AssignmentActivity extends AppCompatActivity {
             }
 
             //for Unit test--------------------------------------
-            JSONObject test= null;
-            if(solved ==null){
-               solved = new int[2];
-                solved[0]=1;
-                solved[1]=1;
-                assignID=new int[2];
-                assignID[0]=1;
-                assignID[1]=2;
+            JSONObject test = null;
+            if (solved == null) {
+                solved = new int[2];
+                solved[0] = 1;
+                solved[1] = 1;
+                assignID = new int[2];
+                assignID[0] = 1;
+                assignID[1] = 2;
             }
             //-----------------------------
-            String Ssolved="", SassignID="";
-            for(int i = 0;i<solved.length;i++){
-                Ssolved = ""+Ssolved+","+solved[i];
-                SassignID = ""+SassignID+","+assignID[i];
+            String Ssolved = "", SassignID = "";
+            for (int i = 0; i < solved.length; i++) {
+                Ssolved = "" + Ssolved + "," + solved[i];
+                SassignID = "" + SassignID + "," + assignID[i];
 
             }
 
             //url for php that fetch data from database, comes back as json object
             json_url = "https://truongtrxu.000webhostapp.com/updateUserProgress.php?courseSubjectID=" + courseSubjectID + "&username=" + username
                     + "&trophynum=" + trophynum + "&taskID=" + taskID + "&ansInARow=" + ansInARow + "&correctOnFirstTry=" + correctOnFirstTry + "&assignID=" + SassignID + "&solved=" + Ssolved
-                    +"&mmyy="+mmyy;
+                    + "&mmyy=" + mmyy;
         }
 
 

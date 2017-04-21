@@ -2,11 +2,10 @@ package com.example.diteh.einstein;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.*;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,13 +17,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-
 
 protected String name,username, position;
 
@@ -37,13 +31,11 @@ protected String name,username, position;
         final TextView welcomeMessage = (TextView) findViewById(R.id.welcomeMessage);
 
         Bundle extras = getIntent().getExtras();
-        name=extras.getString("name");
-        username=extras.getString("username");
-        position=extras.getString("position");
+        name = extras.getString("name");
+        username = extras.getString("username");
+        position = extras.getString("position");
         String msg = "Welcome to Einstein, " + name + "!";
         welcomeMessage.setText(msg);
-
-
     }
 
     // Class buttons
@@ -107,9 +99,8 @@ protected String name,username, position;
     class Background extends AsyncTask<Void, Void, String> {
         //Gets data from database
         String username;
-        String JSON_STRING,js_string;
+        String JSON_STRING, js_string;
         String json_url;
-
 
         //get input data
         public Background(String username) {
@@ -122,12 +113,12 @@ protected String name,username, position;
 
 
             //url for php that fetch data from database, comes back as json object
-            json_url = "https://truongtrxu.000webhostapp.com/getTrophies.php?username="+username;
+            json_url = "https://truongtrxu.000webhostapp.com/getTrophies.php?username=" + username;
         }
 
         @Override
         protected String doInBackground(Void... params) {
-            //åpner linje til database
+            //open line to database
 
             try {
                 URL url = new URL(json_url);
@@ -176,12 +167,9 @@ protected String name,username, position;
                 MainActivity.this.startActivity(intent);
 
 
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 }

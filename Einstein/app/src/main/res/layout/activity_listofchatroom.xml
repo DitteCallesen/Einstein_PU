@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_chatroom"
     android:layout_width="match_parent"
@@ -12,26 +11,26 @@
     tools:context="com.example.diteh.einstein.ListOfChatroomActivity">
 
     <Button
-        android:text="Back "
+        android:id="@+id/buttonback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonback"
-        android:onClick="backOnClick"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
+        android:layout_above="@+id/listView"
         android:layout_alignParentEnd="true"
-        android:layout_above="@+id/listView" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="backOnClick"
+        android:text="Back " />
 
 
     <ListView
-    android:layout_width="match_parent"
-        android:layout_height="440dp"
         android:id="@+id/listView"
-        android:dividerHeight="16dp"
-        android:divider="@android:color/transparent"
-        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="440dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="16dp" />
 
     <EditText
         android:id="@+id/roomNameEdittext"
@@ -50,11 +49,11 @@
         android:id="@+id/btAddRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add room"
-        android:textIsSelectable="true"
         android:layout_alignBaseline="@+id/roomNameEdittext"
         android:layout_alignBottom="@+id/roomNameEdittext"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:text="Add room"
+        android:textIsSelectable="true" />
 
 </RelativeLayout>

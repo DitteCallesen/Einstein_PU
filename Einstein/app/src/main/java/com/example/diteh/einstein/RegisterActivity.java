@@ -1,9 +1,9 @@
 package com.example.diteh.einstein;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
                             boolean succes = jsonResponse.getBoolean("success");
 
                             if (succes) {
-                                Toast.makeText(RegisterActivity.this, "Registering suksess!",
+                                Toast.makeText(RegisterActivity.this, "Account created",
                                         Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                 RegisterActivity.this.startActivity(intent);
@@ -79,13 +79,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 if (!nameAvail) {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                    builder.setMessage("Bruker navn er tatt")
+                                    builder.setMessage("Username has already been taken.")
                                             .setNegativeButton("Retry", null)
                                             .create()
                                             .show();
                                 } else if (!emailAvil) {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                                    builder.setMessage("Email er brukt")
+                                    builder.setMessage("Email is already used.")
                                             .setNegativeButton("Retry", null)
                                             .create()
                                             .show();
@@ -101,22 +101,32 @@ public class RegisterActivity extends AppCompatActivity {
                     RegisterRequest registerRequest = new RegisterRequest(name, username, email, password, stilling, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                     queue.add(registerRequest);
-                } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-                    builder.setMessage("Registering feilet")
-                            .setNegativeButton("Retry", null)
-                            .create()
-                            .show();
                 }
             }
         });
-
-
     }
 
-    public void back(View view) {
-    }
 
+    public boolean checkValid(String pass1, String pass2, String email) {
+
+        if (!pass1.equals(pass2)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+            builder.setMessage("The passwords do not match.")
+                    .setNegativeButton("Retry", null)
+                    .create()
+                    .show();
+            return false;
+        } else if (!email.contains("@")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+            builder.setMessage("Email address is not valid.")
+                    .setNegativeButton("Retry", null)
+                    .create()
+                    .show();
+            return false;
+        }
+
+        return true;
+    }
 
     public class RegisterRequest extends StringRequest {
 
@@ -140,22 +150,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public boolean checkValid(String pass1, String pass2, String email) {
-        boolean valid = true;
-
-        if (!pass1.equals(pass2)) {
-            valid = false;
-            Toast.makeText(RegisterActivity.this, "Bekreftet passord stemmer ikke", Toast.LENGTH_LONG).show();
-        }
-
-        if (!email.contains("@")) {
-            valid = false;
-            Toast.makeText(RegisterActivity.this, "Ikke gyldig email", Toast.LENGTH_LONG).show();
-        }
-
-        return valid;
-
-    }
     public void backOnClick(View view){
         Intent intent;
         intent = new Intent(RegisterActivity.this, LoginActivity.class);
