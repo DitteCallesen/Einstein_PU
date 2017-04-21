@@ -26,7 +26,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
 
 
-private String name,username, position;
+protected String name,username, position;
 
 
     @Override
@@ -93,7 +93,7 @@ private String name,username, position;
 
     }
 
-    // This method change to the TrophyRoomActicity
+    // This method get user trophies to the TrophyRoomActicity
     public void trophyOnClick(View v) {
         new Background(username).execute();
     }
@@ -109,7 +109,7 @@ private String name,username, position;
         String username;
         String JSON_STRING,js_string;
         String json_url;
-        int ansInARow,taskID,correctOnFirstTry,courseSubjectID,trophynum,numberOfTask;
+
 
         //get input data
         public Background(String username) {

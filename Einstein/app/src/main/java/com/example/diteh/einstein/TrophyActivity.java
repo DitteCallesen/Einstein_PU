@@ -38,6 +38,8 @@ public class TrophyActivity extends AppCompatActivity {
     private String name, username,position;
     private int[] myTrophies;
     private ImageButton imageButton;
+    public ImageButton imageButton1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

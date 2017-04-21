@@ -77,10 +77,8 @@ public class Chatroom extends AppCompatActivity {
                 map2.put("name", name);
                 map2.put("msg", inputMsg.getText().toString());
                 map2.put("stamp", date);
-
                 messageRoot.updateChildren(map2);
                 inputMsg.setText("");
-
             }
         });
 
@@ -88,21 +86,19 @@ public class Chatroom extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 appendChatConversation(dataSnapshot);
-
-                int lastPosition = chatlist.getLastVisiblePosition();
                 adapter = new ChatroomAdapter(getApplicationContext(), mChatmessage);
                 chatlist.setAdapter(adapter);
-                chatlist.setSelection(lastPosition);
+                chatlist.setSelection(mChatmessage.size());
+
 
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 appendChatConversation(dataSnapshot);
-                int lastPosition = chatlist.getLastVisiblePosition();
                 adapter = new ChatroomAdapter(getApplicationContext(), mChatmessage);
                 chatlist.setAdapter(adapter);
-                chatlist.setSelection(lastPosition);
+                chatlist.setSelection(mChatmessage.size());
             }
 
             @Override
@@ -120,6 +116,8 @@ public class Chatroom extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private void appendChatConversation(DataSnapshot dataSnapshot) {
@@ -140,38 +138,29 @@ public class Chatroom extends AppCompatActivity {
 
     public void backToRooms(View view) {
         Intent intent;
-        if(position.equals("Student")){
-            intent = new Intent(Chatroom.this, MainActivity.class);
-        }
-        else{
-            intent = new Intent(Chatroom.this, TeachingActivity.class);
-        }
+
+        intent = new Intent(Chatroom.this, ListOfChatroomActivity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
         extras.putString("position", position);
         intent.putExtras(extras);
         Chatroom.this.startActivity(intent);
-        finish();
+        this.finish();
     }
 
     //use anndroid back button
     @Override
     public void onBackPressed() {
         Intent intent;
-        if(position.equals("Student")){
-            intent = new Intent(Chatroom.this, MainActivity.class);
-        }
-        else{
-            intent = new Intent(Chatroom.this, TeachingActivity.class);
-        }
+        intent = new Intent(Chatroom.this, ListOfChatroomActivity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
         extras.putString("position", position);
         intent.putExtras(extras);
         startActivity(intent);
-        finish();
+        this.finish();
     }
 
     private class ChatroomAdapter extends BaseAdapter {

@@ -28,7 +28,7 @@ public class Class2Activity extends AppCompatActivity {
     private final static String CORRECT_ANSWERS_IN_A_ROW = "correctAnswersInARow";
     private final static String CORRECT_ON_FIRST_TRY  = "correctOnFirstTry";
     private final static String NUMBER_OF_TASKS = "numberOfTasks";
-    private String username,name, position;
+    protected String username,name, position;
     private String classId = "Statistics", subjectId;
     private String JSON_STRING;
     private String js_string;

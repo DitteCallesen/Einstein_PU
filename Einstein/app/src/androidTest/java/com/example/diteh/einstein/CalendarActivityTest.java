@@ -31,13 +31,16 @@ public class CalendarActivityTest {
             Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
             Intent result = new Intent(targetContext, CalendarActivity.class);
             Bundle extras = new Bundle();
-            extras.putString("", "");
+            extras.putString("username","a");
+            extras.putString("name","admin");
+            extras.putString("position","admin");
             result.putExtras(extras);
             return result;
         }
     };
 
     Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(MainActivity.class.getName(), null, false);
+    Instrumentation.ActivityMonitor monitorT = getInstrumentation().addMonitor(TeachingActivity.class.getName(), null, false);
     private CalendarActivity CalendarActivity = null;
 
     @Before
@@ -46,13 +49,21 @@ public class CalendarActivityTest {
     }
 
     @Test
-    public void testLaunchOfMainActivityOnBackToMainButtonClick() {
-        assertNotNull(CalendarActivity.findViewById(R.id.backToMainButton));
-        onView(withId(R.id.backToMainButton)).perform(click());
-        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+    public void testLaunchOfMainActivityOnBackToMainButtonClick(){
+        //go to back to main menu, first to teachingsite
+        CalendarActivity.backOnClick(null);
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorT, 5000);
         assertNotNull(nextActivity);
-        nextActivity.finish();
+
+        //test to go to main for students
+        CalendarActivity.position="Student";
+        CalendarActivity.backOnClick(null);
+        nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+        assertNotNull(nextActivity);
+
     }
+
+
 
     @After
     public void tearDown() throws Exception {

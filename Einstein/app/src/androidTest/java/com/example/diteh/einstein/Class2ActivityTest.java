@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
+import android.view.View;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,6 +17,7 @@ import org.junit.Test;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertNotNull;
 
@@ -31,8 +33,9 @@ public class Class2ActivityTest {
             Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
             Intent result = new Intent(targetContext, Class2Activity.class);
             Bundle extras = new Bundle();
-            extras.putString("name", "name");
-            extras.putString("username", "username");
+            extras.putString("name", "admin");
+            extras.putString("username", "a");
+            extras.putString("position","admin");
             result.putExtras(extras);
             return result;
         }
@@ -40,6 +43,7 @@ public class Class2ActivityTest {
 
     Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(AssignmentActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorMainActivity = getInstrumentation().addMonitor(MainActivity.class.getName(), null, false);
+    Instrumentation.ActivityMonitor monitorTeachingActivity = getInstrumentation().addMonitor(TeachingActivity.class.getName(), null, false);
     private Class2Activity class2Activity = null;
 
     @Before
@@ -48,7 +52,38 @@ public class Class2ActivityTest {
     }
 
     @Test
-    public void testLaunchOfMainActivityOnBackToMainButtonClick() {
+    public void testBackToMainForTeacherMethods(){
+        //go to back to main menu, first to teachingsite
+        class2Activity.backToMain(null);
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorTeachingActivity, 5000);
+        assertNotNull(nextActivity);
+
+        //test to go to main for students
+        class2Activity.position="Student";
+        class2Activity.backToMain(null);
+        nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorMainActivity, 5000);
+        assertNotNull(nextActivity);
+
+
+        //test GetJson method
+        View view = class2Activity.findViewById(R.id.button1);
+        class2Activity.getJson2(view);
+        nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+        assertNotNull(nextActivity);
+    }
+
+    @Test
+    public void testLaunchOfClass1ActivityOnBackToTeachingButtonClick() {
+        assertNotNull(class2Activity.findViewById(R.id.backToMainButton));
+        onView(withId(R.id.backToMainButton)).perform(click());
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorTeachingActivity, 5000);
+        assertNotNull(nextActivity);
+        nextActivity.finish();
+    }
+
+    @Test
+    public void testLaunchOfClass1ActivityOnBackToMainButtonClick() {
+        class2Activity.position = "Student";
         assertNotNull(class2Activity.findViewById(R.id.backToMainButton));
         onView(withId(R.id.backToMainButton)).perform(click());
         Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorMainActivity, 5000);
@@ -113,20 +148,13 @@ public class Class2ActivityTest {
     @Test
     public void testLaunchOfAssignmentActivityOnButton7Click() {
         assertNotNull(class2Activity.findViewById(R.id.button7));
-        onView(withId(R.id.button7)).perform(click());
+        onView(withId(R.id.button7)).perform(scrollTo(),click());
         Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
         assertNotNull(nextActivity);
         nextActivity.finish();
     }
 
-    @Test
-    public void testLaunchOfAssignmentActivityOnButton8Click() {
-        assertNotNull(class2Activity.findViewById(R.id.button8));
-        onView(withId(R.id.button8)).perform(click());
-        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
-        assertNotNull(nextActivity);
-        nextActivity.finish();
-    }
+
 
     @After
     public void tearDown() throws Exception {

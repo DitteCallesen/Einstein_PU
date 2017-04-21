@@ -114,6 +114,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    public void back(View view) {
+    }
 
 
     public class RegisterRequest extends StringRequest {
@@ -153,6 +155,21 @@ public class RegisterActivity extends AppCompatActivity {
 
         return valid;
 
+    }
+    public void backOnClick(View view){
+        Intent intent;
+        intent = new Intent(RegisterActivity.this, LoginActivity.class);
+        RegisterActivity.this.startActivity(intent);
+        finish();
+    }
+
+    //use anndroid back button
+    @Override
+    public void onBackPressed() {
+        Intent intent;
+        intent = new Intent(RegisterActivity.this, LoginActivity.class);
+        RegisterActivity.this.startActivity(intent);
+        finish();
     }
 
 }
