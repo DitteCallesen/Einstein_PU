@@ -1,11 +1,13 @@
 package com.example.diteh.einstein;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -38,8 +40,9 @@ public class ChartActivity extends AppCompatActivity {
     private ArrayList<String> course, subject;
     private String name, username, coursesubject, position;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart);
         fillWithData = (Button) findViewById(R.id.getdata);
@@ -75,14 +78,34 @@ public class ChartActivity extends AppCompatActivity {
         }
 
         final Spinner spin = (Spinner) findViewById(R.id.Scourse);
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, course);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, course);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
+        final ArrayAdapter<CharSequence> adapter2=ArrayAdapter.createFromResource(getApplicationContext(),R.array.MathSubjects,android.R.layout.simple_spinner_item);
+        final ArrayAdapter<CharSequence> adapter21=ArrayAdapter.createFromResource(getApplicationContext(),R.array.StatSubjects,android.R.layout.simple_spinner_item);
+        final Spinner spin2 =(Spinner) findViewById(R.id.Ssubject);
 
-        final Spinner spin2 = (Spinner) findViewById(R.id.Ssubject);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter(this, android.R.layout.simple_spinner_item, subject);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin2.setAdapter(adapter2);
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectCourse = parent.getSelectedItem().toString();
+
+                if(selectCourse.equals("Mathematics")){
+                    adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adapter2);
+                }
+                else{
+                    adapter21.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spin2.setAdapter(adapter21);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        
 
         final Spinner spin3 = (Spinner) findViewById(R.id.spinner4);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.type, android.R.layout.simple_spinner_item);
@@ -134,6 +157,9 @@ public class ChartActivity extends AppCompatActivity {
 
             }
         });
+
+
+
 
     }
 

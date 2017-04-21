@@ -31,5 +31,28 @@
         <item>All assignment per month</item>
     </string-array>
 
+    <string-array name="MathSubjects">
+        <item>Algebra</item>
+        <item>Percent</item>
+        <item>Areal</item>
+        <item>Division</item>
+        <item>Pythagoras</item>
+        <item>Fraction</item>
+        <item>Number systems</item>
+        <item>Multiplication</item>
+
+    </string-array>
+
+    <string-array name="StatSubjects">
+        <item>Sample mean</item>
+        <item>Sample median</item>
+        <item>Variance</item>
+        <item>Standard Deviation</item>
+        <item>Additive Rules</item>
+        <item>Product Rule</item>
+        <item>Bayes Rule</item>
+        <item>Mean of a radnom variable</item>
+    </string-array>
+
 
 </resources>
