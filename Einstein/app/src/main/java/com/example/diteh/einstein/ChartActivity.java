@@ -105,7 +105,7 @@ public class ChartActivity extends AppCompatActivity {
 
             }
         });
-        
+
 
         final Spinner spin3 = (Spinner) findViewById(R.id.spinner4);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.type, android.R.layout.simple_spinner_item);

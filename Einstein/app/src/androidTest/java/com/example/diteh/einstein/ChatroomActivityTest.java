@@ -25,11 +25,11 @@ import static org.junit.Assert.assertNotNull;
 public class ChatroomActivityTest {
 
     @Rule
-    public ActivityTestRule<ChatroomActivity> chatroomActivityTestRule = new ActivityTestRule<ChatroomActivity>(ChatroomActivity.class) {
+    public ActivityTestRule<Chatroom> chatroomActivityTestRule = new ActivityTestRule<Chatroom>(Chatroom.class) {
         @Override
         protected Intent getActivityIntent() {
             Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            Intent result = new Intent(targetContext, ChatroomActivity.class);
+            Intent result = new Intent(targetContext, Chatroom.class);
             Bundle extras = new Bundle();
             extras.putString("", "");
             result.putExtras(extras);
@@ -38,7 +38,7 @@ public class ChatroomActivityTest {
     };
 
     Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(MainActivity.class.getName(), null, false);
-    private ChatroomActivity ChatroomActivity = null;
+    private Chatroom ChatroomActivity = null;
 
     @Before
     public void setUp() throws Exception {
