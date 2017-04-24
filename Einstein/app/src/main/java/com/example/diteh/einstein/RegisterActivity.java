@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    protected JSONObject jsonResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         try {
 
-                            JSONObject jsonResponse = new JSONObject(response);
+                            jsonResponse = new JSONObject(response);
 
                             boolean succes = jsonResponse.getBoolean("success");
 
@@ -150,7 +150,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    public void backOnClick(View view){
+    public void backOnClick(View view) {
         Intent intent;
         intent = new Intent(RegisterActivity.this, LoginActivity.class);
         RegisterActivity.this.startActivity(intent);
@@ -165,5 +165,7 @@ public class RegisterActivity extends AppCompatActivity {
         RegisterActivity.this.startActivity(intent);
         finish();
     }
+
+
 
 }

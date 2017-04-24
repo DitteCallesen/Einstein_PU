@@ -19,6 +19,7 @@
             android:textSize="30dp" />
 
         <Button
+            android:id="@+id/class1Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#c9d3df"
@@ -29,7 +30,7 @@
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/class2Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#e4e9ec"
@@ -47,6 +48,7 @@
             android:paddingTop="30dp">
 
             <ImageView
+                android:id="@+id/chatroomButton"
                 android:layout_width="wrap_content"
                 android:layout_height="200px"
                 android:layout_weight="1"
@@ -55,6 +57,7 @@
 
 
             <ImageView
+                android:id="@+id/calendarButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -62,6 +65,7 @@
                 android:src="@mipmap/ic_calendar" />
 
             <ImageView
+                android:id="@+id/chartButton"
                 android:layout_width="127dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.04"
@@ -83,6 +87,7 @@
                 android:textSize="20dp" />
 
             <TextView
+                android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -111,7 +116,7 @@
         android:textSize="30dp" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_gravity="right"

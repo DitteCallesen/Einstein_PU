@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TeachingActivity extends AppCompatActivity {
-    private String name, username, position;
+    protected String name, username, position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

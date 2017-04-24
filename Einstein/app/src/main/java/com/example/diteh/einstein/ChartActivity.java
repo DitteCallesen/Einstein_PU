@@ -38,7 +38,7 @@ public class ChartActivity extends AppCompatActivity {
     BarChart barChart;
     private int[] courseID, subjectID;
     private ArrayList<String> course, subject;
-    private String name, username, coursesubject, position;
+    protected String name, username, coursesubject, position;
 
 
     @Override
@@ -81,20 +81,19 @@ public class ChartActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, course);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
-        final ArrayAdapter<CharSequence> adapter2=ArrayAdapter.createFromResource(getApplicationContext(),R.array.MathSubjects,android.R.layout.simple_spinner_item);
-        final ArrayAdapter<CharSequence> adapter21=ArrayAdapter.createFromResource(getApplicationContext(),R.array.StatSubjects,android.R.layout.simple_spinner_item);
-        final Spinner spin2 =(Spinner) findViewById(R.id.Ssubject);
+        final ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(getApplicationContext(), R.array.MathSubjects, android.R.layout.simple_spinner_item);
+        final ArrayAdapter<CharSequence> adapter21 = ArrayAdapter.createFromResource(getApplicationContext(), R.array.StatSubjects, android.R.layout.simple_spinner_item);
+        final Spinner spin2 = (Spinner) findViewById(R.id.Ssubject);
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectCourse = parent.getSelectedItem().toString();
 
-                if(selectCourse.equals("Mathematics")){
+                if (selectCourse.equals("Mathematics")) {
                     adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spin2.setAdapter(adapter2);
-                }
-                else{
+                } else {
                     adapter21.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spin2.setAdapter(adapter21);
                 }
@@ -157,8 +156,6 @@ public class ChartActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
     }
@@ -251,8 +248,6 @@ public class ChartActivity extends AppCompatActivity {
             params.put("courseID", Integer.toString(coursID));
             params.put("subjectID", Integer.toString(subjectID));
             params.put("select", select);
-
-
         }
 
         @Override

@@ -14,9 +14,6 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -31,9 +28,9 @@ public class CalendarActivityTest {
             Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
             Intent result = new Intent(targetContext, CalendarActivity.class);
             Bundle extras = new Bundle();
-            extras.putString("username","a");
-            extras.putString("name","admin");
-            extras.putString("position","admin");
+            extras.putString("username", "a");
+            extras.putString("name", "admin");
+            extras.putString("position", "admin");
             result.putExtras(extras);
             return result;
         }
@@ -49,20 +46,34 @@ public class CalendarActivityTest {
     }
 
     @Test
-    public void testLaunchOfMainActivityOnBackToMainButtonClick(){
+    public void testLaunchOfMainActivityOnBackToMainButtonClick() {
         //go to back to main menu, first to teachingsite
         CalendarActivity.backOnClick(null);
         Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorT, 5000);
         assertNotNull(nextActivity);
 
         //test to go to main for students
-        CalendarActivity.position="Student";
+        CalendarActivity.position = "Student";
         CalendarActivity.backOnClick(null);
         nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
         assertNotNull(nextActivity);
 
     }
 
+    @Test
+    public void testOnPressedBacl() {
+        //go to back to main menu, first to teachingsite
+        CalendarActivity.onBackPressed();
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorT, 5000);
+        assertNotNull(nextActivity);
+
+        //test to go to main for students
+        CalendarActivity.position = "Student";
+        CalendarActivity.onBackPressed();
+        nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+        assertNotNull(nextActivity);
+
+    }
 
 
     @After

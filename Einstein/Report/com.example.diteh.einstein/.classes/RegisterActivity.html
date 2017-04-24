@@ -1,0 +1,316 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: RegisterActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.diteh.einstein</a> ]
+</div>
+
+<h1>Coverage Summary for Class: RegisterActivity (com.example.diteh.einstein)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RegisterActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 35)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">RegisterActivity$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 12)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">RegisterActivity$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 26)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">RegisterActivity$RegisterRequest</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 9)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 11)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 82)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.diteh.einstein;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.content.Intent;
+<i>4</i>&nbsp;import android.os.Bundle;
+<i>5</i>&nbsp;import android.support.v7.app.AlertDialog;
+<i>6</i>&nbsp;import android.support.v7.app.AppCompatActivity;
+<i>7</i>&nbsp;import android.view.View;
+<i>8</i>&nbsp;import android.widget.ArrayAdapter;
+<i>9</i>&nbsp;import android.widget.Button;
+<i>10</i>&nbsp;import android.widget.EditText;
+<i>11</i>&nbsp;import android.widget.Spinner;
+<i>12</i>&nbsp;import android.widget.Toast;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import com.android.volley.RequestQueue;
+<i>15</i>&nbsp;import com.android.volley.Response;
+<i>16</i>&nbsp;import com.android.volley.toolbox.StringRequest;
+<i>17</i>&nbsp;import com.android.volley.toolbox.Volley;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;import org.json.JSONException;
+<i>20</i>&nbsp;import org.json.JSONObject;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;import java.util.HashMap;
+<i>23</i>&nbsp;import java.util.Map;
+<i>24</i>&nbsp;
+<b class="nc"><i>25</i>&nbsp;public class RegisterActivity extends AppCompatActivity {</b>
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    @Override
+<i>28</i>&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc"><i>29</i>&nbsp;        super.onCreate(savedInstanceState);</b>
+<b class="nc"><i>30</i>&nbsp;        setContentView(R.layout.activity_register);</b>
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;
+<b class="nc"><i>33</i>&nbsp;        final EditText etName = (EditText) findViewById(R.id.etName);</b>
+<b class="nc"><i>34</i>&nbsp;        final EditText etUsername = (EditText) findViewById(R.id.etUsername);</b>
+<b class="nc"><i>35</i>&nbsp;        final EditText etPassword = (EditText) findViewById(R.id.etPass1);</b>
+<b class="nc"><i>36</i>&nbsp;        final EditText etPassword2 = (EditText) findViewById(R.id.etPass2);</b>
+<b class="nc"><i>37</i>&nbsp;        final EditText etEmail = (EditText) findViewById(R.id.etEmail);</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;
+<b class="nc"><i>40</i>&nbsp;        final Spinner spin = (Spinner) findViewById(R.id.spinner);</b>
+<b class="nc"><i>41</i>&nbsp;        ArrayAdapter&lt;CharSequence&gt; adapter = ArrayAdapter.createFromResource(this, R.array.typer, android.R.layout.simple_spinner_item);</b>
+<b class="nc"><i>42</i>&nbsp;        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);</b>
+<b class="nc"><i>43</i>&nbsp;        spin.setAdapter(adapter);</b>
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;
+<b class="nc"><i>46</i>&nbsp;        final Button bRegister = (Button) findViewById(R.id.bRegister);</b>
+<i>47</i>&nbsp;
+<b class="nc"><i>48</i>&nbsp;        bRegister.setOnClickListener(new View.OnClickListener() {</b>
+<i>49</i>&nbsp;            @Override
+<i>50</i>&nbsp;            public void onClick(View view) {
+<b class="nc"><i>51</i>&nbsp;                final String name = etName.getText().toString();</b>
+<b class="nc"><i>52</i>&nbsp;                final String username = etUsername.getText().toString();</b>
+<b class="nc"><i>53</i>&nbsp;                final String password = etPassword.getText().toString();</b>
+<b class="nc"><i>54</i>&nbsp;                final String password2 = etPassword2.getText().toString();</b>
+<b class="nc"><i>55</i>&nbsp;                final String email = etEmail.getText().toString();</b>
+<b class="nc"><i>56</i>&nbsp;                final String stilling = spin.getSelectedItem().toString();</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;
+<b class="nc"><i>59</i>&nbsp;                Response.Listener&lt;String&gt; responseListener = new Response.Listener&lt;String&gt;() {</b>
+<i>60</i>&nbsp;                    @Override
+<i>61</i>&nbsp;                    public void onResponse(String response) {
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;                        try {
+<i>65</i>&nbsp;
+<b class="nc"><i>66</i>&nbsp;                            JSONObject jsonResponse = new JSONObject(response);</b>
+<i>67</i>&nbsp;
+<b class="nc"><i>68</i>&nbsp;                            boolean succes = jsonResponse.getBoolean(&quot;success&quot;);</b>
+<i>69</i>&nbsp;
+<b class="nc"><i>70</i>&nbsp;                            if (succes) {</b>
+<b class="nc"><i>71</i>&nbsp;                                Toast.makeText(RegisterActivity.this, &quot;Account created&quot;,</b>
+<b class="nc"><i>72</i>&nbsp;                                        Toast.LENGTH_LONG).show();</b>
+<b class="nc"><i>73</i>&nbsp;                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);</b>
+<b class="nc"><i>74</i>&nbsp;                                RegisterActivity.this.startActivity(intent);</b>
+<i>75</i>&nbsp;
+<b class="nc"><i>76</i>&nbsp;                            } else {</b>
+<b class="nc"><i>77</i>&nbsp;                                boolean nameAvail = jsonResponse.getBoolean(&quot;nameAvil&quot;);</b>
+<b class="nc"><i>78</i>&nbsp;                                boolean emailAvil = jsonResponse.getBoolean(&quot;emailAvil&quot;);</b>
+<i>79</i>&nbsp;
+<b class="nc"><i>80</i>&nbsp;                                if (!nameAvail) {</b>
+<b class="nc"><i>81</i>&nbsp;                                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);</b>
+<b class="nc"><i>82</i>&nbsp;                                    builder.setMessage(&quot;Username has already been taken.&quot;)</b>
+<b class="nc"><i>83</i>&nbsp;                                            .setNegativeButton(&quot;Retry&quot;, null)</b>
+<b class="nc"><i>84</i>&nbsp;                                            .create()</b>
+<b class="nc"><i>85</i>&nbsp;                                            .show();</b>
+<b class="nc"><i>86</i>&nbsp;                                } else if (!emailAvil) {</b>
+<b class="nc"><i>87</i>&nbsp;                                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);</b>
+<b class="nc"><i>88</i>&nbsp;                                    builder.setMessage(&quot;Email is already used.&quot;)</b>
+<b class="nc"><i>89</i>&nbsp;                                            .setNegativeButton(&quot;Retry&quot;, null)</b>
+<b class="nc"><i>90</i>&nbsp;                                            .create()</b>
+<b class="nc"><i>91</i>&nbsp;                                            .show();</b>
+<i>92</i>&nbsp;                                }
+<i>93</i>&nbsp;                            }
+<b class="nc"><i>94</i>&nbsp;                        } catch (JSONException e) {</b>
+<b class="nc"><i>95</i>&nbsp;                            e.printStackTrace();</b>
+<b class="nc"><i>96</i>&nbsp;                        }</b>
+<i>97</i>&nbsp;
+<i>98</i>&nbsp;                    }
+<i>99</i>&nbsp;                };
+<b class="nc"><i>100</i>&nbsp;                if (checkValid(password, password2, email)) {</b>
+<b class="nc"><i>101</i>&nbsp;                    RegisterRequest registerRequest = new RegisterRequest(name, username, email, password, stilling, responseListener);</b>
+<b class="nc"><i>102</i>&nbsp;                    RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);</b>
+<b class="nc"><i>103</i>&nbsp;                    queue.add(registerRequest);</b>
+<i>104</i>&nbsp;                }
+<i>105</i>&nbsp;            }
+<i>106</i>&nbsp;        });
+<i>107</i>&nbsp;    }
+<i>108</i>&nbsp;
+<i>109</i>&nbsp;
+<i>110</i>&nbsp;    public boolean checkValid(String pass1, String pass2, String email) {
+<i>111</i>&nbsp;
+<b class="nc"><i>112</i>&nbsp;        if (!pass1.equals(pass2)) {</b>
+<b class="nc"><i>113</i>&nbsp;            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);</b>
+<b class="nc"><i>114</i>&nbsp;            builder.setMessage(&quot;The passwords do not match.&quot;)</b>
+<b class="nc"><i>115</i>&nbsp;                    .setNegativeButton(&quot;Retry&quot;, null)</b>
+<b class="nc"><i>116</i>&nbsp;                    .create()</b>
+<b class="nc"><i>117</i>&nbsp;                    .show();</b>
+<b class="nc"><i>118</i>&nbsp;            return false;</b>
+<b class="nc"><i>119</i>&nbsp;        } else if (!email.contains(&quot;@&quot;)) {</b>
+<b class="nc"><i>120</i>&nbsp;            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);</b>
+<b class="nc"><i>121</i>&nbsp;            builder.setMessage(&quot;Email address is not valid.&quot;)</b>
+<b class="nc"><i>122</i>&nbsp;                    .setNegativeButton(&quot;Retry&quot;, null)</b>
+<b class="nc"><i>123</i>&nbsp;                    .create()</b>
+<b class="nc"><i>124</i>&nbsp;                    .show();</b>
+<b class="nc"><i>125</i>&nbsp;            return false;</b>
+<i>126</i>&nbsp;        }
+<i>127</i>&nbsp;
+<b class="nc"><i>128</i>&nbsp;        return true;</b>
+<i>129</i>&nbsp;    }
+<i>130</i>&nbsp;
+<i>131</i>&nbsp;    public class RegisterRequest extends StringRequest {
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;        private static final String REGISTER_REQUEST_URL = &quot;https://truongtrxu.000webhostapp.com/Register.php&quot;;
+<i>134</i>&nbsp;        private Map&lt;String, String&gt; params;
+<i>135</i>&nbsp;
+<b class="nc"><i>136</i>&nbsp;        public RegisterRequest(String name, String username, String email, String password, String position, Response.Listener&lt;String&gt; listener) {</b>
+<i>137</i>&nbsp;
+<b class="nc"><i>138</i>&nbsp;            super(Method.POST, REGISTER_REQUEST_URL, listener, null);</b>
+<b class="nc"><i>139</i>&nbsp;            params = new HashMap&lt;&gt;();</b>
+<b class="nc"><i>140</i>&nbsp;            params.put(&quot;name&quot;, name);</b>
+<b class="nc"><i>141</i>&nbsp;            params.put(&quot;username&quot;, username);</b>
+<b class="nc"><i>142</i>&nbsp;            params.put(&quot;email&quot;, email);</b>
+<b class="nc"><i>143</i>&nbsp;            params.put(&quot;password&quot;, password);</b>
+<b class="nc"><i>144</i>&nbsp;            params.put(&quot;position&quot;, position);</b>
+<i>145</i>&nbsp;        }
+<i>146</i>&nbsp;
+<i>147</i>&nbsp;        @Override
+<i>148</i>&nbsp;        public Map&lt;String, String&gt; getParams() {
+<b class="nc"><i>149</i>&nbsp;            return params;</b>
+<i>150</i>&nbsp;        }
+<i>151</i>&nbsp;    }
+<i>152</i>&nbsp;
+<i>153</i>&nbsp;    public void backOnClick(View view) {
+<i>154</i>&nbsp;        Intent intent;
+<b class="nc"><i>155</i>&nbsp;        intent = new Intent(RegisterActivity.this, LoginActivity.class);</b>
+<b class="nc"><i>156</i>&nbsp;        RegisterActivity.this.startActivity(intent);</b>
+<b class="nc"><i>157</i>&nbsp;        finish();</b>
+<i>158</i>&nbsp;    }
+<i>159</i>&nbsp;
+<i>160</i>&nbsp;    //use anndroid back button
+<i>161</i>&nbsp;    @Override
+<i>162</i>&nbsp;    public void onBackPressed() {
+<i>163</i>&nbsp;        Intent intent;
+<b class="nc"><i>164</i>&nbsp;        intent = new Intent(RegisterActivity.this, LoginActivity.class);</b>
+<b class="nc"><i>165</i>&nbsp;        RegisterActivity.this.startActivity(intent);</b>
+<b class="nc"><i>166</i>&nbsp;        finish();</b>
+<i>167</i>&nbsp;    }
+<i>168</i>&nbsp;
+<i>169</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-04-23 13:56</div>
+</div>
+</body>
+</html>

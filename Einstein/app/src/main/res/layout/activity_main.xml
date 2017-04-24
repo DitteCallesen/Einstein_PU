@@ -115,7 +115,7 @@
         android:textSize="30dp" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
         android:layout_gravity="right"

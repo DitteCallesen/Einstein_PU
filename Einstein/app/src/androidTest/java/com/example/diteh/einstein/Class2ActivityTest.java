@@ -35,7 +35,7 @@ public class Class2ActivityTest {
             Bundle extras = new Bundle();
             extras.putString("name", "admin");
             extras.putString("username", "a");
-            extras.putString("position","admin");
+            extras.putString("position", "admin");
             result.putExtras(extras);
             return result;
         }
@@ -52,14 +52,14 @@ public class Class2ActivityTest {
     }
 
     @Test
-    public void testBackToMainForTeacherMethods(){
+    public void testBackToMainForTeacherMethods() {
         //go to back to main menu, first to teachingsite
         class2Activity.backToMain(null);
         Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorTeachingActivity, 5000);
         assertNotNull(nextActivity);
 
         //test to go to main for students
-        class2Activity.position="Student";
+        class2Activity.position = "Student";
         class2Activity.backToMain(null);
         nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorMainActivity, 5000);
         assertNotNull(nextActivity);
@@ -69,6 +69,21 @@ public class Class2ActivityTest {
         View view = class2Activity.findViewById(R.id.button1);
         class2Activity.getJson2(view);
         nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+        assertNotNull(nextActivity);
+    }
+    @Test
+    public void testOnBackPressed() {
+
+        //go to back to main menu, first to teachingsite
+        class2Activity.onBackPressed();
+
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorTeachingActivity, 5000);
+        assertNotNull(nextActivity);
+
+        //test to go to main for students
+        class2Activity.position = "Student";
+        class2Activity.onBackPressed();
+        nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorMainActivity, 5000);
         assertNotNull(nextActivity);
     }
 
@@ -148,12 +163,11 @@ public class Class2ActivityTest {
     @Test
     public void testLaunchOfAssignmentActivityOnButton7Click() {
         assertNotNull(class2Activity.findViewById(R.id.button7));
-        onView(withId(R.id.button7)).perform(scrollTo(),click());
+        onView(withId(R.id.button7)).perform(scrollTo(), click());
         Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
         assertNotNull(nextActivity);
         nextActivity.finish();
     }
-
 
 
     @After

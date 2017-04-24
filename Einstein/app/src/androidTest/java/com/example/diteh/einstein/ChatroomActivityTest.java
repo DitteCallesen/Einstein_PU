@@ -31,13 +31,16 @@ public class ChatroomActivityTest {
             Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
             Intent result = new Intent(targetContext, Chatroom.class);
             Bundle extras = new Bundle();
-            extras.putString("", "");
+            extras.putString("username", "a");
+            extras.putString("name", "admin");
+            extras.putString("position", "admin");
+            extras.putString("roomName", "Room1");
             result.putExtras(extras);
             return result;
         }
     };
 
-    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(MainActivity.class.getName(), null, false);
+    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(ListOfChatroomActivity.class.getName(), null, false);
     private Chatroom ChatroomActivity = null;
 
     @Before
@@ -47,8 +50,8 @@ public class ChatroomActivityTest {
 
     @Test
     public void testLaunchOfMainActivityOnBackToMainButtonClick() {
-        assertNotNull(ChatroomActivity.findViewById(R.id.backToMainButton));
-        onView(withId(R.id.backToMainButton)).perform(click());
+        assertNotNull(ChatroomActivity.findViewById(R.id.backToListOfRooms));
+        onView(withId(R.id.backToListOfRooms)).perform(click());
         Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
         assertNotNull(nextActivity);
         nextActivity.finish();

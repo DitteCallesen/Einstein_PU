@@ -20,7 +20,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-protected String name,username, position;
+    protected String name, username, position;
 
 
     @Override

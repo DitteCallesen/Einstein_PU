@@ -6,7 +6,7 @@
 
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/backToListOfRooms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -32,8 +32,8 @@
         android:id="@+id/btSend"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignLeft="@+id/button10"
-        android:layout_alignStart="@+id/button10"
+        android:layout_alignLeft="@+id/backToListOfRooms"
+        android:layout_alignStart="@+id/backToListOfRooms"
         android:layout_below="@+id/messageList"
         android:text="Send" />
 
@@ -43,7 +43,8 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/msgInput"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/backToListOfRooms" />
 
 
 </RelativeLayout>

@@ -28,7 +28,6 @@ public class TrophyActivity extends AppCompatActivity {
         username = extras.getString("username");
         position = extras.getString("position");
 
-
         //make an array of all the activated trophies
         try {
             JSONObject server_response = new JSONObject(extras.getString("jsonO"));
@@ -38,7 +37,6 @@ public class TrophyActivity extends AppCompatActivity {
                 JSONObject getTrophy = trophies.getJSONObject(i);
                 showTrophies(getTrophy.getInt("trophynum"));
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -86,7 +84,6 @@ public class TrophyActivity extends AppCompatActivity {
             case R.id.trophy12:
                 trophy_text.setText("Solved 1000 exercises.");
                 break;
-
             default:
                 //
         }
@@ -96,7 +93,6 @@ public class TrophyActivity extends AppCompatActivity {
         LinearLayout big_trophy = (LinearLayout) findViewById(R.id.big_trophy);
         big_trophy.setVisibility(View.INVISIBLE);
     }
-
 
     public void showTrophies(int i) {
 

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
@@ -12,16 +11,13 @@ import android.test.UiThreadTest;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.pressBack;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -53,76 +49,75 @@ public class TrophyActivityTest {
     }
 
     @Test
-    public void testShowTrophies(){
+    public void testShowTrophies() {
         ImageButton imageButton;
 
         //all trophies are invisible here
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy1);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy1);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy2);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy2);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy3);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy3);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy4);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy4);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy5);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy5);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy6);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy6);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy7);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy7);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy8);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy8);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy9);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy9);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy10);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy10);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy11);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy11);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
-        imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy12);
+        imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy12);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
         TrophyActivity.runOnUiThread(new Runnable() {
 
             public void run() {
                 ImageButton imageButton;
-                int[] trophies = {1,2,3,4,5,6,7,8,9,10,11,12};
+                int[] trophies = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
                 //this makes all trophies visiable
-                for (int i=0;i<trophies.length;i++){
+                for (int i = 0; i < trophies.length; i++) {
                     TrophyActivity.showTrophies(trophies[i]);
                 }
 
                 //check if the abot is true
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy1);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy1);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy2);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy2);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy3);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy3);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy4);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy4);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy5);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy5);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy6);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy6);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy7);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy7);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy8);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy8);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy9);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy9);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy10);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy10);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy11);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy11);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
-                imageButton = (ImageButton)TrophyActivity.findViewById(R.id.trophy12);
+                imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy12);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
             }
         });
 
 
     }
-
 
 
     @Test
@@ -140,81 +135,76 @@ public class TrophyActivityTest {
     }
 
     @Test
-    public void testTrophyClicked(){
+    public void testTrophyClicked() {
         TextView textView;
         TrophyActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                for(int i=1;i<13;i++){
+                for (int i = 1; i < 13; i++) {
                     TrophyActivity.showTrophies(i);
                 }
-
-
             }
         });
 
         onView(withId(R.id.trophy1)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Solved your first exercise.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Solved your first exercise.");
         onView(withId(R.id.big_trophy)).perform(click());
 
         onView(withId(R.id.trophy2)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Answered correctly on 5 exercises in a row.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Answered correctly on 5 exercises in a row.");
         onView(withId(R.id.big_trophy)).perform(click());
 
         onView(withId(R.id.trophy3)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Answered correctly on 10 exercises in a row.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Answered correctly on 10 exercises in a row.");
         onView(withId(R.id.big_trophy)).perform(click());
 
         onView(withId(R.id.trophy4)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Worked 5 days in one week.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Worked 5 days in one week.");
         onView(withId(R.id.big_trophy)).perform(click());
 
         onView(withId(R.id.trophy5)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Worked 5 days every week for 3 weeks.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Worked 5 days every week for 3 weeks.");
         onView(withId(R.id.big_trophy)).perform(click());
 
         onView(withId(R.id.trophy6)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Worked 20 days in a month.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Worked 20 days in a month.");
         onView(withId(R.id.big_trophy)).perform(click());
 
         onView(withId(R.id.trophy7)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Solved 5 exercises.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Solved 5 exercises.");
         onView(withId(R.id.big_trophy)).perform(click());
 
         onView(withId(R.id.trophy8)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Solved 10 exercises.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Solved 10 exercises.");
         onView(withId(R.id.big_trophy)).perform(click());
 
         onView(withId(R.id.trophy9)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Solved 50 exercises.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Solved 50 exercises.");
         onView(withId(R.id.big_trophy)).perform(click());
 
         onView(withId(R.id.trophy10)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Solved 100 exercises.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Solved 100 exercises.");
         onView(withId(R.id.big_trophy)).perform(click());
 
         onView(withId(R.id.trophy11)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Solved 500 exercises.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Solved 500 exercises.");
         onView(withId(R.id.big_trophy)).perform(click());
 
         onView(withId(R.id.trophy12)).perform(click());
-        textView =(TextView) TrophyActivity.findViewById(R.id.trophy_text);
-        assertEquals(textView.getText(),"Solved 1000 exercises.");
+        textView = (TextView) TrophyActivity.findViewById(R.id.trophy_text);
+        assertEquals(textView.getText(), "Solved 1000 exercises.");
         onView(withId(R.id.big_trophy)).perform(click());
-
-
-
     }
 
     @Test
@@ -226,7 +216,13 @@ public class TrophyActivityTest {
         nextActivity.finish();
     }
 
-
+    @Test
+    public void testOnBackPressed() {
+        TrophyActivity.onBackPressed();
+        Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
+        assertNotNull(nextActivity);
+        nextActivity.finish();
+    }
 
     @After
     public void tearDown() throws Exception {
