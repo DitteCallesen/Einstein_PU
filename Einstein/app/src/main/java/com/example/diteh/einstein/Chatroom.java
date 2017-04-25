@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -82,8 +83,6 @@ public class Chatroom extends AppCompatActivity {
                 adapter = new ChatroomAdapter(getApplicationContext(), mChatmessage);
                 chatlist.setAdapter(adapter);
                 chatlist.setSelection(mChatmessage.size());
-
-
             }
 
             @Override
@@ -192,23 +191,23 @@ public class Chatroom extends AppCompatActivity {
             TextView Rname = (TextView) v.findViewById(R.id.msgName);
             TextView msg = (TextView) v.findViewById(R.id.msgText);
             TextView stamp = (TextView) v.findViewById(R.id.msgStamp);
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) msg.getLayoutParams();
-            LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) Rname.getLayoutParams();
-            LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) stamp.getLayoutParams();
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) msg.getLayoutParams();
+            RelativeLayout.LayoutParams layoutParams1 = (RelativeLayout.LayoutParams) Rname.getLayoutParams();
+            RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) stamp.getLayoutParams();
             //set text
             Rname.setText(chatmessageList.get(position).getMessageUser());
             msg.setText(chatmessageList.get(position).getMessageText());
             stamp.setText(chatmessageList.get(position).getMessageTIme().toString());
             if (name.equals(chatmessageList.get(position).getMessageUser())) {
                 msg.setBackground(getDrawable(R.drawable.bubble_right_green));
-                layoutParams.gravity = Gravity.RIGHT;
-                layoutParams1.gravity = Gravity.RIGHT;
-                layoutParams2.gravity = Gravity.RIGHT;
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                layoutParams1.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                layoutParams2.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             } else {
                 msg.setBackground(getDrawable(R.drawable.bubble_left_gray));
-                layoutParams.gravity = Gravity.LEFT;
-                layoutParams1.gravity = Gravity.LEFT;
-                layoutParams2.gravity = Gravity.LEFT;
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                layoutParams1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                layoutParams2.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
             }
             v.setTag(chatmessageList.get(position).getiD());
             return v;
