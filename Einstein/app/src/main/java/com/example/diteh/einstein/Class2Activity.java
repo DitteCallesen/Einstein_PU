@@ -1,25 +1,25 @@
 package com.example.diteh.einstein;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Class2Activity extends AppCompatActivity {
+public class Class2Activity extends AppCompatActivity implements View.OnClickListener{
 
 
     private final static String CLASS_ID = "classId";
@@ -29,11 +29,11 @@ public class Class2Activity extends AppCompatActivity {
     private final static String CORRECT_ON_FIRST_TRY = "correctOnFirstTry";
     private final static String NUMBER_OF_TASKS = "numberOfTasks";
     protected String username, name, position;
+    protected int CorrAnsIn,taskID,correctOnFirstTry,numberOfTasks;
     protected int Asolved;
-    private String classId = "Statistics", subjectId;
-    private String JSON_STRING;
-    private String js_string;
+    private String classId = "Statistics";
     private int[] solved;
+    private Button button1, button2, button3, button4, button5, button6, button7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,20 @@ public class Class2Activity extends AppCompatActivity {
         name = extras.getString("name");
         username = extras.getString("username");
         position = extras.getString("position");
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
+        button5 = (Button) findViewById(R.id.button5);
+        button6 = (Button) findViewById(R.id.button6);
+        button7 = (Button) findViewById(R.id.button7);
+        button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
+        button4.setOnClickListener(this);
+        button5.setOnClickListener(this);
+        button6.setOnClickListener(this);
+        button7.setOnClickListener(this);
 
     }
 
@@ -81,99 +95,75 @@ public class Class2Activity extends AppCompatActivity {
         finish();
     }
 
-    public void getJson2(View view) {
-        Button b = (Button) view;
+    @Override
+    public void onClick(View v) {
+        Button b = (Button) v;
+        final String subjectId = b.getText().toString();
+        final String Classid = classId;
 
-        subjectId = b.getText().toString();
-        new Background(classId, subjectId).execute();
+        final Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    //prepare data for sending to assignment activity
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONObject server_response = jsonObject.getJSONObject("server_response");
+                    JSONArray userdataArray = server_response.getJSONArray("userdata");
+                    JSONObject userdata = userdataArray.getJSONObject(0);
+
+                    CorrAnsIn = userdata.getInt("ansInARow");
+                    taskID = userdata.getInt("taskID");
+                    correctOnFirstTry = userdata.getInt("correctOnFirstTry");
+                    numberOfTasks = server_response.getJSONArray("assignments").length();
+                    Asolved = userdata.getInt("Asolved");
+                    solved = new int[numberOfTasks];
+
+                    Intent intent = new Intent(Class2Activity.this, AssignmentActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString(CLASS_ID, classId);
+                    extras.putString(SUBJECT_ID, subjectId);
+                    extras.putInt(TASK_ID, taskID);
+                    extras.putInt(CORRECT_ANSWERS_IN_A_ROW, CorrAnsIn);
+                    extras.putInt(CORRECT_ON_FIRST_TRY, correctOnFirstTry);
+                    extras.putInt(NUMBER_OF_TASKS, numberOfTasks);
+                    extras.putString("jsonO", server_response.toString());
+                    extras.putString("name", name);
+                    extras.putString("username", username);
+                    extras.putIntArray("solved", solved);
+                    extras.putInt("Asolved", Asolved);
+                    extras.putString("position", position);
+                    intent.putExtras(extras);
+                    Class2Activity.this.startActivity(intent);
+                    finish();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        AssigmentRequest assigmentRequest= new AssigmentRequest(username, Classid, subjectId, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(Class2Activity.this);
+        queue.add(assigmentRequest);
     }
 
-    class Background extends AsyncTask<Void, Void, String> {
-        //Gets data from database
-        String classId, subjectId;
-        String json_url;
-        int CorrAnsIn, taskID, correctOnFirstTry, numberOfTasks;
 
-        //course name and subject is added
-        public Background(String classId, String subjectId) {
-            this.classId = classId;
-            this.subjectId = subjectId;
+    public class AssigmentRequest extends StringRequest {
+
+        private static final String ASSIGN_REQUEST_URL = "https://truongtrxu.000webhostapp.com/getJsonAssign2.php";
+        private Map<String, String> params;
+
+        public AssigmentRequest(String username, String course, String subject, Response.Listener<String> listener) {
+            super(Request.Method.POST, ASSIGN_REQUEST_URL, listener, null);
+            params = new HashMap<>();
+            params.put("username", username);
+            params.put("course", course);
+            params.put("subject", subject);
         }
 
         @Override
-        protected void onPreExecute() {
-            //url for php that fetch data from database, comes back as json object
-            json_url = "https://truongtrxu.000webhostapp.com/getJsonAssign.php?course=" + classId + "&subject=" + subjectId + "&username=" + username;
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            //open line to database
-            try {
-                URL url = new URL(json_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                StringBuilder stringBuilder = new StringBuilder();
-                while ((JSON_STRING = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(JSON_STRING + "\n");
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return stringBuilder.toString().trim();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            //sends JSONObject to AssisgnmentActivity as a string
-            js_string = result;
-            try {
-                //prepear data for sending to assignment activity
-                JSONObject jsonObject = new JSONObject(js_string);
-                JSONObject server_response = jsonObject.getJSONObject("server_response");
-                JSONArray userdataArray = server_response.getJSONArray("userdata");
-                JSONObject userdata = userdataArray.getJSONObject(0);
-
-                CorrAnsIn = userdata.getInt("ansInARow");
-                taskID = userdata.getInt("taskID");
-                correctOnFirstTry = userdata.getInt("correctOnFirstTry");
-                numberOfTasks = server_response.getJSONArray("assignments").length();
-                solved = new int[numberOfTasks];
-
-                Intent intent = new Intent(Class2Activity.this, AssignmentActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString(CLASS_ID, classId);
-                extras.putString(SUBJECT_ID, subjectId);
-                extras.putInt(TASK_ID, taskID);
-                extras.putInt(CORRECT_ANSWERS_IN_A_ROW, CorrAnsIn);
-                extras.putInt(CORRECT_ON_FIRST_TRY, correctOnFirstTry);
-                extras.putInt(NUMBER_OF_TASKS, numberOfTasks);
-                extras.putString("jsonO", server_response.toString());
-                extras.putString("name", name);
-                extras.putString("username", username);
-                extras.putIntArray("solved", solved);
-                extras.putInt("Asolved", Asolved);
-                extras.putString("position", position);
-                intent.putExtras(extras);
-                Class2Activity.this.startActivity(intent);
-                finish();
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+        public Map<String, String> getParams() {
+            return params;
         }
     }
 

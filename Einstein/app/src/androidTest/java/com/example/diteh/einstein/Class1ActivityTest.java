@@ -64,9 +64,9 @@ public class Class1ActivityTest {
         assertNotNull(nextActivity);
 
 
-        //test GetJson method
+        //test Onclick method
         View view = class1Activity.findViewById(R.id.button1);
-        class1Activity.getJson(view);
+        class1Activity.onClick(view);
         nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
         assertNotNull(nextActivity);
     }
