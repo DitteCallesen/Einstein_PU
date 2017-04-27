@@ -4,13 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,7 +26,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+//this is the chatroom activity
 public class Chatroom extends AppCompatActivity {
     private Button btSendMsg;
     private EditText inputMsg;
@@ -56,8 +54,11 @@ public class Chatroom extends AppCompatActivity {
         position = extras.getString("position");
         setTitle("Room " + roomName);
 
+        //get referance from firebase based on roomname selected from previous activity
         root = FirebaseDatabase.getInstance().getReference().child(roomName);
 
+
+        //on send message to chatroom
         btSendMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +77,9 @@ public class Chatroom extends AppCompatActivity {
             }
         });
 
+        //listner for updating chatroom with exsisting and new messages
         root.addChildEventListener(new ChildEventListener() {
+            //setts up the messages in the room
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 appendChatConversation(dataSnapshot);
@@ -84,7 +87,7 @@ public class Chatroom extends AppCompatActivity {
                 chatlist.setAdapter(adapter);
                 chatlist.setSelection(mChatmessage.size());
             }
-
+            //listen to new chatmeassages
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 appendChatConversation(dataSnapshot);
@@ -113,6 +116,7 @@ public class Chatroom extends AppCompatActivity {
 
     }
 
+    //method for getting one and one messages from firebase
     private void appendChatConversation(DataSnapshot dataSnapshot) {
 
         Iterator i = dataSnapshot.getChildren().iterator();
@@ -155,6 +159,7 @@ public class Chatroom extends AppCompatActivity {
         this.finish();
     }
 
+    //class for adding one and one message to the chatroom on the display
     private class ChatroomAdapter extends BaseAdapter {
         private Context mContext;
         private List<Chatmessage> chatmessageList;
@@ -199,11 +204,16 @@ public class Chatroom extends AppCompatActivity {
             Rname.setText(chatmessageList.get(position).getMessageUser());
             msg.setText(chatmessageList.get(position).getMessageText());
             stamp.setText(chatmessageList.get(position).getMessageTIme().toString());
+
+            //checks the message sender to set background to green chat bubble if sender has same
+            // name as the user on the device, the bubble is then placed to the right of the screen
             if (name.equals(chatmessageList.get(position).getMessageUser())) {
                 msg.setBackground(getDrawable(R.drawable.bubble_right_green));
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 layoutParams1.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 layoutParams2.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            //if name is not equal to messageUser, then it means background (of the message) is set
+            //to a gray bubble
             } else {
                 msg.setBackground(getDrawable(R.drawable.bubble_left_gray));
                 layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);

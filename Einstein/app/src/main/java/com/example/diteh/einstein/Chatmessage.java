@@ -4,6 +4,7 @@ package com.example.diteh.einstein;
  * Created by Truong on 14.03.2017.
  */
 
+// Class for how chatmessages are built up
 public class Chatmessage {
     private String messageText;
     private String messageUser;

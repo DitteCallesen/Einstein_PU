@@ -27,7 +27,7 @@ import static org.junit.Assert.assertNotNull;
  */
 
 public class AssignmentActivityTest {
-
+    //Initiating Assigment activity for test
     @Rule
     public ActivityTestRule<AssignmentActivity> assignmentActivityTestRule = new ActivityTestRule<AssignmentActivity>(AssignmentActivity.class) {
         @Override
@@ -52,6 +52,7 @@ public class AssignmentActivityTest {
         }
     };
 
+    //monitor used to see other activities being initiated or not
     Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(MainActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorT = getInstrumentation().addMonitor(TeachingActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorA = getInstrumentation().addMonitor(AssignmentActivity.class.getName(), null, false);
@@ -62,6 +63,7 @@ public class AssignmentActivityTest {
         assignmentActivity = assignmentActivityTestRule.getActivity();
     }
 
+    //test method backToMain
     @Test
     public void testLaunchOfMainActivityOnBackToMainButtonClick() {
 
@@ -79,6 +81,7 @@ public class AssignmentActivityTest {
 
     }
 
+    //test method onBackPressed
     @Test
     public void testOnBackPressed() {
 
@@ -96,8 +99,9 @@ public class AssignmentActivityTest {
 
     }
 
+    //test the getMessage method
     @Test
-    public void getMessage() throws Exception {
+    public void testGetMessage() throws Exception {
         int input1;
         int input2;
         String output;
@@ -123,18 +127,20 @@ public class AssignmentActivityTest {
     }
 
     @Test
-    public void nextTaskExists() throws Exception {
+    public void testNextTaskExists() throws Exception {
         boolean output;
+        //if taskId < assigment array, next task exist
         output = assignmentActivity.nextTaskExists(assignmentActivity.jsonArray, assignmentActivity.taskId);
         assertEquals(true, output);
 
+        //since 20> assigment array length, next task does not exist
         output = assignmentActivity.nextTaskExists(assignmentActivity.jsonArray, 20);
         assertEquals(false, output);
 
     }
 
     @Test
-    public void nextTask() throws Exception {
+    public void testNextTask() throws Exception {
         //check first assignment
         List<String> expectedList = new ArrayList<String>(Arrays.asList("x + 4 = 6", "x = 2", "x = 3", "x = 4", "x = 5"));
         List<String> output = assignmentActivity.nextTask(assignmentActivity.jsonArray, 0);
@@ -158,8 +164,9 @@ public class AssignmentActivityTest {
 
     }
 
+
     @Test
-    public void goToNextTask() throws Exception {
+    public void testGoToNextTask() throws Exception {
         int tempAsolved = assignmentActivity.Asolved;
         int tempTaskID = assignmentActivity.taskId;
 
@@ -175,18 +182,15 @@ public class AssignmentActivityTest {
     }
 
     @Test
-    public void testcorrectAnswerClicked() throws Exception {
-        final int corrOnFtry, corrARow, solvedTask, TId, AnSolved;
+    public void testCorrectAnswerClicked() throws Exception {
+        final int corrOnFtry, corrARow, TId;
         assignmentActivity.correctAnswersInARow=0;
         corrOnFtry = assignmentActivity.correctOnFirstTry;
         corrARow = assignmentActivity.correctAnswersInARow;
-        solvedTask = 0;
         assignmentActivity.taskId = 11;
         TId = assignmentActivity.taskId;
         assignmentActivity.globalCounter = TId;
-        AnSolved = assignmentActivity.Asolved;
         assignmentActivity.answeredWrong = false;
-        int[] tro = assignmentActivity.myTrophies;
         assignmentActivity.Asolved=0;
         assignmentActivity.correctAnswersInARow=0;
         assignmentActivity.myTrophies=new int[12];
@@ -195,9 +199,6 @@ public class AssignmentActivityTest {
         act2.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                boolean foundOne=false,foundto=false,foundthree=false,foundfour=false;
-                boolean foundfive=false,foundsiz=false,foundseven=false,foundeight=false;
-                boolean foundnine=false, foundten=false,foundeleven=false,foundtewelve=false;
                 LinearLayout Popup = (LinearLayout) act2.findViewById(R.id.correctAnswer);
                 assertEquals(View.INVISIBLE, Popup.getVisibility());
 
@@ -282,16 +283,19 @@ public class AssignmentActivityTest {
         });
     }
 
+    //check if the method wrongAnswerClick changes the variable correctAnswersInARow
     @Test
-    public void wrongAnswerClicked() throws Exception {
+    public void testWrongAnswerClicked() throws Exception {
 
         final AssignmentActivity act2 = assignmentActivityTestRule.getActivity();
 
         act2.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                //first confirm correctAnswersInARow not zero
                 assertNotEquals(act2.correctAnswersInARow, 0);
                 act2.wrongAnswerClicked();
+                //confirm correctAnswersInARow is zero
                 assertEquals(0, act2.correctAnswersInARow);
             }
         });
@@ -300,7 +304,7 @@ public class AssignmentActivityTest {
     }
 
     @Test
-    public void button1Clicked() throws Exception {
+    public void testButton1Clicked() throws Exception {
         final AssignmentActivity act2 = assignmentActivityTestRule.getActivity();
 
         act2.runOnUiThread(new Runnable() {
@@ -325,7 +329,7 @@ public class AssignmentActivityTest {
     }
 
     @Test
-    public void button2Clicked() throws Exception {
+    public void testButton2Clicked() throws Exception {
         final AssignmentActivity act2 = assignmentActivityTestRule.getActivity();
 
         act2.runOnUiThread(new Runnable() {
@@ -350,7 +354,7 @@ public class AssignmentActivityTest {
     }
 
     @Test
-    public void button3Clicked() throws Exception {
+    public void testButton3Clicked() throws Exception {
         final AssignmentActivity act2 = assignmentActivityTestRule.getActivity();
 
         act2.runOnUiThread(new Runnable() {
@@ -375,7 +379,7 @@ public class AssignmentActivityTest {
     }
 
     @Test
-    public void button4Clicked() throws Exception {
+    public void testButton4Clicked() throws Exception {
         final AssignmentActivity act2 = assignmentActivityTestRule.getActivity();
 
         act2.runOnUiThread(new Runnable() {
@@ -401,7 +405,7 @@ public class AssignmentActivityTest {
 
 
     @Test
-    public void randomizer() throws Exception {
+    public void testRandomizer() throws Exception {
         String s1 = "ok1", s2 = "ok2", s3 = "ok3", s4 = "ok4";
         List<String> InOrderList = new ArrayList<>(Arrays.asList(s1, s1, s2, s3, s4));
 
@@ -419,14 +423,14 @@ public class AssignmentActivityTest {
     }
 
     @Test
-    public void tempTrophyArray() throws Exception {
+    public void testTempTrophyArray() throws Exception {
         // has trophy 1,2,4,6
         int[] tempTrophies = assignmentActivity.myTrophies;
         //insert trophy
         assignmentActivity.tempTrophyArray(3);
         boolean foundthree = false, foundfour = false, foundten = false;
 
-
+        //check if trophy 3 is inside the array
         for (int i = 0; i < assignmentActivity.myTrophies.length; i++) {
             if (assignmentActivity.myTrophies[i] == 3) {
                 foundthree = true;
@@ -444,7 +448,7 @@ public class AssignmentActivityTest {
     }
 
     @Test
-    public void findTrophy() throws Exception {
+    public void testFindTrophy() throws Exception {
         // has trophy 1,2,4,6
         // dont have trophy 3,5,7,8,9,10,11,12
         //will return true if the trophy is not found

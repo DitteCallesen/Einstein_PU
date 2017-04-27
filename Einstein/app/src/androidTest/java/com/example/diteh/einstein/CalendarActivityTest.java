@@ -20,7 +20,7 @@ import static org.junit.Assert.assertNotNull;
  * Created by mariasoleim on 27.03.2017.
  */
 public class CalendarActivityTest {
-
+    //Initiating Calendar activity for test
     @Rule
     public ActivityTestRule<CalendarActivity> CalendarActivityTestRule = new ActivityTestRule<CalendarActivity>(CalendarActivity.class) {
         @Override
@@ -35,7 +35,7 @@ public class CalendarActivityTest {
             return result;
         }
     };
-
+    //monitor used to see other activities being initiated or not
     Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(MainActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorT = getInstrumentation().addMonitor(TeachingActivity.class.getName(), null, false);
     private CalendarActivity CalendarActivity = null;
@@ -45,6 +45,7 @@ public class CalendarActivityTest {
         CalendarActivity = CalendarActivityTestRule.getActivity();
     }
 
+    //test method backOnClick
     @Test
     public void testLaunchOfMainActivityOnBackToMainButtonClick() {
         //go to back to main menu, first to teachingsite
@@ -60,6 +61,7 @@ public class CalendarActivityTest {
 
     }
 
+    //test method onBackPressed
     @Test
     public void testOnPressedBacl() {
         //go to back to main menu, first to teachingsite

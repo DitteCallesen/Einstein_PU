@@ -25,7 +25,7 @@ import static org.junit.Assert.assertNotNull;
  * Created by mariasoleim on 26.03.2017.
  */
 public class Class2ActivityTest {
-
+    //initiate Class2Activity for test
     @Rule
     public ActivityTestRule<Class2Activity> class2ActivityTestRule = new ActivityTestRule<Class2Activity>(Class2Activity.class) {
         @Override
@@ -40,7 +40,7 @@ public class Class2ActivityTest {
             return result;
         }
     };
-
+    //initiate activit monitors
     Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(AssignmentActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorMainActivity = getInstrumentation().addMonitor(MainActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorTeachingActivity = getInstrumentation().addMonitor(TeachingActivity.class.getName(), null, false);
@@ -51,6 +51,7 @@ public class Class2ActivityTest {
         class2Activity = class2ActivityTestRule.getActivity();
     }
 
+    //test method backToMain
     @Test
     public void testBackToMainForTeacherMethods() {
         //go to back to main menu, first to teachingsite
@@ -71,6 +72,7 @@ public class Class2ActivityTest {
         nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
         assertNotNull(nextActivity);
     }
+    //test method onBackPressed
     @Test
     public void testOnBackPressed() {
 
@@ -87,6 +89,7 @@ public class Class2ActivityTest {
         assertNotNull(nextActivity);
     }
 
+    //rest of the tests here are to test button clicks for the different subjects
     @Test
     public void testLaunchOfClass1ActivityOnBackToTeachingButtonClick() {
         assertNotNull(class2Activity.findViewById(R.id.backToMainButton));

@@ -27,7 +27,7 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
-
+    //initiate Mainactivity for test
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class) {
         @Override
@@ -43,6 +43,7 @@ public class MainActivityTest {
             return result;
         }
     };
+    //initiate activity monitors
     Instrumentation.ActivityMonitor monitorClass1Activity = getInstrumentation().addMonitor(Class1Activity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorClass2Activity = getInstrumentation().addMonitor(Class2Activity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorListOfChatroomActivity = getInstrumentation().addMonitor(ListOfChatroomActivity.class.getName(), null, false);
@@ -56,7 +57,7 @@ public class MainActivityTest {
     public void setUp() throws Exception {
         mActivity = mActivityTestRule.getActivity();
     }
-
+    //--------------------------- begin button click test -------------------------------------------
     @Test
     public void testLaunchOfClass1ActivityOnButtonClick() {
         assertNotNull(mActivity.findViewById(R.id.class1Button));
@@ -110,13 +111,17 @@ public class MainActivityTest {
         assertNotNull(nextActivity);
         nextActivity.finish();
     }
+    //-------------------------------- end button click test -----------------------------------
 
+    //test method tropyOnClick
     @Test
     public void testBackGroundClass() {
         mActivity.username = "Test1";
-        //onView(withId(R.id.trophyroomButton)).perform(click());
+
         mActivity.trophyOnClick(null);
         Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorTrophyroomActivity, 5000);
+
+
         //user Test1 has only two trophies, 1 and 10, check if activiated
         assertEquals(nextActivity.findViewById(R.id.trophy1).getVisibility(), View.VISIBLE);
         assertEquals(nextActivity.findViewById(R.id.trophy10).getVisibility(), View.VISIBLE);

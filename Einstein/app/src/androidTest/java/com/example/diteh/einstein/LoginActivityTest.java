@@ -23,6 +23,7 @@ import static org.junit.Assert.*;
  * Created by Truong on 23.04.2017.
  */
 public class LoginActivityTest {
+    //initiate loginactivity for test
     @Rule
     public ActivityTestRule<LoginActivity> LActivityTestRule = new ActivityTestRule<LoginActivity>(LoginActivity.class) {
         @Override
@@ -32,7 +33,7 @@ public class LoginActivityTest {
             return result;
         }
     };
-
+    //initiate activity monitors
     Instrumentation.ActivityMonitor monitorMainActivity = getInstrumentation().addMonitor(MainActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorTeachingActivity = getInstrumentation().addMonitor(TeachingActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorRegisterActivity = getInstrumentation().addMonitor(RegisterActivity.class.getName(), null, false);
@@ -49,6 +50,7 @@ public class LoginActivityTest {
         assertNotNull(LActivity.findViewById(R.id.tvRegisterhere));
     }
 
+    //test button click register
     @Test
     public void testRegisterButtonClick(){
         onView(withId(R.id.tvRegisterhere)).perform(click());
@@ -57,6 +59,7 @@ public class LoginActivityTest {
         nextActivity.finish();
     }
 
+    //test if you can login with exsisting non student user (admin or teacher)
     @Test
     public void testLoginButtonClickForAdmin(){
         final EditText etUsername = (EditText) LActivity.findViewById(R.id.etUsername);
@@ -72,6 +75,8 @@ public class LoginActivityTest {
             }
         });
         onView(withId(R.id.blogin)).perform(click());
+
+        //check if right information has been sent from database
         Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorTeachingActivity,5000);
         assertNotNull(nextActivity);
         Bundle extras = nextActivity.getIntent().getExtras();
@@ -85,6 +90,7 @@ public class LoginActivityTest {
         nextActivity.finish();
     }
 
+    //test if you can login with exsisting student
     @Test
     public void testLoginButtonClickForStudents(){
         final EditText etUsername = (EditText) LActivity.findViewById(R.id.etUsername);
@@ -100,6 +106,7 @@ public class LoginActivityTest {
             }
         });
         onView(withId(R.id.blogin)).perform(click());
+        //check if right information has been sent from database
         Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitorMainActivity,5000);
         assertNotNull(nextActivity);
         Bundle extras = nextActivity.getIntent().getExtras();

@@ -30,7 +30,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-
+/** This is the assigment activity which sets up assigment for the user to do. It gets the a
+ json string from prevous activity (Class1 and Class2) which have the assigment, user trophies and
+ informtion**/
 public class AssignmentActivity extends AppCompatActivity {
 
     private final static String CLASS_ID = "classId";

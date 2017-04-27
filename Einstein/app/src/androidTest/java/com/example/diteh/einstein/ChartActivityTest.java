@@ -22,6 +22,7 @@ import static org.junit.Assert.*;
  * Created by Truong on 24.04.2017.
  */
 public class ChartActivityTest {
+    //Initiating Chart activity for test
     @Rule
     public ActivityTestRule<ChartActivity> CActivityTestRule = new ActivityTestRule<ChartActivity>(ChartActivity.class) {
         @Override
@@ -51,6 +52,7 @@ public class ChartActivityTest {
         assertNotNull(CActivity.findViewById(R.id.getdata));
     }
 
+    //test method btBack
     @Test
     public void btBack() throws Exception {
         onView(withId(R.id.backButton)).perform(click());
@@ -59,6 +61,7 @@ public class ChartActivityTest {
         nextActivity.finish();
     }
 
+    //test method onBackPressed
     @Test
     public void onBackPressed() throws Exception {
         CActivity.onBackPressed();

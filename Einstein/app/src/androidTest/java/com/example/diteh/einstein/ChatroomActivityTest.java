@@ -23,7 +23,7 @@ import static org.junit.Assert.assertNotNull;
  * Created by mariasoleim on 27.03.2017.
  */
 public class ChatroomActivityTest {
-
+    //Initiating Chart activity for test
     @Rule
     public ActivityTestRule<Chatroom> chatroomActivityTestRule = new ActivityTestRule<Chatroom>(Chatroom.class) {
         @Override
@@ -43,6 +43,7 @@ public class ChatroomActivityTest {
     Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(ListOfChatroomActivity.class.getName(), null, false);
     private Chatroom ChatroomActivity = null;
 
+    //test if teaching activity is launched when back button is pressed
     @Before
     public void setUp() throws Exception {
         ChatroomActivity = chatroomActivityTestRule.getActivity();

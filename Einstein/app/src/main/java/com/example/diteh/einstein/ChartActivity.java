@@ -1,6 +1,5 @@
 package com.example.diteh.einstein;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+//activity for non-students (teaching staff), this is to see statistics
 public class ChartActivity extends AppCompatActivity {
     Button fillWithData;
     BarChart barChart;
@@ -51,7 +50,7 @@ public class ChartActivity extends AppCompatActivity {
         username = extras.getString("username");
         position = extras.getString("position");
         coursesubject = extras.getString("courseSubject");
-
+        //get list of courses and subject from teaching activity
         try {
             JSONObject jsonObject = new JSONObject(coursesubject);
             JSONObject server_respons = jsonObject.getJSONObject("server_response");
@@ -76,7 +75,9 @@ public class ChartActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        //set up three spinners to choose which course-subject combo to get data from + which kin
+        //of data, per assignment or per month
+        //first spinner is for courses
         final Spinner spin = (Spinner) findViewById(R.id.Scourse);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, course);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -85,6 +86,7 @@ public class ChartActivity extends AppCompatActivity {
         final ArrayAdapter<CharSequence> adapter21 = ArrayAdapter.createFromResource(getApplicationContext(), R.array.StatSubjects, android.R.layout.simple_spinner_item);
         final Spinner spin2 = (Spinner) findViewById(R.id.Ssubject);
 
+        //subject choices changes when selected course changes
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -105,12 +107,13 @@ public class ChartActivity extends AppCompatActivity {
             }
         });
 
-
+        //spinner for per assignment or per month
         final Spinner spin3 = (Spinner) findViewById(R.id.spinner4);
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.type, android.R.layout.simple_spinner_item);
         adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin3.setAdapter(adapter3);
 
+        //onclick listner for request data and set the table
         fillWithData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,7 +188,7 @@ public class ChartActivity extends AppCompatActivity {
         finish();
     }
 
-
+    //method for filling out the table with information from database
     public void setTable(String response, String select) {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
         ArrayList<String> theDates = new ArrayList<>();
@@ -228,7 +231,7 @@ public class ChartActivity extends AppCompatActivity {
 
 
         BarData theData = new BarData(theDates, barDataSet);
-
+        //enables touching, drag and scales the graf
         barChart.setData(theData);
         barChart.setTouchEnabled(true);
         barChart.setDragEnabled(true);
@@ -236,7 +239,7 @@ public class ChartActivity extends AppCompatActivity {
         barChart.invalidate();
     }
 
-
+    //method for requesting data from database
     public class GetDataToChart extends StringRequest {
 
         private static final String LOGIN_REQUEST_URL = "https://truongtrxu.000webhostapp.com/getCharDataValues.php";

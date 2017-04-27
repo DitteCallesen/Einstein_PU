@@ -41,7 +41,7 @@ public class TrophyActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+    //when a trophy is click, this method actives a pop up image with text
     public void trophyClicked(View view) {
         LinearLayout big_trophy = (LinearLayout) findViewById(R.id.big_trophy);
         big_trophy.setVisibility(View.VISIBLE);
@@ -94,6 +94,7 @@ public class TrophyActivity extends AppCompatActivity {
         big_trophy.setVisibility(View.INVISIBLE);
     }
 
+    //method to set trophys as visiable, all start off as invisible
     public void showTrophies(int i) {
 
         switch (i) {

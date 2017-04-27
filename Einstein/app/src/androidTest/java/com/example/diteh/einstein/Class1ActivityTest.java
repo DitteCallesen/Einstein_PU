@@ -23,7 +23,7 @@ import static org.junit.Assert.assertNotNull;
  * Created by mariasoleim on 26.03.2017.
  */
 public class Class1ActivityTest {
-
+    //Initiating Chart activity for test
     @Rule
     public ActivityTestRule<Class1Activity> class1ActivityTestRule = new ActivityTestRule<Class1Activity>(Class1Activity.class) {
         @Override
@@ -38,7 +38,7 @@ public class Class1ActivityTest {
             return result;
         }
     };
-
+    //initiate activity minotors  for test
     Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(AssignmentActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorMainActivity = getInstrumentation().addMonitor(MainActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor monitorTeachingActivity = getInstrumentation().addMonitor(TeachingActivity.class.getName(), null, false);
@@ -49,7 +49,7 @@ public class Class1ActivityTest {
         class1Activity = class1ActivityTestRule.getActivity();
 
     }
-
+    //test method backToMain and Onclick
     @Test
     public void testBackToMainForTeacherMethods() {
         //go to back to main menu, first to teachingsite
@@ -70,6 +70,8 @@ public class Class1ActivityTest {
         nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
         assertNotNull(nextActivity);
     }
+
+    //test method OnBackPressed
     @Test
     public void testOnBackPressed() {
 
@@ -86,8 +88,8 @@ public class Class1ActivityTest {
         assertNotNull(nextActivity);
     }
 
-
-        @Test
+    //rest of the tests here are to test button clicks for the different subjects
+    @Test
     public void testLaunchOfClass1ActivityOnBackToTeachingButtonClick() {
         assertNotNull(class1Activity.findViewById(R.id.backToMainButton));
         onView(withId(R.id.backToMainButton)).perform(click());

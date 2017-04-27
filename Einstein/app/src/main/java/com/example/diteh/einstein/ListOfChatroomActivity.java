@@ -23,7 +23,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
+// creates a list of chatrooms for the Einstein, user can make a new chatroom or select an exsisting
+// when selected, a new activity will be launched
 public class ListOfChatroomActivity extends AppCompatActivity {
     private Button add_room;
     private EditText room_name;
@@ -48,6 +49,7 @@ public class ListOfChatroomActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listOfRooms);
         listView.setAdapter(arrayAdapter);
 
+        //when a new room is added
         add_room.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +59,7 @@ public class ListOfChatroomActivity extends AppCompatActivity {
             }
         });
 
+        //sets up the room list
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -76,6 +79,7 @@ public class ListOfChatroomActivity extends AppCompatActivity {
             }
         });
 
+        //on room selected, new activity is launched
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
 

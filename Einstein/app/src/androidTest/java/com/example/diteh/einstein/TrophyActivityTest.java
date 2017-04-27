@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
-import android.test.UiThreadTest;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -26,7 +25,7 @@ import static org.junit.Assert.assertNotNull;
  * Created by mariasoleim on 27.03.2017.
  */
 public class TrophyActivityTest {
-
+    //initiate trophyactivity for test
     @Rule
     public ActivityTestRule<TrophyActivity> trophyActivityTestRule = new ActivityTestRule<TrophyActivity>(TrophyActivity.class) {
         @Override
@@ -48,11 +47,12 @@ public class TrophyActivityTest {
         TrophyActivity = trophyActivityTestRule.getActivity();
     }
 
+    //test showTrophies method
     @Test
     public void testShowTrophies() {
         ImageButton imageButton;
 
-        //all trophies are invisible here
+        //all trophies are invisible at the start
         imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy1);
         assertEquals(imageButton.getVisibility(), View.INVISIBLE);
         imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy2);
@@ -88,7 +88,7 @@ public class TrophyActivityTest {
                     TrophyActivity.showTrophies(trophies[i]);
                 }
 
-                //check if the abot is true
+                //all trophies are visible now
                 imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy1);
                 assertEquals(imageButton.getVisibility(), View.VISIBLE);
                 imageButton = (ImageButton) TrophyActivity.findViewById(R.id.trophy2);
@@ -119,7 +119,7 @@ public class TrophyActivityTest {
 
     }
 
-
+    //test that the an image, the big trophy, pops up when a trophy is clicked
     @Test
     public void testViewOfBigTrophyOnTrophyClick() {
 
@@ -134,9 +134,11 @@ public class TrophyActivityTest {
         assertEquals(TrophyActivity.findViewById(R.id.big_trophy).getVisibility(), View.VISIBLE);
     }
 
+    //further test on big trophy, this time check the text which comes with it
     @Test
     public void testTrophyClicked() {
         TextView textView;
+        //activite trophies
         TrophyActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

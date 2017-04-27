@@ -95,6 +95,8 @@ public class Class2Activity extends AppCompatActivity implements View.OnClickLis
         finish();
     }
 
+    /**Whecn a subject button is clioked, this method will request information from the database
+     and wait for it before the assigment activity is launched with all need information**/
     @Override
     public void onClick(View v) {
         Button b = (Button) v;
@@ -147,7 +149,7 @@ public class Class2Activity extends AppCompatActivity implements View.OnClickLis
         queue.add(assigmentRequest);
     }
 
-
+    //this class does the request to the database
     public class AssigmentRequest extends StringRequest {
 
         private static final String ASSIGN_REQUEST_URL = "https://truongtrxu.000webhostapp.com/getJsonAssign2.php";

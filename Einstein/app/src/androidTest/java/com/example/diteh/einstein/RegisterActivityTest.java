@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.core.deps.guava.collect.Range;
 import android.support.test.rule.ActivityTestRule;
-import android.support.v7.app.AlertDialog;
 import android.widget.EditText;
 
 import org.json.JSONException;
@@ -20,7 +18,6 @@ import org.junit.Test;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.*;
 
@@ -28,6 +25,7 @@ import static org.junit.Assert.*;
  * Created by Truong on 23.04.2017.
  */
 public class RegisterActivityTest {
+    //initiate registerActvity for test
     @Rule
     public ActivityTestRule<RegisterActivity> RActivityTestRule = new ActivityTestRule<RegisterActivity>(RegisterActivity.class) {
         @Override
@@ -52,6 +50,10 @@ public class RegisterActivityTest {
         assertNotNull(RActivity.findViewById(R.id.bBack));
     }
 
+    /**Check if you can use existing username and email to create new account.
+    New account can only be made once, if you want to test it, change username and email
+    then change success,nameAvail and emailAvil to true, and also all the assert should be
+    changed to true before the test is launched **/
     @Test
     public void testRegisterButtonClick(){
         final EditText etName = (EditText) RActivity.findViewById(R.id.etName);
@@ -88,6 +90,7 @@ public class RegisterActivityTest {
         assertEquals(false,emailAvil);
     }
 
+    //test method checkValid
     @Test
     public void checkValid() throws Exception {
         RActivity.runOnUiThread(new Runnable() {
