@@ -23,7 +23,7 @@
 
     <string-array name="typer">
         <item>Student</item>
-        <item>UndervisningsPersonell</item>
+        <item>Professor</item>
     </string-array>
 
     <string-array name="type">
