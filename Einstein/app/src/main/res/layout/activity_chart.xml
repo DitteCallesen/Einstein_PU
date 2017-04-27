@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,21 +14,21 @@
 
 
     <Button
+        android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="btBack"
-        android:text="Back"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/button12" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:onClick="btBack"
+        android:text="Back" />
 
     <TextView
         android:id="@+id/textCS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button12"
-        android:layout_alignBottom="@+id/button12"
+        android:layout_alignBaseline="@+id/backButton"
+        android:layout_alignBottom="@+id/backButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -38,8 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_above="@+id/tSubject"
-         />
+        android:layout_above="@+id/tSubject" />
 
     <Spinner
         android:id="@+id/Ssubject"
@@ -53,27 +51,26 @@
         android:id="@+id/tCourse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/Scourse"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/Scourse"
         android:text="Select course" />
 
     <TextView
         android:id="@+id/tSubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select subject"
         android:layout_above="@+id/Ssubject"
-        />
+        android:text="Select subject" />
 
     <Button
         android:id="@+id/getdata"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fill chart with data"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:text="Fill chart with data" />
 
     <Spinner
         android:id="@+id/spinner4"
@@ -87,10 +84,10 @@
         android:id="@+id/tSet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select set"
         android:layout_above="@+id/spinner4"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:text="Select set" />
 
     <TextView
         android:id="@+id/xLabel"

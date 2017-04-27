@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
 
@@ -19,49 +19,47 @@
                 android:id="@+id/backToMainButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/arrow"
-                android:onClick="backToMain"/>
+                android:onClick="backToMain"
+                android:src="@mipmap/arrow" />
 
             <TextView
+                android:id="@+id/fag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/fag"
                 android:gravity="center"
-                android:paddingTop="5dp"
                 android:paddingBottom="25dp"
+                android:paddingTop="5dp"
                 android:textColor="#DDDDDD"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
 
         </FrameLayout>
 
 
         <TextView
+            android:id="@+id/subject"
             android:layout_width="match_parent"
             android:layout_height="101dp"
-            android:id="@+id/subject"
             android:gravity="center_horizontal"
-            android:paddingTop="20dp"
             android:paddingBottom="25dp"
-            android:textSize="30dp"
-            />
+            android:paddingTop="20dp"
+            android:textSize="30dp" />
 
         <!--Assignment text in scrollview in case of much text-->
         <ScrollView
+            android:id="@+id/dfes"
             android:layout_width="match_parent"
             android:layout_height="128dp"
-            android:id="@+id/dfes"
             android:layout_weight="1.21">
 
             <!--Oppgavetekst-->
             <TextView
+                android:id="@+id/question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/question"
                 android:gravity="center_horizontal"
                 android:padding="30dp"
                 android:textSize="30dp" />
         </ScrollView>
-
 
 
         <LinearLayout
@@ -72,29 +70,29 @@
 
             <Button
                 android:id="@+id/button1"
-                android:onClick="button1Clicked"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
                 android:layout_margin="1px"
+                android:layout_weight="1"
+                android:background="#79a9db"
+                android:onClick="button1Clicked"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
                 android:textColorHint="#ffffff"
-                android:background="#79a9db"/>
+                android:textSize="30dp" />
 
             <Button
                 android:id="@+id/button2"
-                android:onClick="button2Clicked"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
                 android:layout_margin="1px"
+                android:layout_weight="1"
+                android:background="#79a9db"
+                android:onClick="button2Clicked"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
                 android:textColorHint="#ffffff"
-                android:background="#79a9db"/>
+                android:textSize="30dp" />
 
         </LinearLayout>
 
@@ -107,32 +105,31 @@
 
             <Button
                 android:id="@+id/button3"
-                android:onClick="button3Clicked"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
                 android:layout_margin="1px"
+                android:layout_weight="1"
+                android:background="#79a9db"
+                android:onClick="button3Clicked"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
                 android:textColorHint="#ffffff"
-                android:background="#79a9db"/>
+                android:textSize="30dp" />
 
             <Button
                 android:id="@+id/button4"
-                android:onClick="button4Clicked"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
                 android:layout_margin="1px"
+                android:layout_weight="1"
+                android:background="#79a9db"
+                android:onClick="button4Clicked"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
                 android:textColorHint="#ffffff"
-                android:background="#79a9db"/>
+                android:textSize="30dp" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>
@@ -149,23 +146,23 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="30dp"
             android:text="Correct!"
-            android:textSize="50dp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
             android:textAlignment="center"
-            android:layout_margin="30dp"/>
+            android:textColor="#FFFFFF"
+            android:textSize="50dp"
+            android:textStyle="bold" />
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Next task"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:textSize="30dp"
             android:layout_gravity="bottom|center"
-            android:onClick="goToNextTask"/>
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:hint="Next task"
+            android:onClick="goToNextTask"
+            android:textSize="30dp" />
 
 
     </LinearLayout>

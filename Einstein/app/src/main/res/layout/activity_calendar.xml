@@ -11,37 +11,37 @@
     tools:context="com.example.diteh.einstein.CalendarActivity">
 
     <CalendarView
+        android:id="@+id/calendarView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="51dp"
-        android:id="@+id/calendarView" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="51dp" />
 
     <TextView
-        android:text="Calender"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="14dp"
-        android:id="@+id/textView"
-        android:textSize="24sp"
+        android:fontFamily="sans-serif"
+        android:text="Calender"
         android:textColor="@android:color/background_dark"
-        android:fontFamily="sans-serif" />
+        android:textSize="24sp" />
 
     <Button
-        android:text="Back"
+        android:id="@+id/backToMainButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp"
         android:layout_marginLeft="29dp"
         android:layout_marginStart="29dp"
-        android:layout_marginBottom="13dp"
-        android:id="@+id/backToMainButton"
-        android:onClick="backOnClick"/>
+        android:onClick="backOnClick"
+        android:text="Back" />
 </RelativeLayout>

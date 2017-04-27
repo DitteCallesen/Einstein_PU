@@ -17,29 +17,33 @@ import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by mariasoleim on 27.03.2017.
  */
 public class ChatroomActivityTest {
-
+    //Initiating Chart activity for test
     @Rule
-    public ActivityTestRule<ChatroomActivity> chatroomActivityTestRule = new ActivityTestRule<ChatroomActivity>(ChatroomActivity.class) {
+    public ActivityTestRule<Chatroom> chatroomActivityTestRule = new ActivityTestRule<Chatroom>(Chatroom.class) {
         @Override
         protected Intent getActivityIntent() {
             Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            Intent result = new Intent(targetContext, ChatroomActivity.class);
+            Intent result = new Intent(targetContext, Chatroom.class);
             Bundle extras = new Bundle();
-            extras.putString("", "");
+            extras.putString("username", "a");
+            extras.putString("name", "admin");
+            extras.putString("position", "admin");
+            extras.putString("roomName", "Room1");
             result.putExtras(extras);
             return result;
         }
     };
 
-    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(MainActivity.class.getName(), null, false);
-    private ChatroomActivity ChatroomActivity = null;
+    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(ListOfChatroomActivity.class.getName(), null, false);
+    private Chatroom ChatroomActivity = null;
 
+    //test if teaching activity is launched when back button is pressed
     @Before
     public void setUp() throws Exception {
         ChatroomActivity = chatroomActivityTestRule.getActivity();
@@ -47,8 +51,8 @@ public class ChatroomActivityTest {
 
     @Test
     public void testLaunchOfMainActivityOnBackToMainButtonClick() {
-        assertNotNull(ChatroomActivity.findViewById(R.id.backToMainButton));
-        onView(withId(R.id.backToMainButton)).perform(click());
+        assertNotNull(ChatroomActivity.findViewById(R.id.backToListOfRooms));
+        onView(withId(R.id.backToListOfRooms)).perform(click());
         Activity nextActivity = getInstrumentation().waitForMonitorWithTimeout(monitor, 5000);
         assertNotNull(nextActivity);
         nextActivity.finish();

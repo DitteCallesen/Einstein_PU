@@ -1,0 +1,593 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AssignmentActivity</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.diteh.einstein</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AssignmentActivity (com.example.diteh.einstein)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AssignmentActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    17.6%
+  </span>
+  <span class="absValue">
+    (3/ 17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    7.3%
+  </span>
+  <span class="absValue">
+    (17/ 234)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">AssignmentActivity$Background</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 38)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    13.6%
+  </span>
+  <span class="absValue">
+    (3/ 22)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    6.2%
+  </span>
+  <span class="absValue">
+    (17/ 272)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.diteh.einstein;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import android.content.Context;
+<i>4</i>&nbsp;import android.content.Intent;
+<i>5</i>&nbsp;import android.os.AsyncTask;
+<i>6</i>&nbsp;import android.os.Bundle;
+<i>7</i>&nbsp;import android.os.Vibrator;
+<i>8</i>&nbsp;import android.support.v7.app.AppCompatActivity;
+<i>9</i>&nbsp;import android.view.View;
+<i>10</i>&nbsp;import android.widget.Button;
+<i>11</i>&nbsp;import android.widget.LinearLayout;
+<i>12</i>&nbsp;import android.widget.TextView;
+<i>13</i>&nbsp;import android.widget.Toast;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;import org.json.JSONArray;
+<i>16</i>&nbsp;import org.json.JSONException;
+<i>17</i>&nbsp;import org.json.JSONObject;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;import java.io.BufferedReader;
+<i>20</i>&nbsp;import java.io.IOException;
+<i>21</i>&nbsp;import java.io.InputStream;
+<i>22</i>&nbsp;import java.io.InputStreamReader;
+<i>23</i>&nbsp;import java.net.HttpURLConnection;
+<i>24</i>&nbsp;import java.net.MalformedURLException;
+<i>25</i>&nbsp;import java.net.URL;
+<i>26</i>&nbsp;import java.text.SimpleDateFormat;
+<i>27</i>&nbsp;import java.util.ArrayList;
+<i>28</i>&nbsp;import java.util.Arrays;
+<i>29</i>&nbsp;import java.util.Calendar;
+<i>30</i>&nbsp;import java.util.List;
+<i>31</i>&nbsp;import java.util.Random;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;
+<b class="fc"><i>34</i>&nbsp;public class AssignmentActivity extends AppCompatActivity {</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;    private final static String CLASS_ID = &quot;classId&quot;;
+<i>37</i>&nbsp;    private final static String SUBJECT_ID = &quot;subjectId&quot;;
+<i>38</i>&nbsp;    private final static String TASK_ID = &quot;taskId&quot;;
+<i>39</i>&nbsp;    private final static String CORRECT_ANSWERS_IN_A_ROW = &quot;correctAnswersInARow&quot;;
+<i>40</i>&nbsp;    private final static String CORRECT_ON_FIRST_TRY = &quot;correctOnFirstTry&quot;;
+<i>41</i>&nbsp;    private final static String NUMBER_OF_TASKS = &quot;numberOfTasks&quot;;
+<b class="fc"><i>42</i>&nbsp;    protected boolean answeredWrong = false;</b>
+<i>43</i>&nbsp;    private String classId, subjectId;
+<i>44</i>&nbsp;    protected JSONArray jsonArray;
+<i>45</i>&nbsp;    protected JSONObject jsonObject;
+<i>46</i>&nbsp;    protected int globalCounter,correctAnswersInARow,correctOnFirstTry, courseSubjectID;
+<i>47</i>&nbsp;    private int numberOfTasks;
+<i>48</i>&nbsp;    protected int[] myTrophies;
+<i>49</i>&nbsp;    protected int taskId;
+<i>50</i>&nbsp;    private Vibrator vibrator;
+<i>51</i>&nbsp;    protected String username, name, position;
+<b class="fc"><i>52</i>&nbsp;    protected String correctAnswer = &quot;&quot;;</b>
+<b class="fc"><i>53</i>&nbsp;    protected String answer1 = &quot;&quot;;</b>
+<b class="fc"><i>54</i>&nbsp;    protected String answer2 = &quot;&quot;;</b>
+<b class="fc"><i>55</i>&nbsp;    protected String answer3 = &quot;&quot;;</b>
+<b class="fc"><i>56</i>&nbsp;    protected String answer4 = &quot;&quot;;</b>
+<i>57</i>&nbsp;    private int[] solved, assignID;
+<i>58</i>&nbsp;    protected int Asolved;
+<b class="fc"><i>59</i>&nbsp;    private SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;MMyy&quot;);</b>
+<b class="fc"><i>60</i>&nbsp;    private Calendar c = Calendar.getInstance();</b>
+<i>61</i>&nbsp;    private String mmyy;
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    @Override
+<i>64</i>&nbsp;    protected void onCreate(Bundle savedInstanceState) {
+<b class="nc"><i>65</i>&nbsp;        super.onCreate(savedInstanceState);</b>
+<i>66</i>&nbsp;
+<b class="nc"><i>67</i>&nbsp;        setContentView(R.layout.activity_assignment);</b>
+<b class="nc"><i>68</i>&nbsp;        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);</b>
+<b class="nc"><i>69</i>&nbsp;        mmyy = dateFormat.format(c.getTime());</b>
+<b class="nc"><i>70</i>&nbsp;        Bundle extras = getIntent().getExtras();</b>
+<b class="nc"><i>71</i>&nbsp;        classId = extras.getString(CLASS_ID);</b>
+<b class="nc"><i>72</i>&nbsp;        subjectId = extras.getString(SUBJECT_ID);</b>
+<b class="nc"><i>73</i>&nbsp;        taskId = extras.getInt(TASK_ID);</b>
+<b class="nc"><i>74</i>&nbsp;        correctAnswersInARow = extras.getInt(CORRECT_ANSWERS_IN_A_ROW);</b>
+<b class="nc"><i>75</i>&nbsp;        correctOnFirstTry = extras.getInt(CORRECT_ON_FIRST_TRY);</b>
+<b class="nc"><i>76</i>&nbsp;        numberOfTasks = extras.getInt(NUMBER_OF_TASKS);</b>
+<b class="nc"><i>77</i>&nbsp;        name = extras.getString(&quot;name&quot;);</b>
+<b class="nc"><i>78</i>&nbsp;        username = extras.getString(&quot;username&quot;);</b>
+<b class="nc"><i>79</i>&nbsp;        solved = extras.getIntArray(&quot;solved&quot;);</b>
+<b class="nc"><i>80</i>&nbsp;        Asolved = extras.getInt(&quot;Asolved&quot;);</b>
+<b class="nc"><i>81</i>&nbsp;        position = extras.getString(&quot;position&quot;);</b>
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;        //make jsonobject and jsonarray
+<i>84</i>&nbsp;        try {
+<i>85</i>&nbsp;
+<b class="nc"><i>86</i>&nbsp;            jsonObject = new JSONObject(extras.getString(&quot;jsonO&quot;));</b>
+<b class="nc"><i>87</i>&nbsp;            jsonArray = jsonObject.getJSONArray(&quot;assignments&quot;);</b>
+<i>88</i>&nbsp;
+<b class="nc"><i>89</i>&nbsp;            JSONArray userdataArray = jsonObject.getJSONArray(&quot;userdata&quot;);</b>
+<b class="nc"><i>90</i>&nbsp;            JSONObject userdata = userdataArray.getJSONObject(0);</b>
+<b class="nc"><i>91</i>&nbsp;            courseSubjectID = userdata.getInt(&quot;courseSubjectID&quot;);</b>
+<b class="nc"><i>92</i>&nbsp;            JSONArray Optrophies = jsonObject.getJSONArray(&quot;trophy&quot;);</b>
+<i>93</i>&nbsp;
+<i>94</i>&nbsp;            //Make the trophy array, if no trophy from user make an empty array
+<b class="nc"><i>95</i>&nbsp;            String ls = Optrophies.toString();</b>
+<b class="nc"><i>96</i>&nbsp;            if (!ls.equals(&quot;[]&quot;)) {</b>
+<b class="nc"><i>97</i>&nbsp;                myTrophies = new int[12];</b>
+<b class="nc"><i>98</i>&nbsp;                for (int i = 0; i &lt; Optrophies.length(); i++) {</b>
+<b class="nc"><i>99</i>&nbsp;                    JSONObject gettro = Optrophies.getJSONObject(i);</b>
+<b class="nc"><i>100</i>&nbsp;                    myTrophies[i] = gettro.getInt(&quot;trophynum&quot;);</b>
+<i>101</i>&nbsp;                }
+<i>102</i>&nbsp;            } else {
+<b class="nc"><i>103</i>&nbsp;                myTrophies = new int[12];</b>
+<i>104</i>&nbsp;
+<i>105</i>&nbsp;            }
+<i>106</i>&nbsp;            //get assignemtID to update assigment statistcs
+<b class="nc"><i>107</i>&nbsp;            assignID = new int[jsonArray.length()];</b>
+<b class="nc"><i>108</i>&nbsp;            for (int j = 0; j &lt; jsonArray.length(); j++) {</b>
+<b class="nc"><i>109</i>&nbsp;                JSONObject getAssignID = jsonArray.getJSONObject(j);</b>
+<b class="nc"><i>110</i>&nbsp;                assignID[j] = getAssignID.getInt(&quot;assignID&quot;);</b>
+<i>111</i>&nbsp;            }
+<b class="nc"><i>112</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>113</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>114</i>&nbsp;            myTrophies = new int[1];</b>
+<b class="nc"><i>115</i>&nbsp;            myTrophies[0] = 0;</b>
+<b class="nc"><i>116</i>&nbsp;        }</b>
+<i>117</i>&nbsp;
+<i>118</i>&nbsp;        //find buttons on display
+<b class="nc"><i>119</i>&nbsp;        TextView class_view = (TextView) findViewById(R.id.fag);</b>
+<b class="nc"><i>120</i>&nbsp;        TextView subject_view = (TextView) findViewById(R.id.subject);</b>
+<b class="nc"><i>121</i>&nbsp;        TextView question_view = (TextView) findViewById(R.id.question);</b>
+<b class="nc"><i>122</i>&nbsp;        TextView button1 = (TextView) findViewById(R.id.button1);</b>
+<b class="nc"><i>123</i>&nbsp;        TextView button2 = (TextView) findViewById(R.id.button2);</b>
+<b class="nc"><i>124</i>&nbsp;        TextView button3 = (TextView) findViewById(R.id.button3);</b>
+<b class="nc"><i>125</i>&nbsp;        TextView button4 = (TextView) findViewById(R.id.button4);</b>
+<i>126</i>&nbsp;
+<i>127</i>&nbsp;        //Get nect task out to display
+<b class="nc"><i>128</i>&nbsp;        if (nextTaskExists(jsonArray, taskId)) {</b>
+<b class="nc"><i>129</i>&nbsp;            List&lt;String&gt; task = nextTask(jsonArray, taskId);</b>
+<b class="nc"><i>130</i>&nbsp;            class_view.setText(classId);</b>
+<b class="nc"><i>131</i>&nbsp;            subject_view.setText(subjectId);</b>
+<b class="nc"><i>132</i>&nbsp;            question_view.setText(task.get(0));</b>
+<b class="nc"><i>133</i>&nbsp;            List&lt;String&gt; answers = randomizer(task.get(1), task.get(2), task.get(3), task.get(4));</b>
+<b class="nc"><i>134</i>&nbsp;            button1.setHint(answers.get(1));</b>
+<b class="nc"><i>135</i>&nbsp;            button2.setHint(answers.get(2));</b>
+<b class="nc"><i>136</i>&nbsp;            button3.setHint(answers.get(3));</b>
+<b class="nc"><i>137</i>&nbsp;            button4.setHint(answers.get(4));</b>
+<b class="nc"><i>138</i>&nbsp;            answer1 = answers.get(1);</b>
+<b class="nc"><i>139</i>&nbsp;            answer2 = answers.get(2);</b>
+<b class="nc"><i>140</i>&nbsp;            answer3 = answers.get(3);</b>
+<b class="nc"><i>141</i>&nbsp;            answer4 = answers.get(4);</b>
+<b class="nc"><i>142</i>&nbsp;            correctAnswer = answers.get(0);</b>
+<b class="nc"><i>143</i>&nbsp;        } else {</b>
+<i>144</i>&nbsp;            //if all assigments are solved do this
+<b class="nc"><i>145</i>&nbsp;            subject_view.setText(getMessage(correctOnFirstTry, numberOfTasks));</b>
+<b class="nc"><i>146</i>&nbsp;            if (numberOfTasks != 0) {</b>
+<b class="nc"><i>147</i>&nbsp;                question_view.setText(correctOnFirstTry + &quot;/&quot; + numberOfTasks + &quot; correct on first try.&quot;);</b>
+<i>148</i>&nbsp;            }
+<b class="nc"><i>149</i>&nbsp;            button1.setVisibility(View.INVISIBLE);</b>
+<b class="nc"><i>150</i>&nbsp;            button2.setVisibility(View.INVISIBLE);</b>
+<b class="nc"><i>151</i>&nbsp;            button3.setVisibility(View.INVISIBLE);</b>
+<b class="nc"><i>152</i>&nbsp;            button4.setVisibility(View.INVISIBLE);</b>
+<i>153</i>&nbsp;
+<b class="nc"><i>154</i>&nbsp;            new Background(0, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<i>155</i>&nbsp;        }
+<b class="nc"><i>156</i>&nbsp;        globalCounter = taskId;</b>
+<b class="nc"><i>157</i>&nbsp;    }</b>
+<i>158</i>&nbsp;
+<i>159</i>&nbsp;    //This method decides which message that should be shown to the user depending on
+<i>160</i>&nbsp;    //how many of the tasks that were correct on first try
+<i>161</i>&nbsp;    public String getMessage(int correctOnFirstTry, int numberOfTasks) {
+<b class="fc"><i>162</i>&nbsp;        if (numberOfTasks == 0) {</b>
+<b class="fc"><i>163</i>&nbsp;            return &quot;No exercises available.&quot;;</b>
+<i>164</i>&nbsp;        }
+<b class="fc"><i>165</i>&nbsp;        float percentScore = (float) correctOnFirstTry / numberOfTasks;</b>
+<b class="fc"><i>166</i>&nbsp;        if (percentScore &lt; 0.6) {</b>
+<b class="fc"><i>167</i>&nbsp;            return &quot;Better luck next time.&quot;;</b>
+<i>168</i>&nbsp;        } else {
+<b class="fc"><i>169</i>&nbsp;            return &quot;Congratulations!&quot;;</b>
+<i>170</i>&nbsp;        }
+<i>171</i>&nbsp;    }
+<i>172</i>&nbsp;
+<i>173</i>&nbsp;    //This method return true if there is a next task in the database
+<i>174</i>&nbsp;    //Otherwise it return false
+<i>175</i>&nbsp;    public boolean nextTaskExists(JSONArray jsonArray, int taskId) {
+<b class="fc"><i>176</i>&nbsp;        if (taskId &lt; jsonArray.length()) {</b>
+<b class="fc"><i>177</i>&nbsp;            return true;</b>
+<i>178</i>&nbsp;        } else {
+<b class="nc"><i>179</i>&nbsp;            return false;</b>
+<i>180</i>&nbsp;        }
+<i>181</i>&nbsp;    }
+<i>182</i>&nbsp;
+<i>183</i>&nbsp;    //Finds the given exercise from the database
+<i>184</i>&nbsp;    //Returns a list with all the info from the exercise
+<i>185</i>&nbsp;    public List&lt;String&gt; nextTask(JSONArray jsonArray, int taskId) {
+<b class="nc"><i>186</i>&nbsp;        List&lt;String&gt; foo = new ArrayList&lt;String&gt;(Arrays.asList(&quot;f&quot;));</b>
+<b class="nc"><i>187</i>&nbsp;        String exersices = &quot;&quot;;</b>
+<i>188</i>&nbsp;        try {
+<b class="nc"><i>189</i>&nbsp;            JSONObject jo = jsonArray.getJSONObject(taskId);</b>
+<b class="nc"><i>190</i>&nbsp;            exersices = jo.getString(&quot;task&quot;);</b>
+<b class="nc"><i>191</i>&nbsp;            String[] taskArray = exersices.split(&quot;_&quot;);</b>
+<b class="nc"><i>192</i>&nbsp;            String[] temp1 = taskArray;</b>
+<b class="nc"><i>193</i>&nbsp;            List&lt;String&gt; taskList = Arrays.asList(taskArray);</b>
+<b class="nc"><i>194</i>&nbsp;            List&lt;String&gt; temp = taskList;</b>
+<b class="nc"><i>195</i>&nbsp;            return taskList;</b>
+<b class="nc"><i>196</i>&nbsp;        } catch (JSONException e) {</b>
+<b class="nc"><i>197</i>&nbsp;            e.printStackTrace();</b>
+<i>198</i>&nbsp;        }
+<b class="nc"><i>199</i>&nbsp;        return foo;</b>
+<i>200</i>&nbsp;    }
+<i>201</i>&nbsp;
+<i>202</i>&nbsp;    //prepare and launch next assignment
+<i>203</i>&nbsp;    public void goToNextTask(View view) {
+<b class="nc"><i>204</i>&nbsp;        Intent intent = new Intent(this, AssignmentActivity.class);</b>
+<b class="nc"><i>205</i>&nbsp;        Bundle extras = new Bundle();</b>
+<b class="nc"><i>206</i>&nbsp;        extras.putString(CLASS_ID, classId);</b>
+<b class="nc"><i>207</i>&nbsp;        extras.putString(SUBJECT_ID, subjectId);</b>
+<b class="nc"><i>208</i>&nbsp;        extras.putInt(TASK_ID, taskId);</b>
+<b class="nc"><i>209</i>&nbsp;        extras.putInt(CORRECT_ANSWERS_IN_A_ROW, correctAnswersInARow);</b>
+<b class="nc"><i>210</i>&nbsp;        extras.putInt(CORRECT_ON_FIRST_TRY, correctOnFirstTry);</b>
+<b class="nc"><i>211</i>&nbsp;        extras.putInt(NUMBER_OF_TASKS, numberOfTasks);</b>
+<b class="nc"><i>212</i>&nbsp;        extras.putString(&quot;jsonO&quot;, jsonObject.toString());</b>
+<b class="nc"><i>213</i>&nbsp;        extras.putString(&quot;name&quot;, name);</b>
+<b class="nc"><i>214</i>&nbsp;        extras.putString(&quot;username&quot;, username);</b>
+<b class="nc"><i>215</i>&nbsp;        extras.putIntArray(&quot;solved&quot;, solved);</b>
+<b class="nc"><i>216</i>&nbsp;        extras.putInt(&quot;Asolved&quot;, Asolved);</b>
+<b class="nc"><i>217</i>&nbsp;        extras.putString(&quot;position&quot;, position);</b>
+<b class="nc"><i>218</i>&nbsp;        intent.putExtras(extras);</b>
+<b class="nc"><i>219</i>&nbsp;        startActivity(intent);</b>
+<b class="nc"><i>220</i>&nbsp;        finish();</b>
+<b class="nc"><i>221</i>&nbsp;    }</b>
+<i>222</i>&nbsp;
+<i>223</i>&nbsp;    //This method checks if the the right answer is selected, and see if a new trophy has been earned
+<i>224</i>&nbsp;    // if new trophy, update database. Only students can get trophies
+<i>225</i>&nbsp;    public void correctAnswerClicked() {
+<b class="nc"><i>226</i>&nbsp;        if (!answeredWrong) {</b>
+<b class="nc"><i>227</i>&nbsp;            correctOnFirstTry++;</b>
+<b class="nc"><i>228</i>&nbsp;            correctAnswersInARow++;</b>
+<b class="nc"><i>229</i>&nbsp;            solved[taskId] = 1;</b>
+<b class="nc"><i>230</i>&nbsp;            taskId = globalCounter + 1;</b>
+<b class="nc"><i>231</i>&nbsp;            Asolved++;</b>
+<b class="nc"><i>232</i>&nbsp;            Toast.makeText(AssignmentActivity.this, &quot;Winning streak is on &quot; + correctAnswersInARow, Toast.LENGTH_LONG).show();</b>
+<b class="nc"><i>233</i>&nbsp;            Button bt1 = (Button) findViewById(R.id.button1);</b>
+<b class="nc"><i>234</i>&nbsp;            Button bt2 = (Button) findViewById(R.id.button2);</b>
+<b class="nc"><i>235</i>&nbsp;            Button bt3 = (Button) findViewById(R.id.button3);</b>
+<b class="nc"><i>236</i>&nbsp;            Button bt4 = (Button) findViewById(R.id.button4);</b>
+<b class="nc"><i>237</i>&nbsp;            bt1.setEnabled(false);</b>
+<b class="nc"><i>238</i>&nbsp;            bt2.setEnabled(false);</b>
+<b class="nc"><i>239</i>&nbsp;            bt3.setEnabled(false);</b>
+<b class="nc"><i>240</i>&nbsp;            bt4.setEnabled(false);</b>
+<i>241</i>&nbsp;        }
+<b class="nc"><i>242</i>&nbsp;        LinearLayout correctAnswerView = (LinearLayout) findViewById(R.id.correctAnswer);</b>
+<b class="nc"><i>243</i>&nbsp;        correctAnswerView.setVisibility(View.VISIBLE);</b>
+<i>244</i>&nbsp;
+<b class="nc"><i>245</i>&nbsp;        if (position.equals(&quot;Student&quot;)) {</b>
+<b class="nc"><i>246</i>&nbsp;            if (correctAnswersInARow == 1 &amp;&amp; findTrophy(1)) {</b>
+<b class="nc"><i>247</i>&nbsp;                new Background(1, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<b class="nc"><i>248</i>&nbsp;                tempTrophyArray(1);</b>
+<b class="nc"><i>249</i>&nbsp;                Toast.makeText(this, &quot;Congrats! New trophy in the Trophy Room!&quot;, Toast.LENGTH_LONG).show();</b>
+<i>250</i>&nbsp;            }
+<b class="nc"><i>251</i>&nbsp;            if (correctAnswersInARow == 5 &amp;&amp; findTrophy(2)) {</b>
+<b class="nc"><i>252</i>&nbsp;                new Background(2, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<b class="nc"><i>253</i>&nbsp;                tempTrophyArray(2);</b>
+<b class="nc"><i>254</i>&nbsp;                Toast.makeText(this, &quot;Congrats! New trophy in the Trophy Room!&quot;, Toast.LENGTH_LONG).show();</b>
+<i>255</i>&nbsp;            }
+<b class="nc"><i>256</i>&nbsp;            if (correctAnswersInARow == 10 &amp;&amp; findTrophy(3)) {</b>
+<b class="nc"><i>257</i>&nbsp;                new Background(3, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<b class="nc"><i>258</i>&nbsp;                tempTrophyArray(3);</b>
+<b class="nc"><i>259</i>&nbsp;                Toast.makeText(this, &quot;Congrats! New trophy in the Trophy Room!&quot;, Toast.LENGTH_LONG).show();</b>
+<i>260</i>&nbsp;            }
+<b class="nc"><i>261</i>&nbsp;            if (Asolved == 5 &amp;&amp; findTrophy(7)) {</b>
+<b class="nc"><i>262</i>&nbsp;                new Background(7, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<b class="nc"><i>263</i>&nbsp;                tempTrophyArray(7);</b>
+<b class="nc"><i>264</i>&nbsp;                Toast.makeText(this, &quot;Congrats! New trophy in the Trophy Room!&quot;, Toast.LENGTH_LONG).show();</b>
+<i>265</i>&nbsp;            }
+<b class="nc"><i>266</i>&nbsp;            if (Asolved == 10 &amp;&amp; findTrophy(8)) {</b>
+<b class="nc"><i>267</i>&nbsp;                new Background(8, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<b class="nc"><i>268</i>&nbsp;                tempTrophyArray(8);</b>
+<b class="nc"><i>269</i>&nbsp;                Toast.makeText(this, &quot;Congrats! New trophy in the Trophy Room!&quot;, Toast.LENGTH_LONG).show();</b>
+<i>270</i>&nbsp;            }
+<b class="nc"><i>271</i>&nbsp;            if (Asolved == 50 &amp;&amp; findTrophy(9)) {</b>
+<b class="nc"><i>272</i>&nbsp;                new Background(9, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<b class="nc"><i>273</i>&nbsp;                tempTrophyArray(9);</b>
+<b class="nc"><i>274</i>&nbsp;                Toast.makeText(this, &quot;Congrats! New trophy in the Trophy Room!&quot;, Toast.LENGTH_LONG).show();</b>
+<i>275</i>&nbsp;            }
+<b class="nc"><i>276</i>&nbsp;            if (Asolved == 100 &amp;&amp; findTrophy(10)) {</b>
+<b class="nc"><i>277</i>&nbsp;                new Background(10, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<b class="nc"><i>278</i>&nbsp;                tempTrophyArray(10);</b>
+<b class="nc"><i>279</i>&nbsp;                Toast.makeText(this, &quot;Congrats! New trophy in the Trophy Room!&quot;, Toast.LENGTH_LONG).show();</b>
+<i>280</i>&nbsp;            }
+<b class="nc"><i>281</i>&nbsp;            if (Asolved == 500 &amp;&amp; findTrophy(11)) {</b>
+<b class="nc"><i>282</i>&nbsp;                new Background(11, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<b class="nc"><i>283</i>&nbsp;                tempTrophyArray(11);</b>
+<b class="nc"><i>284</i>&nbsp;                Toast.makeText(this, &quot;Congrats! New trophy in the Trophy Room!&quot;, Toast.LENGTH_LONG).show();</b>
+<i>285</i>&nbsp;            }
+<b class="nc"><i>286</i>&nbsp;            if (Asolved == 1000 &amp;&amp; findTrophy(12)) {</b>
+<b class="nc"><i>287</i>&nbsp;                new Background(12, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<b class="nc"><i>288</i>&nbsp;                tempTrophyArray(12);</b>
+<b class="nc"><i>289</i>&nbsp;                Toast.makeText(this, &quot;Congrats! New trophy in the Trophy Room!&quot;, Toast.LENGTH_LONG).show();</b>
+<i>290</i>&nbsp;            }
+<i>291</i>&nbsp;        }
+<b class="nc"><i>292</i>&nbsp;    }</b>
+<i>293</i>&nbsp;
+<i>294</i>&nbsp;    //This method checks if the wrong answer is selected
+<i>295</i>&nbsp;    public void wrongAnswerClicked() {
+<b class="nc"><i>296</i>&nbsp;        answeredWrong = true;</b>
+<b class="nc"><i>297</i>&nbsp;        vibrator.vibrate(300);</b>
+<b class="nc"><i>298</i>&nbsp;        correctAnswersInARow = 0;</b>
+<b class="nc"><i>299</i>&nbsp;        Toast.makeText(this, &quot;To bad, winning streak reset to &quot; + correctAnswersInARow, Toast.LENGTH_LONG).show();</b>
+<b class="nc"><i>300</i>&nbsp;    }</b>
+<i>301</i>&nbsp;
+<i>302</i>&nbsp;    //next four methods checks if the clicked button contains the right or wrong answer
+<i>303</i>&nbsp;    public void button1Clicked(View view) {
+<b class="nc"><i>304</i>&nbsp;        if (answer1.equals(correctAnswer)) {</b>
+<b class="nc"><i>305</i>&nbsp;            correctAnswerClicked();</b>
+<i>306</i>&nbsp;        } else {
+<b class="nc"><i>307</i>&nbsp;            wrongAnswerClicked();</b>
+<i>308</i>&nbsp;        }
+<b class="nc"><i>309</i>&nbsp;    }</b>
+<i>310</i>&nbsp;
+<i>311</i>&nbsp;    public void button2Clicked(View view) {
+<b class="nc"><i>312</i>&nbsp;        if (answer2.equals(correctAnswer)) {</b>
+<b class="nc"><i>313</i>&nbsp;            correctAnswerClicked();</b>
+<i>314</i>&nbsp;        } else {
+<b class="nc"><i>315</i>&nbsp;            wrongAnswerClicked();</b>
+<i>316</i>&nbsp;        }
+<b class="nc"><i>317</i>&nbsp;    }</b>
+<i>318</i>&nbsp;
+<i>319</i>&nbsp;    public void button3Clicked(View view) {
+<b class="nc"><i>320</i>&nbsp;        if (answer3.equals(correctAnswer)) {</b>
+<b class="nc"><i>321</i>&nbsp;            correctAnswerClicked();</b>
+<i>322</i>&nbsp;        } else {
+<b class="nc"><i>323</i>&nbsp;            wrongAnswerClicked();</b>
+<i>324</i>&nbsp;        }
+<b class="nc"><i>325</i>&nbsp;    }</b>
+<i>326</i>&nbsp;
+<i>327</i>&nbsp;    public void button4Clicked(View view) {
+<b class="nc"><i>328</i>&nbsp;        if (answer4.equals(correctAnswer)) {</b>
+<b class="nc"><i>329</i>&nbsp;            correctAnswerClicked();</b>
+<i>330</i>&nbsp;        } else {
+<b class="nc"><i>331</i>&nbsp;            wrongAnswerClicked();</b>
+<i>332</i>&nbsp;        }
+<b class="nc"><i>333</i>&nbsp;    }</b>
+<i>334</i>&nbsp;
+<i>335</i>&nbsp;    //push back button on screen
+<i>336</i>&nbsp;    public void backToMain(View v) {
+<i>337</i>&nbsp;        Intent intent;
+<b class="nc"><i>338</i>&nbsp;        if (position.equals(&quot;Student&quot;)) {</b>
+<b class="nc"><i>339</i>&nbsp;            intent = new Intent(AssignmentActivity.this, MainActivity.class);</b>
+<i>340</i>&nbsp;        } else {
+<b class="nc"><i>341</i>&nbsp;            intent = new Intent(AssignmentActivity.this, TeachingActivity.class);</b>
+<i>342</i>&nbsp;        }
+<b class="nc"><i>343</i>&nbsp;        Bundle extras = new Bundle();</b>
+<b class="nc"><i>344</i>&nbsp;        extras.putString(&quot;name&quot;, name);</b>
+<b class="nc"><i>345</i>&nbsp;        extras.putString(&quot;username&quot;, username);</b>
+<b class="nc"><i>346</i>&nbsp;        extras.putString(&quot;position&quot;, position);</b>
+<b class="nc"><i>347</i>&nbsp;        intent.putExtras(extras);</b>
+<b class="nc"><i>348</i>&nbsp;        new Background(0, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<b class="nc"><i>349</i>&nbsp;        startActivity(intent);</b>
+<b class="nc"><i>350</i>&nbsp;        finish();</b>
+<b class="nc"><i>351</i>&nbsp;    }</b>
+<i>352</i>&nbsp;
+<i>353</i>&nbsp;    //use anndroid back button
+<i>354</i>&nbsp;    @Override
+<i>355</i>&nbsp;    public void onBackPressed() {
+<i>356</i>&nbsp;        Intent intent;
+<b class="nc"><i>357</i>&nbsp;        if (position.equals(&quot;Student&quot;)) {</b>
+<b class="nc"><i>358</i>&nbsp;            intent = new Intent(AssignmentActivity.this, MainActivity.class);</b>
+<i>359</i>&nbsp;        } else {
+<b class="nc"><i>360</i>&nbsp;            intent = new Intent(AssignmentActivity.this, TeachingActivity.class);</b>
+<i>361</i>&nbsp;        }
+<b class="nc"><i>362</i>&nbsp;        Bundle extras = new Bundle();</b>
+<b class="nc"><i>363</i>&nbsp;        extras.putString(&quot;name&quot;, name);</b>
+<b class="nc"><i>364</i>&nbsp;        extras.putString(&quot;username&quot;, username);</b>
+<b class="nc"><i>365</i>&nbsp;        extras.putString(&quot;position&quot;, position);</b>
+<b class="nc"><i>366</i>&nbsp;        intent.putExtras(extras);</b>
+<b class="nc"><i>367</i>&nbsp;        new Background(0, courseSubjectID, correctAnswersInARow, correctOnFirstTry, taskId, username, numberOfTasks, assignID, solved, mmyy).execute();</b>
+<b class="nc"><i>368</i>&nbsp;        startActivity(intent);</b>
+<b class="nc"><i>369</i>&nbsp;        finish();</b>
+<b class="nc"><i>370</i>&nbsp;    }</b>
+<i>371</i>&nbsp;
+<i>372</i>&nbsp;    /*This method takes four alternative answers as arguments. The first one is the correct answer
+<i>373</i>&nbsp;     to the exercise. The method returns a list with five string elements. The first element is the
+<i>374</i>&nbsp;     correct answer. The four next is all the alternatives in random order.*/
+<i>375</i>&nbsp;    public List&lt;String&gt; randomizer(String s1, String s2, String s3, String s4) {
+<b class="nc"><i>376</i>&nbsp;        List&lt;String&gt; list = new ArrayList&lt;&gt;(Arrays.asList(s1, s2, s3, s4));</b>
+<b class="nc"><i>377</i>&nbsp;        List&lt;String&gt; randomList = new ArrayList&lt;&gt;(Arrays.asList(s1));</b>
+<b class="nc"><i>378</i>&nbsp;        Random rand = new Random();</b>
+<b class="nc"><i>379</i>&nbsp;        for (int i = 4; i &gt; 0; i--) {</b>
+<b class="nc"><i>380</i>&nbsp;            randomList.add(list.remove(rand.nextInt(i)));</b>
+<i>381</i>&nbsp;        }
+<b class="nc"><i>382</i>&nbsp;        return randomList;</b>
+<i>383</i>&nbsp;    }
+<i>384</i>&nbsp;
+<i>385</i>&nbsp;    //This method checks if the trophy has already been earned, takes in a trophynumber and returns
+<i>386</i>&nbsp;    //a true if the trophy is not found.
+<i>387</i>&nbsp;    public boolean findTrophy(int trophynumber) {
+<b class="nc"><i>388</i>&nbsp;        for (int i = 0; i &lt; myTrophies.length; i++) {</b>
+<b class="nc"><i>389</i>&nbsp;            if (myTrophies[i] == trophynumber) {</b>
+<b class="nc"><i>390</i>&nbsp;                return false;</b>
+<i>391</i>&nbsp;            }
+<i>392</i>&nbsp;        }
+<b class="nc"><i>393</i>&nbsp;        return true;</b>
+<i>394</i>&nbsp;    }
+<i>395</i>&nbsp;
+<i>396</i>&nbsp;    //add trophy to a temporary array for user trophies
+<i>397</i>&nbsp;    public void tempTrophyArray(int trophynum) {
+<b class="nc"><i>398</i>&nbsp;        for (int i = 0; i &lt; myTrophies.length; i++) {</b>
+<b class="nc"><i>399</i>&nbsp;            if (myTrophies[i] == 0) {</b>
+<b class="nc"><i>400</i>&nbsp;                myTrophies[i] = trophynum;</b>
+<b class="nc"><i>401</i>&nbsp;                break;</b>
+<i>402</i>&nbsp;            }
+<i>403</i>&nbsp;        }
+<b class="nc"><i>404</i>&nbsp;    }</b>
+<i>405</i>&nbsp;
+<i>406</i>&nbsp;    //this saves userinformation to the database
+<i>407</i>&nbsp;    class Background extends AsyncTask&lt;Void, Void, String&gt; {
+<i>408</i>&nbsp;        //Gets data from database
+<i>409</i>&nbsp;        String username, mmyy;
+<i>410</i>&nbsp;        String JSON_STRING, js_string;
+<i>411</i>&nbsp;        String json_url;
+<i>412</i>&nbsp;        int ansInARow, taskID, correctOnFirstTry, courseSubjectID, trophynum, numberOfTask;
+<i>413</i>&nbsp;        int[] assignID, solved;
+<i>414</i>&nbsp;
+<i>415</i>&nbsp;        //get input data
+<b class="nc"><i>416</i>&nbsp;        public Background(int trophynum, int courseSubjectID, int ansInARow, int correctOnFirstTry, int taskID, String username, int numberOfTask, int[] assignID, int[] solved, String mmyy) {</b>
+<b class="nc"><i>417</i>&nbsp;            this.trophynum = trophynum;</b>
+<b class="nc"><i>418</i>&nbsp;            this.courseSubjectID = courseSubjectID;</b>
+<b class="nc"><i>419</i>&nbsp;            this.correctOnFirstTry = correctOnFirstTry;</b>
+<b class="nc"><i>420</i>&nbsp;            this.taskID = taskID;</b>
+<b class="nc"><i>421</i>&nbsp;            this.ansInARow = ansInARow;</b>
+<b class="nc"><i>422</i>&nbsp;            this.username = username;</b>
+<b class="nc"><i>423</i>&nbsp;            this.numberOfTask = numberOfTask;</b>
+<b class="nc"><i>424</i>&nbsp;            this.assignID = assignID;</b>
+<b class="nc"><i>425</i>&nbsp;            this.solved = solved;</b>
+<b class="nc"><i>426</i>&nbsp;            this.mmyy = mmyy;</b>
+<i>427</i>&nbsp;        }
+<i>428</i>&nbsp;
+<i>429</i>&nbsp;        @Override
+<i>430</i>&nbsp;        protected void onPreExecute() {
+<i>431</i>&nbsp;            //reset assignments so user can start over
+<b class="nc"><i>432</i>&nbsp;            if (taskID == numberOfTask) {</b>
+<b class="nc"><i>433</i>&nbsp;                taskID = 0;</b>
+<b class="nc"><i>434</i>&nbsp;                correctOnFirstTry = 0;</b>
+<i>435</i>&nbsp;            }
+<i>436</i>&nbsp;
+<b class="nc"><i>437</i>&nbsp;            String Ssolved = &quot;&quot;, SassignID = &quot;&quot;;</b>
+<b class="nc"><i>438</i>&nbsp;            for (int i = 0; i &lt; solved.length; i++) {</b>
+<b class="nc"><i>439</i>&nbsp;                Ssolved = &quot;&quot; + Ssolved + &quot;,&quot; + solved[i];</b>
+<b class="nc"><i>440</i>&nbsp;                SassignID = &quot;&quot; + SassignID + &quot;,&quot; + assignID[i];</b>
+<i>441</i>&nbsp;
+<i>442</i>&nbsp;            }
+<i>443</i>&nbsp;
+<i>444</i>&nbsp;            //url for php that fetch data from database, comes back as json object
+<b class="nc"><i>445</i>&nbsp;            json_url = &quot;https://truongtrxu.000webhostapp.com/updateUserProgress1.php?courseSubjectID=&quot; + courseSubjectID + &quot;&amp;username=&quot; + username</b>
+<i>446</i>&nbsp;                    + &quot;&amp;trophynum=&quot; + trophynum + &quot;&amp;taskID=&quot; + taskID + &quot;&amp;ansInARow=&quot; + ansInARow + &quot;&amp;correctOnFirstTry=&quot; + correctOnFirstTry + &quot;&amp;assignID=&quot; + SassignID + &quot;&amp;solved=&quot; + Ssolved
+<i>447</i>&nbsp;                    + &quot;&amp;mmyy=&quot; + mmyy;
+<i>448</i>&nbsp;        }
+<i>449</i>&nbsp;
+<i>450</i>&nbsp;        @Override
+<i>451</i>&nbsp;        protected String doInBackground(Void... params) {
+<i>452</i>&nbsp;            try {
+<b class="nc"><i>453</i>&nbsp;                URL url = new URL(json_url);</b>
+<b class="nc"><i>454</i>&nbsp;                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();</b>
+<b class="nc"><i>455</i>&nbsp;                InputStream inputStream = httpURLConnection.getInputStream();</b>
+<b class="nc"><i>456</i>&nbsp;                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));</b>
+<b class="nc"><i>457</i>&nbsp;                StringBuilder stringBuilder = new StringBuilder();</b>
+<b class="nc"><i>458</i>&nbsp;                while ((JSON_STRING = bufferedReader.readLine()) != null) {</b>
+<b class="nc"><i>459</i>&nbsp;                    stringBuilder.append(JSON_STRING + &quot;\n&quot;);</b>
+<i>460</i>&nbsp;                }
+<b class="nc"><i>461</i>&nbsp;                bufferedReader.close();</b>
+<b class="nc"><i>462</i>&nbsp;                inputStream.close();</b>
+<b class="nc"><i>463</i>&nbsp;                httpURLConnection.disconnect();</b>
+<b class="nc"><i>464</i>&nbsp;                return stringBuilder.toString().trim();</b>
+<b class="nc"><i>465</i>&nbsp;            } catch (MalformedURLException e) {</b>
+<b class="nc"><i>466</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>467</i>&nbsp;            } catch (IOException e) {</b>
+<b class="nc"><i>468</i>&nbsp;                e.printStackTrace();</b>
+<b class="nc"><i>469</i>&nbsp;            }</b>
+<b class="nc"><i>470</i>&nbsp;            return null;</b>
+<i>471</i>&nbsp;        }
+<i>472</i>&nbsp;        @Override
+<i>473</i>&nbsp;        protected void onProgressUpdate(Void... values) {
+<b class="nc"><i>474</i>&nbsp;            super.onProgressUpdate(values);</b>
+<i>475</i>&nbsp;        }
+<i>476</i>&nbsp;
+<i>477</i>&nbsp;        @Override
+<i>478</i>&nbsp;        protected void onPostExecute(String result) {
+<b class="nc"><i>479</i>&nbsp;            js_string = result;</b>
+<i>480</i>&nbsp;
+<i>481</i>&nbsp;        }
+<i>482</i>&nbsp;    }
+<i>483</i>&nbsp;}
+<i>484</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-04-23 13:56</div>
+</div>
+</body>
+</html>

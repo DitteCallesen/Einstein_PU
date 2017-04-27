@@ -2,17 +2,13 @@ package com.example.diteh.einstein;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,19 +22,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+//this is the chatroom activity
 public class Chatroom extends AppCompatActivity {
     private Button btSendMsg;
     private EditText inputMsg;
-    private TextView chatConversation;
     private String username, roomName, name, tempKey, position;
     private DatabaseReference root;
-    private Chatmessage chatmessage;
     private SimpleDateFormat DateFormat = new SimpleDateFormat("HH:mm dd/MM/yyyy");
     private ListView chatlist;
     private ChatroomAdapter adapter;
@@ -51,7 +44,6 @@ public class Chatroom extends AppCompatActivity {
         setContentView(R.layout.activity_chatroom);
         btSendMsg = (Button) findViewById(R.id.btSend);
         inputMsg = (EditText) findViewById(R.id.msgInput);
-        chatConversation = (TextView) findViewById(R.id.textView);
         mChatmessage = new ArrayList<>();
 
         chatlist = (ListView) findViewById(R.id.messageList);
@@ -59,11 +51,14 @@ public class Chatroom extends AppCompatActivity {
         name = extras.getString("name");
         username = extras.getString("username");
         roomName = extras.getString("roomName");
-        position=extras.getString("position");
+        position = extras.getString("position");
         setTitle("Room " + roomName);
 
+        //get referance from firebase based on roomname selected from previous activity
         root = FirebaseDatabase.getInstance().getReference().child(roomName);
 
+
+        //on send message to chatroom
         btSendMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,32 +72,28 @@ public class Chatroom extends AppCompatActivity {
                 map2.put("name", name);
                 map2.put("msg", inputMsg.getText().toString());
                 map2.put("stamp", date);
-
                 messageRoot.updateChildren(map2);
                 inputMsg.setText("");
-
             }
         });
 
+        //listner for updating chatroom with exsisting and new messages
         root.addChildEventListener(new ChildEventListener() {
+            //setts up the messages in the room
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 appendChatConversation(dataSnapshot);
-
-                int lastPosition = chatlist.getLastVisiblePosition();
                 adapter = new ChatroomAdapter(getApplicationContext(), mChatmessage);
                 chatlist.setAdapter(adapter);
-                chatlist.setSelection(lastPosition);
-
+                chatlist.setSelection(mChatmessage.size());
             }
-
+            //listen to new chatmeassages
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 appendChatConversation(dataSnapshot);
-                int lastPosition = chatlist.getLastVisiblePosition();
                 adapter = new ChatroomAdapter(getApplicationContext(), mChatmessage);
                 chatlist.setAdapter(adapter);
-                chatlist.setSelection(lastPosition);
+                chatlist.setSelection(mChatmessage.size());
             }
 
             @Override
@@ -120,8 +111,12 @@ public class Chatroom extends AppCompatActivity {
 
             }
         });
+
+
+
     }
 
+    //method for getting one and one messages from firebase
     private void appendChatConversation(DataSnapshot dataSnapshot) {
 
         Iterator i = dataSnapshot.getChildren().iterator();
@@ -140,40 +135,31 @@ public class Chatroom extends AppCompatActivity {
 
     public void backToRooms(View view) {
         Intent intent;
-        if(position.equals("Student")){
-            intent = new Intent(Chatroom.this, MainActivity.class);
-        }
-        else{
-            intent = new Intent(Chatroom.this, TeachingActivity.class);
-        }
+        intent = new Intent(Chatroom.this, ListOfChatroomActivity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
         extras.putString("position", position);
         intent.putExtras(extras);
         Chatroom.this.startActivity(intent);
-        finish();
+        this.finish();
     }
 
-    //use anndroid back button
+    //use Android back button
     @Override
     public void onBackPressed() {
         Intent intent;
-        if(position.equals("Student")){
-            intent = new Intent(Chatroom.this, MainActivity.class);
-        }
-        else{
-            intent = new Intent(Chatroom.this, TeachingActivity.class);
-        }
+        intent = new Intent(Chatroom.this, ListOfChatroomActivity.class);
         Bundle extras = new Bundle();
         extras.putString("name", name);
         extras.putString("username", username);
         extras.putString("position", position);
         intent.putExtras(extras);
         startActivity(intent);
-        finish();
+        this.finish();
     }
 
+    //class for adding one and one message to the chatroom on the display
     private class ChatroomAdapter extends BaseAdapter {
         private Context mContext;
         private List<Chatmessage> chatmessageList;
@@ -211,23 +197,28 @@ public class Chatroom extends AppCompatActivity {
             TextView Rname = (TextView) v.findViewById(R.id.msgName);
             TextView msg = (TextView) v.findViewById(R.id.msgText);
             TextView stamp = (TextView) v.findViewById(R.id.msgStamp);
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) msg.getLayoutParams();
-            LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) Rname.getLayoutParams();
-            LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) stamp.getLayoutParams();
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) msg.getLayoutParams();
+            RelativeLayout.LayoutParams layoutParams1 = (RelativeLayout.LayoutParams) Rname.getLayoutParams();
+            RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) stamp.getLayoutParams();
             //set text
             Rname.setText(chatmessageList.get(position).getMessageUser());
             msg.setText(chatmessageList.get(position).getMessageText());
             stamp.setText(chatmessageList.get(position).getMessageTIme().toString());
+
+            //checks the message sender to set background to green chat bubble if sender has same
+            // name as the user on the device, the bubble is then placed to the right of the screen
             if (name.equals(chatmessageList.get(position).getMessageUser())) {
                 msg.setBackground(getDrawable(R.drawable.bubble_right_green));
-                layoutParams.gravity = Gravity.RIGHT;
-                layoutParams1.gravity = Gravity.RIGHT;
-                layoutParams2.gravity = Gravity.RIGHT;
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                layoutParams1.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+                layoutParams2.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            //if name is not equal to messageUser, then it means background (of the message) is set
+            //to a gray bubble
             } else {
                 msg.setBackground(getDrawable(R.drawable.bubble_left_gray));
-                layoutParams.gravity = Gravity.LEFT;
-                layoutParams1.gravity = Gravity.LEFT;
-                layoutParams2.gravity = Gravity.LEFT;
+                layoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                layoutParams1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                layoutParams2.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
             }
             v.setTag(chatmessageList.get(position).getiD());
             return v;

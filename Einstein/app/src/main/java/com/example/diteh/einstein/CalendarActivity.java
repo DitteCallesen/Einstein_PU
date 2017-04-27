@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class CalendarActivity extends AppCompatActivity {
-    private String name, username,position;
+    protected String name, username,position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class CalendarActivity extends AppCompatActivity {
         finish();
     }
 
-    //use anndroid back button
+    //use Android back button
     @Override
     public void onBackPressed() {
         Intent intent;

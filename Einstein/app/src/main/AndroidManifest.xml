@@ -34,8 +34,6 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".CalendarActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ChatroomActivity"
-            android:screenOrientation="portrait"/>
         <activity android:name=".AssignmentActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".Class1Activity"

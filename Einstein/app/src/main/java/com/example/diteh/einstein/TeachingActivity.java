@@ -1,8 +1,8 @@
 package com.example.diteh.einstein;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,27 +19,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TeachingActivity extends AppCompatActivity {
-    private String name,username,position;
-
+    protected String name, username, position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teaching);
 
+        final TextView welcomeMessage = (TextView) findViewById(R.id.welcomeMessage);
 
-    final TextView welcomeMessage = (TextView) findViewById(R.id.welcomeMessage);
-
-    Bundle extras = getIntent().getExtras();
-        name=extras.getString("name");
-        username=extras.getString("username");
-        position=extras.getString("position");
+        Bundle extras = getIntent().getExtras();
+        name = extras.getString("name");
+        username = extras.getString("username");
+        position = extras.getString("position");
         String msg = "Welcome to Einstein, " + name + "!";
         welcomeMessage.setText(msg);
-
-
-
-}
+    }
 
     // Class buttons
     public void class1OnClick(View v) {
@@ -89,7 +84,6 @@ public class TeachingActivity extends AppCompatActivity {
 
     }
 
-
     //logout
     public void goToLogin(View view) {
         Intent intent = new Intent(TeachingActivity.this, LoginActivity.class);
@@ -115,7 +109,7 @@ public class TeachingActivity extends AppCompatActivity {
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    String coursesubject =jsonObject.toString();
+                    String coursesubject = jsonObject.toString();
 
                     Intent intent = new Intent(TeachingActivity.this, ChartActivity.class);
                     Bundle extras = new Bundle();
@@ -125,8 +119,7 @@ public class TeachingActivity extends AppCompatActivity {
                     extras.putString("position", position);
                     intent.putExtras(extras);
                     TeachingActivity.this.startActivity(intent);
-                }
-                catch (JSONException e1){
+                } catch (JSONException e1) {
                     e1.printStackTrace();
                 }
             }
@@ -134,8 +127,6 @@ public class TeachingActivity extends AppCompatActivity {
         TeachingActivity.CharDataRequest charDataRequest = new TeachingActivity.CharDataRequest(username, responStringListener2);
         RequestQueue queue = Volley.newRequestQueue(TeachingActivity.this);
         queue.add(charDataRequest);
-
-
     }
 
     public class CharDataRequest extends StringRequest {
@@ -147,8 +138,6 @@ public class TeachingActivity extends AppCompatActivity {
             super(Request.Method.POST, LOGIN_REQUEST_URL, listener, null);
             params = new HashMap<>();
             params.put("username", username);
-
-
         }
 
         @Override

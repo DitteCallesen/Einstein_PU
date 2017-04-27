@@ -4,7 +4,7 @@
 
     <string name="theme1_1">Algebra</string>
     <string name="theme1_2">Percent</string>
-    <string name="theme1_3">Areal</string>
+    <string name="theme1_3">Area</string>
     <string name="theme1_4">Division</string>
     <string name="theme1_5">Pythagoras</string>
     <string name="theme1_6">Fraction</string>
@@ -23,12 +23,35 @@
 
     <string-array name="typer">
         <item>Student</item>
-        <item>UndervisningsPersonell</item>
+        <item>Professor</item>
     </string-array>
 
     <string-array name="type">
         <item>Per assignment</item>
         <item>All assignment per month</item>
+    </string-array>
+
+    <string-array name="MathSubjects">
+        <item>Algebra</item>
+        <item>Percent</item>
+        <item>Areal</item>
+        <item>Division</item>
+        <item>Pythagoras</item>
+        <item>Fraction</item>
+        <item>Number systems</item>
+        <item>Multiplication</item>
+
+    </string-array>
+
+    <string-array name="StatSubjects">
+        <item>Sample mean</item>
+        <item>Sample median</item>
+        <item>Variance</item>
+        <item>Standard Deviation</item>
+        <item>Additive Rules</item>
+        <item>Product Rule</item>
+        <item>Bayes Rule</item>
+        <item>Mean of a radnom variable</item>
     </string-array>
 
 
